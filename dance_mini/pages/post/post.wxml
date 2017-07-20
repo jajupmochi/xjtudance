@@ -1,0 +1,14 @@
+<form report-submit bindsubmit="submitArticle">
+  <label>
+    使用标题：
+    <input value="请在此输入文章标题" focus="true" style="border:1px solid red" type="text" name="title" />
+  </label>
+  <label>
+    作者：
+  </label>
+  <label>
+    文章内容：
+    <input value="请在此输入文章内容" maxlength="-1" confirm-type="send" class="input-content" type="text" name="content" />
+  </label>
+  <button form-type="submit">发表</button>
+</form>

@@ -11,7 +11,7 @@ Page({
     var openid = app.openid;
 
     wx.request({
-      url: 'https://57247578.qcloud.la/php/acceptArticle.php',
+      url: app.global_data.server_url + 'php/acceptArticle.php',
       data: {
         openid: openid,
         formId: formId,
@@ -23,7 +23,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        if (res.data == 'success') { // 'success'代表数据成功存入后台数据库
+       // if (res.data == 'success') { // 'success'代表数据成功存入后台数据库
           wx.showToast({ // 显示成功提示
             title: '发表成功！',
             icon: 'success',
@@ -34,7 +34,7 @@ Page({
               delta: 1
             })
           }, 1000)
-        }
+        //}
       }
     })
 

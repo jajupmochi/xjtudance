@@ -1,5 +1,8 @@
 //app.js
 App({
+  global_data: {
+    server_url: "https://57247578.qcloud.la/test/" // 服务器地址
+  },
   openid: null,
   onLaunch: function () {
     //调用API从本地缓存中获取数据
@@ -13,7 +16,7 @@ App({
       success: function (res) {
         // console.log(res.code);
         wx.request({
-          url: 'https://57247578.qcloud.la/php/onLogin.php',
+          url: that.global_data.server_url + "php/onLogin.php",
           data: {
             code: res.code
           },

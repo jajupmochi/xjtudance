@@ -75,7 +75,7 @@ Page({
   getData: function () {
     var that = this;
     wx.request({
-      url: 'https://57247578.qcloud.la/php/listArticle.php',
+      url: app.global_data.server_url + 'php/listArticle.php',
       data: {},
       header: {
         'content-type': 'application/json'

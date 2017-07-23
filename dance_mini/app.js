@@ -16,7 +16,7 @@ App({
       success: function (res) {
         // console.log(res.code);
         wx.request({
-          url: that.global_data.server_url + "php/onLogin.php",
+          url: that.global_data.server_url + 'php/onLogin.php',
           data: {
             code: res.code
           },
@@ -33,6 +33,12 @@ App({
         })
       }
     });
+    // 播放背景音乐
+    //wx.playBackgroundAudio({
+    //  dataUrl: that.global_data.server_url + 'Pillowtalk_Zayn.mp3',
+    //  title: '',
+    //  coverImgUrl: ''
+    //})
   },
   getUserInfo:function(cb){
     var that = this

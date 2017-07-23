@@ -7,23 +7,6 @@ Page({
     feed: [],
     feed_length: 0
   },
-  // 发表文章事件
-  postArticle: function () {
-    wx.navigateTo({
-      url: '../post/post'
-    })
-  },
-  // 事件处理函数
-  bindItemTap: function () {
-    wx.navigateTo({
-      url: '../answer/answer'
-    })
-  },
-  bindQueTap: function () {
-    wx.navigateTo({
-      url: '../question/question'
-    })
-  },
   // 载入页面事件
   onLoad: function () {
     // console.log('onLoad')
@@ -35,15 +18,56 @@ Page({
     // var that = this
     this.getData(); // 获取全局数据
   },
+
+  // 发表文章事件
+  postArticle: function () {
+    wx.navigateTo({
+      url: '../post/post'
+    })
+  },
+  // 删除文章事件
+  deleteArticle: function (e) {
+    var that = this;
+    var current_id = e.target.dataset.id.$id;
+    wx.request({
+      url: app.global_data.server_url + 'php/deleteArticle.php',
+      data: {
+        id: current_id,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        // console.log(res.data);
+        that.onShow(); // 重新加载页面
+        wx.showToast({ // 显示成功提示
+          title: '删除成功！',
+          icon: 'success',
+          duration: 1000
+        });
+      }
+    })
+  },
+  // 点击显示文章全文事件
+  showArticle: function (e) {
+    wx.navigateTo({
+      url: '../article/article?id=' + e.currentTarget.dataset.id.$id, // 进入文章详情页
+    })
+  },
+  bindQueTap: function () {
+    wx.navigateTo({
+      url: '../question/question'
+    })
+  },
   // 上拉刷新函数
   upper: function () {
     wx.showNavigationBarLoading()
     this.refresh();
     // console.log("upper");
-    setTimeout(function () { 
-      wx.hideNavigationBarLoading(); 
-      wx.stopPullDownRefresh(); 
-      }, 2000);
+    setTimeout(function () {
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
+    }, 2000);
   },
   // 下拉刷新函数
   lower: function (e) {

@@ -5,9 +5,10 @@
     "pages/notify/notify",
     "pages/chat/chat",
     "pages/more/more",
-    "pages/answer/answer",
+    "pages/article/article",
     "pages/question/question",
-    "pages/post/post"
+    "pages/post/post",
+    "pages/modify/modify"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -24,22 +25,27 @@
     "list": [{
       "pagePath": "pages/index/index",
       "iconPath": "images/index.png",
+      "text": "帖子",
       "selectedIconPath": "images/index_focus.png"
     }, {
       "pagePath": "pages/discovery/discovery",
       "iconPath": "images/discovery.png",
+      "text": "发现",
       "selectedIconPath": "images/discovery_focus.png"
     }, {
       "pagePath": "pages/notify/notify",
       "iconPath": "images/ring.png",
+      "text": "通知",
       "selectedIconPath": "images/ring_focus.png"
     }, {
       "pagePath": "pages/chat/chat",
       "iconPath": "images/chat.png",
+      "text": "私信",
       "selectedIconPath": "images/chat_focus.png"
     }, {
       "pagePath": "pages/more/more",
       "iconPath": "images/burger.png",
+      "text": "我的",
       "selectedIconPath": "images/burger_focus.png"
     }]
   },

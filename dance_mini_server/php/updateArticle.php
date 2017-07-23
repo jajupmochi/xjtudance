@@ -1,10 +1,11 @@
 <?php
 /*******************************************************************************
-接受用户从小程序端提交的文章，储存到mongo数据库和备份数据库，同步发表到兵马俑BBS。
+修改文章。接受用户从小程序端提交的文章，储存到mongo数据库和备份数据库，同步发表
+到兵马俑BBS。
 Version: 0.1 ($Rev: 1 $)
 Website: https://github.com/jajupmochi/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-07-21
+Updated: 2017-07-23
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -12,17 +13,18 @@ Redistributions of files must retain the above copyright notice.
 include('config.php');
 
 // 获取用户提交的数据
+$id = $_GET["id"]; //文章id
 $openid = $_GET["openid"];
 $formId = $_GET["formId"];
 $title = $_GET["title"];
 $content = $_GET["content"];
 $from = $_GET["source"];
 
-// 将数据存入数据库
-$mongo = new MongoClient(); // 连接数据库
-$db = $mongo->$dance_db; // 获取dance的数据库（xjtudance），如果数据库在mongoDB中不存在，mongoDB会自动创建
-$collection = $db->articles; // 选择名称为“articles”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
-// 拼接数据
+// 更新数据库
+$mongo = new MongoClient();
+$db = $mongo->$dance_db;
+$collection = $db->articles;
+/* // 拼接数据
 $document = array(
 "title" => $title, // 标题
 "content" => $content, // 正文内容
@@ -30,19 +32,21 @@ $document = array(
 "time" => "", // 发信时间
 "from" => $from, // 来源：包括bbs（兵马俑bbs）、bbswap（bbs wap版）、wxmini（微信小程序）
 "bbsurl" => "" // 兵马俑bbs链接
-);
-$collection->insert($document);	// 插入文档（一条文档即一条记录，相当于mysql中的item）
+); */
+$collection->update(array('_id' => new MongoId($id)), array('$set' => array
+("title" => $title, "content" => $content)));	// 更新文档
 	
-echo "the article is saved to database successfully.\n"; // 成功存入数据库则返回成功
+echo "the article is updated to database successfully.\n"; // 成功存入数据库则返回成功
 		
 // 在备份数据库中插入数据
 $db = $mongo->$dance_db_backup;
 $collection = $db->articles;
-$collection->insert($document);
+$collection->update(array('_id' => new MongoId($id)), array('$set' => array
+("title" => $title, "content" => $content)));
 
-echo "the article is saved to backup database successfully.\n"; // 成功存入备份数据库则返回成功
+echo "the article is updated to backup database successfully.\n"; // 成功存入备份数据库则返回成功
 	
-if ($dance_release) {
+/* if ($dance_release) {
 	// 将文章同步发表到兵马俑bbs dance版
 	// get t value (获取当前时间)
 	$sec = explode(" ", microtime());
@@ -68,5 +72,5 @@ if ($dance_release) {
 	curl_close($ch);
 	
 	echo "the article is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
-}
+} */
 ?>

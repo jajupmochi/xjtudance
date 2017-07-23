@@ -22,7 +22,7 @@
             </view>
             <text>{{item.author}}（Williance）</text>
           </a>
-          <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+          <image bindtap="deleteArticle" data-id="{{item._id}}" class="item-more" mode="aspectFit" src="../../images/more.png"></image>
         </view>
         <view class="feed-content">
           <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
@@ -31,10 +31,10 @@
                     </a>
           </view>
           <view class="answer-body">
-            <view bindtap="bindItemTap"> 
+            <view bindtap="showArticle" data-id="{{item._id}}"> 
               <text class="answer-txt" aid="{{answer_id}}">{{item.content}}</text>
             </view>
-            <view class="answer-actions" bindtap="bindItemTap">
+            <view class="answer-actions" bindtap="showArticle" data-id="{{item._id}}">
               <view class="like dot">
                 <a> 顶帖 112</a>
               </view>

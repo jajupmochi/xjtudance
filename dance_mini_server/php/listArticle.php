@@ -29,7 +29,7 @@ $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance）
 $collection = $db->articles; // 选择名称为“articles”集合
 $cursor = $collection->find()->sort(array('_id' => -1)); // 查找文档并按照id升序排列
 $dataArr = iterator_to_array($cursor); // 将cursor转换为array
-$dataJson = arr2json($dataArr); // 将数组转换为JSON字符串（兼容中文）
+$dataJson = json_encode($dataArr); // 将数组转换为JSON字符串（兼容中文）注：之前用了自定义的arr2json函数，但是并没有用，而且会出现换行符错误。这个转换好像只有在浏览器中显示才有用，小程序不需要
 
 echo $dataJson; // 向小程序返回json格式的数据
 ?>

@@ -11,7 +11,36 @@ Page({
     userbbsid: {},
     title: {},
     article: {},
-    test: []
+    test: [],
+    feed: []
+  },
+  // 载入页面事件
+  onLoad: function (e) {
+    var that = this;
+    // 从服务器读取文章详细内容
+    var current_id = e.id;
+    wx.request({
+      url: app.global_data.server_url + 'php/getArticle.php',
+      data: {
+        id: current_id,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          feed: res.data // 将数据传给全局变量feed
+        });
+      }
+    })
+  },
+
+  // 修改文章
+  modifyArticle: function () {
+    var that = this;
+    wx.navigateTo({
+      url: '../modify/modify?feed=' + JSON.stringify(that.data.feed),
+    })
   },
   //事件处理函数
   toQuestion: function () {
@@ -19,11 +48,24 @@ Page({
       url: '../question/question'
     })
   },
+  //    onLoad: function () {
+  //    console.log('onLoad')
+  //    var that = this
+  //    //调用应用实例的方法获取全局数据
+  //    app.getUserInfo(function (userInfo) {
+  //      //更新数据
+  //      that.setData({
+  //        userInfo: userInfo
+  //      })
+  //    })
+  //  },
+  tapName: function (event) {
+    console.log(event)
+  }
+})
 
-  // 初始化请求  
-  onLoad: function (res) {
-    console.log('onLoad');
-    var that = this;
+
+/*   var that = this;
     // 网络请求数据, 实现刷新
     wx.request({
       url: 'https://bbs.xjtu.edu.cn/BMY/con?B=dance&F=M.1499092691.A',
@@ -74,21 +116,4 @@ Page({
       fail: function (err) {
         console.log(err)
       }
-    })
-  },
-
-  //    onLoad: function () {
-  //    console.log('onLoad')
-  //    var that = this
-  //    //调用应用实例的方法获取全局数据
-  //    app.getUserInfo(function (userInfo) {
-  //      //更新数据
-  //      that.setData({
-  //        userInfo: userInfo
-  //      })
-  //    })
-  //  },
-  tapName: function (event) {
-    console.log(event)
-  }
-})
+    })*/

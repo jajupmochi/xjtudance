@@ -1,47 +1,35 @@
 <?php
 /*******************************************************************************
-接受用户从小程序端提交的文章，储存到mongo数据库和备份数据库，同步发表到兵马俑BBS。
+删除文章。接受用户从小程序端提交的文章id，删除mongo数据库和备份数据库的对应文章，
+同时删除兵马俑BBS的对应文章。
 Version: 0.1 ($Rev: 1 $)
 Website: https://github.com/jajupmochi/xjtudance
-Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-07-21
+Author: Linlin <jajupmochi@gmail.com>
+Updated: 2017-07-22
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
 include('config.php');
 
-// 获取用户提交的数据
-$openid = $_GET["openid"];
-$formId = $_GET["formId"];
-$title = $_GET["title"];
-$content = $_GET["content"];
-$from = $_GET["source"];
+// 获取用户提交的文章id
+$id = $_GET["id"];
 
-// 将数据存入数据库
+// 删除数据库中对应文章
 $mongo = new MongoClient(); // 连接数据库
 $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance），如果数据库在mongoDB中不存在，mongoDB会自动创建
 $collection = $db->articles; // 选择名称为“articles”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
-// 拼接数据
-$document = array(
-"title" => $title, // 标题
-"content" => $content, // 正文内容
-"author" => "", // 作者
-"time" => "", // 发信时间
-"from" => $from, // 来源：包括bbs（兵马俑bbs）、bbswap（bbs wap版）、wxmini（微信小程序）
-"bbsurl" => "" // 兵马俑bbs链接
-);
-$collection->insert($document);	// 插入文档（一条文档即一条记录，相当于mysql中的item）
+$collection->remove(array('_id' => new MongoId($id)), array("justOne" => true)); // 删除记录
 	
-echo "the article is saved to database successfully.\n"; // 成功存入数据库则返回成功
+echo "the article is removed from database successfully.\n"; // 成功存入数据库则返回成功
 		
 // 在备份数据库中插入数据
 $db = $mongo->$dance_db_backup;
 $collection = $db->articles;
-$collection->insert($document);
+$collection->remove(array('_id' => new MongoId($id)), array("justOne" => true));
 
-echo "the article is saved to backup database successfully.\n"; // 成功存入备份数据库则返回成功
-	
+echo "the article is removed from backup database successfully.\n"; // 成功存入备份数据库则返回成功
+/*
 if ($dance_release) {
 	// 将文章同步发表到兵马俑bbs dance版
 	// get t value (获取当前时间)
@@ -67,6 +55,6 @@ if ($dance_release) {
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
-	echo "the article is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
-}
+	echo "the article is deleted from bmybbs (board dance) successfully."; // 成功同步到兵马俑BBS
+} */
 ?>

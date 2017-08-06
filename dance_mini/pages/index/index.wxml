@@ -20,7 +20,7 @@
             <view class="avatar">
               <image src="../../images/icon1.jpeg"></image>
             </view>
-            <text>{{item.author}}（Williance）</text>
+            <text>{{item.author}}</text>
           </a>
           <image bindtap="deleteArticle" data-id="{{item._id}}" class="item-more" mode="aspectFit" src="../../images/more.png"></image>
         </view>
@@ -36,13 +36,13 @@
             </view>
             <view class="answer-actions" bindtap="showArticle" data-id="{{item._id}}">
               <view class="like dot">
-                <a> 顶帖 112</a>
+                <a> 顶帖 {{item.upup}}</a>
               </view>
               <view class="comments dot">
-                <a> 回复 13</a>
+                <a> 回复 {{item.reply.num}}</a>
               </view>
               <view class="follow-it">
-                <a> 收藏 1</a>
+                <a> 收藏 {{item.favori}}</a>
               </view>
             </view>
           </view>

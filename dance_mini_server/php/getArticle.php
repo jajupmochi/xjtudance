@@ -17,7 +17,7 @@ $id = $_GET["id"];
 // 删除数据库中对应文章
 $mongo = new MongoClient(); // 连接数据库
 $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance），如果数据库在mongoDB中不存在，mongoDB会自动创建
-$collection = $db->articles; // 选择名称为“articles”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
+$collection = $db->diaries; // 选择名称为“diaries”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
 $cursor = $collection->findOne(array('_id' => new MongoId($id))); // 查找记录	
 echo json_encode($cursor);
 ?>

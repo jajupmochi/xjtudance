@@ -4,10 +4,127 @@
 Version: 0.1 ($Rev: 1 $)
 Website: https://github.com/jajupmochi/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-07-21
+Updated: 2017-08-04
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
+
+/**
+* 将用户积分转换为等级，等级区间按照斐波那契数列计算：0-1级100分，1-2级100分，
+* 2-3级200分，3-4级300分，4-5级500分，5-6级800分，6-7级1300分，7-8级2100分，
+* 8-9级3400分，9-10级5500分
+* @param int $credit 积分
+* @return int 等级
+* @access public
+*/
+function credit2level($credit) {
+	switch ($credit)
+	{
+	case $credit < 100:
+	  return 1;
+	case $credit >= 100 && $credit < 200:
+	  return 2;
+	case $credit >= 200 && $credit < 400:
+	  return 3;
+	case $credit >= 400 && $credit < 700:
+	  return 4;
+	case $credit >= 700 && $credit < 1200:
+	  return 5;
+	case $credit >= 1200 && $credit < 2000:
+	  return 6;
+	case $credit >= 2000 && $credit < 3300:
+	  return 7;
+	case $credit >= 3300 && $credit < 5400:
+	  return 8;
+	case $credit >= 5400 && $credit < 8800:
+	  return 9;
+	case $credit >= 8800:
+	  return 10;
+	default:
+	  return 1;
+	}
+}
+
+/** 
+* 下载远程图片保存到本地 
+* 参数：文件url,保存文件目录,保存文件名称，使用的下载方式 
+* 当保存文件名称为空时则使用远程文件原来的名称
+* @note 该函数来源于网络：http://blog.csdn.net/blueinsect314/article/details/29861399
+*/  
+/* function getImage($url, $save_dir='', $filename='', $type = 0) {
+    if(trim($url) == '') { // url为空
+        return array('file_name' => '', 'save_path' => '', 'errMsg' => "URL_NOT_SET");
+    }
+    if(trim($save_dir) == '') { // 保存路径为空默认存在根目录下
+        $save_dir = './';
+    }
+    if(trim($filename) == '') { // 保存文件名为空
+        $ext = strrchr($url, '.');
+        if($ext != '.jpg' && $ext != '.png' && $ext != '.gif') { // 不是图片文件
+            return array('file_name' => '', 'save_path' => '', 'errMsg' => "FILE_NOT_IMAGE");
+        }
+        $filename = time().$ext; // 以时间命名
+    }
+    if(0 !== strrpos($save_dir, '/')) { // 在保存路径前加"/"
+       // $save_dir .= '/';
+    }
+    // 创建保存目录
+    if(!file_exists($save_dir) && !mkdir($save_dir, 0777, true)) {
+        return array('file_name' => '', 'save_path' => '', 'errMsg' => "PATH_NOT_EXIST");
+    }
+    // 获取远程文件所采用的方法
+    if($type) {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $img = curl_exec($ch);
+        curl_close($ch);
+    } else {
+        ob_start();
+        readfile($url);
+        $img = ob_get_contents();
+        ob_end_clean();
+    }
+    // 保存文件
+    $fp2 = @fopen($save_dir.$filename, 'a');
+    fwrite($fp2, $img);
+    fclose($fp2);
+    unset($img, $url);
+    return array('file_name' => $filename, 'save_path' => $save_dir.$filename, 
+		'file_size' => strlen($img), 'errMsg' => "SUCCESS");
+}   */
+
+/* // find elements by css selector
+function find($selector, $idx=null) {
+	$selectors = $this->parse_selector($selector);
+	if (($count=count($selectors))===0) return array();
+	$found_keys = array();
+
+	// find each selector
+	for ($c=0; $c<$count; ++$c) {
+		if (($levle=count($selectors[0]))===0) return array();
+		if (!isset($this->_[HDOM_INFO_BEGIN])) return array();
+
+		$head = array($this->_[HDOM_INFO_BEGIN]=>1);
+
+		// handle descendant selectors, no recursive!
+		for ($l=0; $l<$levle; ++$l) {
+			$ret = array();
+			foreach($head as $k=>$v) {
+				$n = ($k===-1) ? $this->dom->root : $this->dom->nodes[$k];
+				$n->seek($selectors[$c][$l], $ret);
+			}
+			$head = $ret;
+		}
+
+		foreach($head as $k=>$v) {
+			if (!isset($found_keys[$k]))
+				$found_keys[$k] = 1;
+		}
+	}
+} */
 
 /**
 * 找到字符串中的给定起止的部分

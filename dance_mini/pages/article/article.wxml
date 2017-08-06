@@ -38,15 +38,15 @@
         </view>
         <view class="operation-btn flex-item">
           <image src="../../images/heart2.png"></image>
-          <text>112</text>
+          <text>{{feed.upup}}</text>
         </view>
         <view class="operation-btn flex-item">
           <image src="../../images/star2.png"></image>
-          <text>10</text>
+          <text>{{feed.favori}}</text>
         </view>
         <view class="operation-btn flex-item">
           <image src="../../images/comment.png"></image>
-          <text>18</text>
+          <text>{{feed.discuss}}</text>
         </view>
 
       </view>

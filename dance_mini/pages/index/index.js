@@ -4,30 +4,30 @@ var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    feed: [],
+    feed: {},
     feed_length: 0
   },
   // 载入页面事件
   onLoad: function () {
     // console.log('onLoad')
     //  var that = this
-    //  this.getData(); // 获取全局数据
+    this.getData(); // 获取全局数据
   },
   // onShow事件，每次回到该页面时都会调用
   onShow: function () {
     // var that = this
-    this.getData(); // 获取全局数据
+    // this.getData(); // 获取全局数据
   },
 
   // 发表文章事件
   postArticle: function () {
     wx.navigateTo({
-      url: '../post/post'
+      url: '../test/test', //post/post'
     })
   },
   // 删除文章事件
   deleteArticle: function (e) {
-    var that = this;
+/*    var that = this;
     var current_id = e.target.dataset.id.$id;
     wx.request({
       url: app.global_data.server_url + 'php/deleteArticle.php',
@@ -46,7 +46,7 @@ Page({
           duration: 1000
         });
       }
-    })
+    })*/
   },
   // 点击显示文章全文事件
   showArticle: function (e) {
@@ -61,17 +61,18 @@ Page({
   },
   // 上拉刷新函数
   upper: function () {
-    wx.showNavigationBarLoading()
+/*    wx.showNavigationBarLoading()
     this.refresh();
     // console.log("upper");
     setTimeout(function () {
       wx.hideNavigationBarLoading();
       wx.stopPullDownRefresh();
-    }, 2000);
+    }, 2000); */
   },
   // 下拉刷新函数
   lower: function (e) {
     wx.showNavigationBarLoading();
+    this.refresh();
     var that = this;
     setTimeout(function () {
       wx.hideNavigationBarLoading();
@@ -100,13 +101,16 @@ Page({
     var that = this;
     wx.request({
       url: app.global_data.server_url + 'php/listArticle.php',
-      data: {},
+      data: {
+        skip: that.data.feed_length,
+      },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
         that.setData({
-          feed: res.data // 将数据传给全局变量feed
+          feed: Object.assign(that.data.feed, res.data), // 将数据传给全局变量feed
+          feed_length: that.data.feed_length + 10,
         });
         console.log(that.data.feed)
       },
@@ -114,12 +118,12 @@ Page({
         console.log("获取数据失败！")
       }
     });
-    var feed = util.getData2();
-    console.log("loaddata");
-    var feed_data = feed.data;
-    console.log(feed_data);
+    //var feed = util.getData2();
+    //console.log("loaddata");
+    //var feed_data = feed.data;
+    //console.log(feed_data);
   },
-  // 刷新函数，用于上拉刷新
+  // 刷新函数，用于下拉刷新
   refresh: function () {
     wx.showToast({
       title: '刷新中',

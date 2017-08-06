@@ -38,9 +38,9 @@ Page({
   // 修改文章
   modifyArticle: function () {
     var that = this;
-    wx.navigateTo({
-      url: '../modify/modify?feed=' + JSON.stringify(that.data.feed),
-    })
+   // wx.navigateTo({
+   //   url: '../modify/modify?feed=' + JSON.stringify(that.data.feed),
+   // })
   },
   //事件处理函数
   toQuestion: function () {

@@ -49,4 +49,10 @@
   background: #F0F4F3;
   color: #000;
 }
+
+.answer-txt{
+  font-family: Courier New;
+  font-size: small;
+  font-weight: 550;
+}
 /*feed-item part is in app.wxss for multiplexing*/

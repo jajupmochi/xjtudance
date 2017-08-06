@@ -9,6 +9,7 @@ Page({
     this.setData({
       feed: JSON.parse(e.feed),
     });
+    console.log(this.data.feed);
   },
 
   // 修改文章

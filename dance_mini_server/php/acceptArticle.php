@@ -21,28 +21,28 @@ $from = $_GET["source"];
 // 将数据存入数据库
 $mongo = new MongoClient(); // 连接数据库
 $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance），如果数据库在mongoDB中不存在，mongoDB会自动创建
-$collection = $db->articles; // 选择名称为“articles”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
+$collection = $db->diaries; // 选择名称为“diaries”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
 // 拼接数据
 $document = array(
 "title" => $title, // 标题
 "content" => $content, // 正文内容
 "author" => "", // 作者
 "time" => "", // 发信时间
-"from" => $from, // 来源：包括bbs（兵马俑bbs）、bbswap（bbs wap版）、wxmini（微信小程序）
+"from" => $from, // 来源：包括bbs（兵马俑bbs）、wxmini（微信小程序）
 "bbsurl" => "" // 兵马俑bbs链接
 );
 $collection->insert($document);	// 插入文档（一条文档即一条记录，相当于mysql中的item）
 	
-echo "the article is saved to database successfully.\n"; // 成功存入数据库则返回成功
+echo "the diarie is saved to database successfully.\n"; // 成功存入数据库则返回成功
 		
 // 在备份数据库中插入数据
 $db = $mongo->$dance_db_backup;
-$collection = $db->articles;
+$collection = $db->diaries;
 $collection->insert($document);
 
-echo "the article is saved to backup database successfully.\n"; // 成功存入备份数据库则返回成功
+echo "the diarie is saved to backup database successfully.\n"; // 成功存入备份数据库则返回成功
 	
-if ($dance_release) {
+//if ($dance_release) {
 	// 将文章同步发表到兵马俑bbs dance版
 	// get t value (获取当前时间)
 	$sec = explode(" ", microtime());
@@ -67,6 +67,8 @@ if ($dance_release) {
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
-	echo "the article is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
-}
+	echo urldecode(json_decode(urlencode($result)));
+	
+	echo "the diarie is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
+//}
 ?>

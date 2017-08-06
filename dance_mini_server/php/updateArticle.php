@@ -23,7 +23,7 @@ $from = $_GET["source"];
 // 更新数据库
 $mongo = new MongoClient();
 $db = $mongo->$dance_db;
-$collection = $db->articles;
+$collection = $db->diaries;
 /* // 拼接数据
 $document = array(
 "title" => $title, // 标题
@@ -36,15 +36,15 @@ $document = array(
 $collection->update(array('_id' => new MongoId($id)), array('$set' => array
 ("title" => $title, "content" => $content)));	// 更新文档
 	
-echo "the article is updated to database successfully.\n"; // 成功存入数据库则返回成功
+echo "the diary is updated to database successfully.\n"; // 成功存入数据库则返回成功
 		
 // 在备份数据库中插入数据
 $db = $mongo->$dance_db_backup;
-$collection = $db->articles;
+$collection = $db->diaries;
 $collection->update(array('_id' => new MongoId($id)), array('$set' => array
 ("title" => $title, "content" => $content)));
 
-echo "the article is updated to backup database successfully.\n"; // 成功存入备份数据库则返回成功
+echo "the diary is updated to backup database successfully.\n"; // 成功存入备份数据库则返回成功
 	
 /* if ($dance_release) {
 	// 将文章同步发表到兵马俑bbs dance版
@@ -71,6 +71,6 @@ echo "the article is updated to backup database successfully.\n"; // 成功存�
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
-	echo "the article is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
+	echo "the diarie is posted to bmybbs (board dance) successfully.\n"; // 成功同步到兵马俑BBS
 } */
 ?>

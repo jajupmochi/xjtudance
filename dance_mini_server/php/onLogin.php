@@ -17,9 +17,9 @@ $code = $_GET["code"];
 $mongo = new MongoClient();
 $db = $mongo->xjtudance;
 $collection = $db->globaldata;
-$contents = $collection->findOne(array('name' => 'wxmini'), array('contents' => true));
-$appid = $contents["contents"]["appid"];
-$secret = $contents["contents"]["secret"];
+$contents = $collection->findOne(array('name' => 'wxmini'), array('appid' => true, 'secret' => true));
+$appid = $contents["appid"];
+$secret = $contents["secret"];
 
 // 调用微信接口获取用户的openid及本次登录的session_key
 $api = "https://api.weixin.qq.com/sns/jscode2session?appid={$appid}&secret={$secret}&js_code={$code}&grant_type=authorization_code";

@@ -22,12 +22,13 @@ if ($dance_release) {
 }
 
 // 获取用户提交的数据
+$skip = $_GET["skip"];
 
 // 从数据库读取文章列表
 $mongo = new MongoClient(); // 连接数据库
 $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance）
-$collection = $db->articles; // 选择名称为“articles”集合
-$cursor = $collection->find()->sort(array('_id' => -1)); // 查找文档并按照id升序排列
+$collection = $db->diaries; // 选择名称为“diaries”集合
+$cursor = $collection->find()->sort(array('dnumber' => -1))->skip($skip)->limit(10); // 查找文档并按照文章序号升序排列，限制查找数量为10
 $dataArr = iterator_to_array($cursor); // 将cursor转换为array
 $dataJson = json_encode($dataArr); // 将数组转换为JSON字符串（兼容中文）注：之前用了自定义的arr2json函数，但是并没有用，而且会出现换行符错误。这个转换好像只有在浏览器中显示才有用，小程序不需要
 

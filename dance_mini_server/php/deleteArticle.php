@@ -18,17 +18,17 @@ $id = $_GET["id"];
 // 删除数据库中对应文章
 $mongo = new MongoClient(); // 连接数据库
 $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance），如果数据库在mongoDB中不存在，mongoDB会自动创建
-$collection = $db->articles; // 选择名称为“articles”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
+$collection = $db->diaries; // 选择名称为“diaries”集合，如果集合在mongoDB中不存在，mongoDB会自动创建（collection相当于mysql中的table）
 $collection->remove(array('_id' => new MongoId($id)), array("justOne" => true)); // 删除记录
 	
-echo "the article is removed from database successfully.\n"; // 成功存入数据库则返回成功
+echo "the diarie is removed from database successfully.\n"; // 成功存入数据库则返回成功
 		
 // 在备份数据库中插入数据
 $db = $mongo->$dance_db_backup;
-$collection = $db->articles;
+$collection = $db->diaries;
 $collection->remove(array('_id' => new MongoId($id)), array("justOne" => true));
 
-echo "the article is removed from backup database successfully.\n"; // 成功存入备份数据库则返回成功
+echo "the diarie is removed from backup database successfully.\n"; // 成功存入备份数据库则返回成功
 /*
 if ($dance_release) {
 	// 将文章同步发表到兵马俑bbs dance版
@@ -55,6 +55,6 @@ if ($dance_release) {
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
-	echo "the article is deleted from bmybbs (board dance) successfully."; // 成功同步到兵马俑BBS
+	echo "the diarie is deleted from bmybbs (board dance) successfully."; // 成功同步到兵马俑BBS
 } */
 ?>

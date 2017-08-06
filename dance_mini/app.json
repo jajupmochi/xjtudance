@@ -8,7 +8,8 @@
     "pages/article/article",
     "pages/question/question",
     "pages/post/post",
-    "pages/modify/modify"
+    "pages/modify/modify",
+    "pages/test/test"
   ],
   "window":{
     "backgroundTextStyle":"light",

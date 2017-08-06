@@ -23,17 +23,17 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-       // if (res.data == 'success') { // 'success'代表数据成功存入后台数据库
-          wx.showToast({ // 显示成功提示
-            title: '发表成功！',
-            icon: 'success',
-            duration: 1000
-          }),
-          setTimeout(function () {
-            wx.navigateBack({ // 返回index页
-              delta: 1
-            })
-          }, 1000)
+        console.log(res.data);
+        wx.showToast({ // 显示成功提示
+          title: '发表成功！',
+          icon: 'success',
+          duration: 1000
+        }),
+        setTimeout(function () {
+          wx.navigateBack({ // 返回index页
+            delta: 1
+          })
+        }, 1000)
         //}
       }
     })

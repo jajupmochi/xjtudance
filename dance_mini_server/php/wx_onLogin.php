@@ -34,12 +34,12 @@ $str = json_decode(httpGet($api), true); // 第二个参数为true时返回array
 // 从数据库拉取用户信息
 $db = $mongo->$dance_db;
 $collection = $db->users;
-$ret_keys = array("_id" => true, "nickname" => true, "password" => true, "avatar_url" => true, "gender" => true, "degree" => true, "web.net_type" => true, "web.online" => true, "individualized" => true, "diaries.upup" => true, "diaries.favori" => true, "diaries.viewd" => true, "diaries.list_order" => true, "rights" => true, "wechat" => true, "messages" => true); // 返回键值
+$ret_keys = array("_id" => true, "nickname" => true, "password" => true, "avatar_url" => true, "gender" => true, "degree" => true, "web.net_type" => true, "web.online" => true, "individualized" => true, "diaries.upup" => true, "diaries.favori" => true, "diaries.viewd" => true, "diaries.list_order" => true, "rights" => true, "bmy" => true, "wechat" => true, "messages" => true); // 返回键值
 $user_info = $collection->findOne(array('wechat.openid_mini' => $str["openid"]), $ret_keys);
 
 if ($user_info !== null) {
 	// 更新user数据
-	$credit = $user_info["degree"]["credit"] + 1; // 登录积分加1
+	$credit = $user_info["degree"]["credit"] + 2; // 登录积分加2
 	$level = credit2level($credit); // 根据积分修改等级
 	$sec = explode(" ", microtime());
 	$micro = explode(".", $sec[0]);

@@ -15,7 +15,7 @@ include('config.php');
 
 // 从小程序端获取数据
 $data = file_get_contents("php://input");
-$data = json_decode($data, TRUE);
+$data = json_decode($data, true);
 $code = $data["code"];
 $avatar_url = $data["avatar_url"];
 $nickname = $data["nickname"];
@@ -54,8 +54,8 @@ $doc_user = array(
 	"gender" => ($gender == 1) ? "gentleman" : "lady", // 性别，使用微信的
 	"created" => $time, // 账号建立时间（UNIX纪元的微秒值）
 	"degree" => array(
-		"level" => 1, // 等级
-		"credit" => 10, // 首次登录积分
+		"level" => credit2level(20), // 等级
+		"credit" => 20, // 首次登录积分
 		"last_attend" => "" // 上次签到时间
 	),
 	"person_info" => array(
@@ -82,7 +82,8 @@ $doc_user = array(
 		"langue" => $langue, // 语言，使用微信的
 		"contentsize" => 5, // 内容/字体大小 ????????????
 		"frequent" => array(), // 用户常用
-		"notify" => true // 是否消息提醒
+		"notify" => true, // 是否消息提醒
+		"post2bmy" => true // 是否将文章同步到兵马俑
 	),
 	"diaries" => array(
 		"posts" => array(), // 发表文章
@@ -161,7 +162,7 @@ $collection->update(array("name" => "dance"), array('$set' =>
 
 // 返回数据
 $ret_keys = array_flip(array("_id", "nickname", "password", "avatar_url", 
-	"gender", "degree", "individualized", "rights", "wechat", "messages")); // 要返回的键值
+	"gender", "degree", "individualized", "rights", "bmy", "wechat", "messages")); // 要返回的键值
 $ret_info = array_merge(array_intersect_key($doc_user, $ret_keys),  // 取交集方式返回需要的值
 	array(
 		"web" => array(

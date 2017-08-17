@@ -1,58 +1,333 @@
 /**index.wxss**/  
 
+/* 背景 */
+.background {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+  background-image: url("https://57247578.qcloud.la/test/images/bg1-s.jpg");
+}
+
+/* 可移动框-笔 */
+.movable-area {
+  width: 100%;
+  height: 100%;
+}
+
+.movable-view {
+  width: 40px;
+  height: 60px;
+  z-index: 1020;
+}
+
+.img-write {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* diary-area 日记区 */
+.diary-area {
+  height: 100%;
+  padding: 0;
+  font-size: 14rpx;
+  color: #000;
+  z-index: 999;
+}
+
+.diary-area .diary-item{
+  width: 690rpx;
+  padding: 30rpx 30rpx 20rpx;
+  margin: 7rpx 0 6rpx 0;
+
+}
+.diary-area .diary-item .feed-source{
+  width: 690rpx;
+  left: 0;
+  height: 70rpx;
+}
+.diary-area .diary-item .feed-source .avatar{
+  position: relative;
+  display: inline-block;
+}
+.diary-area .diary-item .feed-source a{
+  display: inline-block;
+  height: 40rpx;
+}
+.diary-area .diary-item .feed-source .avatar image{
+  /*position: absolute;*/
+  display: inline-block;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 45rpx;
+  top: 10rpx;
+  vertical-align: middle;
+}
+.diary-area .diary-item .feed-source text{
+  /*position: absolute;*/
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  vertical-align: middle;
+  margin: 0 0 0 15rpx;
+  color: #a0acac;
+  font-size: 35rpx;
+}
+.diary-area .diary-item .feed-source .item-more{
+  display: inline-block;
+  width: 40rpx;
+  height: 45rpx;
+  float: right;
+}
+.diary-area .diary-item .feed-content{
+  padding: 10rpx 0 0 0;
+}
+.diary-area .diary-item .feed-content .diary-title text{
+  font-size: 38rpx;
+  font-weight: 600px;
+  line-height: 50rpx;
+
+}
+.diary-area .diary-item .feed-content .diary-body{
+  padding: 10rpx 0 0 0;
+  /*height: 10rpx;*/
+  font-size: 36rpx;
+  line-height: 40rpx;
+  color: #5b5b5b;
+}
+.diary-area .diary-item .feed-content .diary-actions{
+  width: 690rpx;
+  padding: 10rpx 0  0;
+  color: #a0acac;
+}
+.diary-area .diary-item .feed-content .diary-actions view{
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0 10rpx 0 0;
+  font-size: 30rpx;
+}
+.diary-area .diary-item .feed-content .diary-actions .dot ::after{
+  content: "•";
+}
+.diary_credit {
+  font-size: 10rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 /** 添加自定义button点击态样式类**/
 .other-button-hover {
   background-color: #7ED3E7;
 }
 
-.container{
-  height: 1500rpx;
-}
-.container .search{
-  width: 735rpx;
-  height: 65rpx;
-  padding: 12.5rpx 0 12.5rpx 15rpx;
-  background: #2A8CE5;
-}
-.container .search-left{
-  flex: 8;
-  background: #4EA3E7;
-  text-align: left;
-}
-.container .search-left input{
-  display: inline-block;
-  height: 65rpx;
-  font-size: 26rpx;
-}
-.search-placeholder{
-  color: #8CCEFD;
-  line-height: 20rpx;
-}
-.container .search .search-left image{
-  display: inline-block;
-  width: 35rpx;
-  height: 35rpx;
-  padding: 15rpx 15rpx 15rpx 20rpx;
-}
-.container .search .search-right{
-  flex: 1;
-}
-.container .search .search-right image{
-  width: 45rpx;
-  height: 45rpx;
-  padding: 10rpx;
+/* 以下为发表文章form的样式 */
+.form_box {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
 }
 
-.container{
-  padding: 0;
-  font-size: 14rpx;
-  background: #F0F4F3;
+.form_title {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 160rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.form_label {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 100%;
+  text-align: left;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.form_switch {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-right: 10rpx;
+  width: 120rpx;
+  height: 40rpx;
+  margin-right: 40rpx;
+}
+
+.form_switch2 {
+  padding-top: 8rpx;
+  width: 120rpx;
+  height: 60rpx;
+}
+
+.form_btn_submit {
+  padding: 10rpx;
+  width: 200rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("https://57247578.qcloud.la/test/images/send1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.input-title {
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-bottom: 1rpx solid tan;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input-content {
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+  height: 200rpx;
+  line-height: 30rpx;
+  
+  border-bottom: 1rpx solid tan;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input-placeholder {
+  color: #fff;
+  line-height: 20rpx;
+}
+
+/* 以下为定义 连接兵马俑bbs账户的弹出窗口的 样式 */
+
+/*mask*/
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/*content*/
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 45%;
+  left: 0;
+  z-index: 1002;
+  background: #fafafa;
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 3px;
+}
+
+.drawer_title {
+  padding: 15px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+}
+
+.drawer_content {
+  height: 100px;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+}
+
+.btn_ok {
+  padding: 10px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #3cc51f;
+  flex: 50%;
+}
+
+.top {
+  padding-top: 8px;
+}
+
+.bottom {
+  padding-bottom: 8px;
+}
+
+.title {
+  height: 30px;
+  line-height: 30px;
+  width: 160rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.input_h30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.input_h60 {
+  height: 60px;
+}
+
+.input_view {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+  line-height: 30px;
+}
+
+input {
+  font: 12px "microsoft yahei";
+  background: #fff;
   color: #000;
 }
 
-.answer-txt{
-  font-family: Courier New;
-  font-size: small;
-  font-weight: 550;
+radio {
+  margin-right: 20px;
 }
-/*feed-item part is in app.wxss for multiplexing*/
+
+.grid {
+  display: -webkit-box;
+  display: box;
+}
+
+.col-0 {
+  -webkit-box-flex: 0;
+  box-flex: 0;
+}
+
+.col-1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}

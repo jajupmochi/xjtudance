@@ -1,13 +1,40 @@
-<form report-submit bindsubmit="submitArticle">
-  <label>
-    <input placeholder="请在此输入文章标题" placeholder-class="input-placeholder" focus="true" class="input-title flex-wrp" type="text" name="title" />
-  </label>
-  <label>
-    作者：
-  </label>
-  <label>
-    <textarea placeholder="请在此输入文章标题" placeholder-class="input-placeholder" maxlength="-1" confirm-type="send" class="input-content flex-wrp" type="text" name="content" />
-  </label>
-  
-  <button form-type="submit">发表</button>
+<form report-submit bindsubmit="submitArticle" class="form_box">
+  <view class="top"></view>
+  <view class="top grid">
+    <label class="form_title col-0">标题：</label>
+    <input focus="true" class="input-title col-1" type="text" name="title" value="" />
+  </view>
+  <view class="top grid">
+    <label class="form_title col-0">作者：</label>
+    <input disabled class="input-title col-1" value="昵称" />
+  </view>
+  <view class="top grid">
+    <label class="form_title col-0">正文：</label>
+    <textarea maxlength="-1" class="input-content col-1" type="text" name="content" value=""/>
+  </view>
+  <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+    <image class="form_switch" src="{{imgUrl_formswitch}}" mode="aspectFit" bindtap="switchChange" />
+  </view>
+  <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+    <button class="form_btn_submit" form-type="submit" />
+  </view>
 </form>
+
+<!-- 连接兵马俑bbs账户的弹出窗口，使用animation属性指定需要执行的动画-->
+<view class="drawer_screen" wx:if="{{showConnectBmy}}">
+  <form bindsubmit="connectBmy" animation="{{animationData}}" class="drawer_box">
+    <!--drawer content-->
+    <view class="drawer_title">朕要连接兵马俑bbs账号</view>
+    <view class="drawer_content">
+      <view class="top grid">
+        <label class="title col-0">朕的账号</label>
+        <input name="id" class="input_base input_h30 col-1" value="" focus="true"></input>
+      </view>
+      <view class="top grid">
+        <label class="title col-0">朕的密码</label>
+        <input name="password" class="input_base input_h30 col-1" value=""></input>
+      </view>
+    </view>
+    <button class="btn_ok" form-type="submit">妥了</button>
+  </form>
+</view>

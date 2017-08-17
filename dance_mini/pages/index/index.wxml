@@ -1,53 +1,101 @@
 <!--index.wxml-->
-<view>
-  <button bindtap="postArticle" class="other-button-hover">我要发表文章</button>
-</view>
-<view>
-  <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-    <view class="search flex-wrp">
-      <view class="search-left flex-item">
-        <image src="../../images/search.png"></image>
-        <input placeholder="版内查询" placeholder-class="search-placeholder" />
-      </view>
-      <view class="search-right flex-item" bindtap="upper">
-        <image src="../../images/lighting.png"></image>
-      </view>
-    </view>
-    <block wx:for="{{feed}}" wx:key="_id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-      <view class="feed-item">
-        <view class="feed-source">
-          <a class="">
-            <view class="avatar">
-              <image src="../../images/icon1.jpeg"></image>
-            </view>
-            <text>{{item.author}}</text>
-          </a>
-          <image bindtap="deleteArticle" data-id="{{item._id}}" class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+<view class="background">
+  <movable-area class="movable-area">
+
+    <movable-view class="movable-view" direction="all" x="{{pen_x}}" y="{{pen_y}}">
+      <image class="img-write" src="{{imgUrl_write}}" mode="aspectFit" bindtap="write_sth" />
+    </movable-view>
+
+    <view class="diary-area .flex-wrp" style="flex-direction:column; justify-content:flex-start;">
+      <form report-submit bindsubmit="writeDiary" class="form_box .col-0" animation="{{anim_openWrite}}">
+        <view class="top"></view>
+        <view class="top grid">
+          <label class="form_title col-0">标题：</label>
+          <input class="input-title col-1" type="text" name="title" value="" />
         </view>
-        <view class="feed-content">
-          <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
-            <a class="question-link">
+        <view class="top grid">
+          <label class="form_title col-0">作者：</label>
+          <input disabled class="input-title col-1" value="{{user_nickname}}" />
+        </view>
+        <view class="top grid">
+          <label class="form_title col-0">正文：</label>
+          <textarea maxlength="-1" class="input-content col-1" type="text" name="content" value="" />
+        </view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+          <image class="form_switch2" src="{{imgUrl_formswitch2}}" mode="aspectFit" wx:if="{{post2bmy}}" />
+          <image class="form_switch" src="{{imgUrl_formswitch}}" mode="aspectFit" bindtap="switchChange" />
+        </view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+          <button class="form_btn_submit" form-type="submit" />
+        </view>
+      </form>
+
+      <scroll-view scroll-y="true" class="diary-area .col-1" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+        <block wx:for="{{diaries}}" wx:key="" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+          <view class="diary-item">
+            <view class="feed-source">
+              <a class="">
+                <view class="avatar">
+                  <image src="{{item.author.avatar_url}}"></image>
+                </view>
+                <text>{{item.author.nickname}}</text>
+                <text>[{{item.author.degree.level}}]</text>
+                <view class="avatar" wx:if="{{item.bmyurl != ''}}">
+                  <image src="{{imgUrl_formswitch2}}"></image>
+                </view>
+              </a>
+              <image bindtap="deleteArticle" data-id="{{item._id}}" class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content" bindtap="showArticle" data-id="{{item._id}}">
+              <view class="diary-title" qid="{{question_id}}">
+                <a class="question-link">
                         <text>{{item.title}}</text>
                     </a>
+              </view>
+              <view class="diary-body">
+                <view>
+                  <text class="diary-txt" aid="{{diary}}">{{item.content}}</text>
+                </view>
+                <view class="diary-actions">
+                  <view class="like dot">
+                    <a> 顶帖 {{item.upup}}</a>
+                  </view>
+                  <view class="comments dot">
+                    <a> 回复 {{item.reply.num}}</a>
+                  </view>
+                  <view class="follow-it">
+                    <a> 收藏 {{item.favori}}</a>
+                  </view>
+                </view>
+              </view>
+            </view>
           </view>
-          <view class="answer-body">
-            <view bindtap="showArticle" data-id="{{item._id}}"> 
-              <text class="answer-txt" aid="{{answer_id}}">{{item.content}}</text>
-            </view>
-            <view class="answer-actions" bindtap="showArticle" data-id="{{item._id}}">
-              <view class="like dot">
-                <a> 顶帖 {{item.upup}}</a>
-              </view>
-              <view class="comments dot">
-                <a> 回复 {{item.reply.num}}</a>
-              </view>
-              <view class="follow-it">
-                <a> 收藏 {{item.favori}}</a>
-              </view>
-            </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- 连接兵马俑bbs账户的弹出窗口，使用animation属性指定需要执行的动画-->
+    <view class="drawer_screen" wx:if="{{showConBmyArea}}">
+      <form bindsubmit="connectBmy" animation="{{anim_connectBmy}}" class="drawer_box">
+        <!--drawer content-->
+        <view class="drawer_title">朕要连接兵马俑bbs账号</view>
+        <view class="drawer_content">
+          <view class="top grid">
+            <label class="title col-0">朕的账号</label>
+            <input name="id" class="input_base input_h30 col-1" value="" focus="true" maxlength="12" placeholder="2-12字符, 必须全为英文字母"></input>
+          </view>
+          <view class="top grid">
+            <label class="title col-0">朕的密码</label>
+            <input name="password" password class="input_base input_h30 col-1" value="" maxlength="12" placeholder="4-12字符"></input>
           </view>
         </view>
-      </view>
-    </block>
-  </scroll-view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-center;">
+          <button class="btn_ok" bindtap="quitConnectBmy">麻痹不填了</button>
+          <button class="btn_ok" form-type="submit">妥了</button>
+        </view>
+      </form>
+    </view>
+
+  </movable-area>
+
 </view>

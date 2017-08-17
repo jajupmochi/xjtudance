@@ -4,10 +4,36 @@
 Version: 0.1 ($Rev: 1 $)
 Website: https://github.com/jajupmochi/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-07-21
+Updated: 2017-08-13
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
+
+/**
+* 设置用户在线标识，修改相应操作
+* @param $_id 用户ObjectId
+* @param &$db 保存登录信息的数据库
+* @access public
+* @note 该函数在每次用户联系服务器（包括登录）或发送心跳包时执行
+*/
+function setUserOnline($_id, &$db) {
+ 	$sec = explode(" ", microtime());	// get t value (获取当前时间)
+	$micro = explode(".", $sec[0]);
+	date_default_timezone_set("Asia/Shanghai");
+	$time = date("YmdHis").".".substr($micro[1], 0, 3);
+	
+	$collection_users = $db->users;
+	$collection_users->update(array("_id" => $_id),
+		array('$set' => array('web.lastvisit' => $time, 'web.online' => true)));
+	
+	$collection_global = $db->globaldata;
+	$user_online = $collection_global->findOne(array('name' => 'dance'), array('user_online' => true));
+	if (!in_array($_id, $user_online['user_online'])) {
+		$user_online = array_merge($user_online["user_online"], array($_id));
+		$collection_global->update(array('name' => 'dance'), array('$set' => 
+			array('user_online' => $user_online)));
+	}
+}
 
 /**
 * httpPost函数

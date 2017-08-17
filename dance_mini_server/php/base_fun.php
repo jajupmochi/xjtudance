@@ -10,38 +10,39 @@ Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
 /**
-* 将用户积分转换为等级，等级区间按照斐波那契数列计算：0-1级100分，1-2级100分，
-* 2-3级200分，3-4级300分，4-5级500分，5-6级800分，6-7级1300分，7-8级2100分，
-* 8-9级3400分，9-10级5500分
-* @param int $credit 积分
-* @return int 等级
+* 将用户积分转换为等级，等级区间按照斐波那契数列计算：0-1级1分，1-2级1分，
+* 2-3级2分，3-4级3分，4-5级5分，5-6级8分，6-7级13分，7-8级21分，
+* 8-9级34分，9-10级55分。等级称号包括：凭栏，亭亭，微步，广袖，流风，倾城，惊鸿，凝眉，拂云，断琴
+* @param integer $credit 积分
+* @return string 等级称号
 * @access public
 */
 function credit2level($credit) {
+	$factor = 1000;
 	switch ($credit)
 	{
-	case $credit < 100:
-	  return 1;
-	case $credit >= 100 && $credit < 200:
-	  return 2;
-	case $credit >= 200 && $credit < 400:
-	  return 3;
-	case $credit >= 400 && $credit < 700:
-	  return 4;
-	case $credit >= 700 && $credit < 1200:
-	  return 5;
-	case $credit >= 1200 && $credit < 2000:
-	  return 6;
-	case $credit >= 2000 && $credit < 3300:
-	  return 7;
-	case $credit >= 3300 && $credit < 5400:
-	  return 8;
-	case $credit >= 5400 && $credit < 8800:
-	  return 9;
-	case $credit >= 8800:
-	  return 10;
+	case $credit < $factor:
+	  return "凭栏"; // 昨夜西风凋碧树，独上高楼，望尽天涯路。
+	case $credit >= $factor && $credit < 2 * $factor:
+	  return "亭亭"; // 亭亭山上松，瑟瑟谷中风。
+	case $credit >= 2 * $factor && $credit < 4 * $factor:
+	  return "微步"; // 体迅飞凫，飘忽若神，凌波微步，罗袜生尘。
+	case $credit >= 4 * $factor && $credit < 7 * $factor:
+	  return "广袖"; // 寂寞嫦娥舒广袖，万里长空且为忠魂舞。
+	case $credit >= 7 * $factor && $credit < 12 * $factor:
+	  return "流风"; // 髣髴兮若轻云之蔽月，飘飖兮若流风之回雪。
+	case $credit >= 12 * $factor && $credit < 20 * $factor:
+	  return "倾城"; // 北方有佳人，绝世而独立，一顾倾人城，再顾倾人国。
+	case $credit >= 20 * $factor && $credit < 33 * $factor:
+	  return "惊鸿"; // 伤心桥下春波绿，曾是惊鸿照影来。
+	case $credit >= 33 * $factor && $credit < 54 * $factor:
+	  return "凝眉"; // 此情无计可消除，才下眉头，却上心头。
+	case $credit >= 54 * $factor && $credit < 88 * $factor:
+	  return "拂云"; // 舒卷意何穷，萦流复带空，有形不累物，无迹去随风。
+	case $credit >= 88 * $factor:
+	  return "绝琴"; // 子期死，伯牙谓世再无知音，乃破琴绝弦，终身不复鼓。
 	default:
-	  return 1;
+	  return "凭栏";
 	}
 }
 
@@ -198,4 +199,5 @@ function arr2json(&$array) {
 	arrayRecursive($array, 'urlencode', true); // 将urlencode函数用到array中的所有层字符串数据（urlencode转码用于正常显示中文字符串）
 	return urldecode(json_encode($array)); // 解码
 }
+
 ?>  

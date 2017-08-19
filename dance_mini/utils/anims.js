@@ -21,9 +21,29 @@ function switchWriteArea(hideWriteArea) {
     transformOrigin: "left top 0",
   });
   if (hideWriteArea) {
-    anim.height("1200rpx").scaleY(1).step().opacity(1).step(); // 第3步：执行打开动画
+    anim.height("1200rpx").step().opacity(1).step(); // 第3步：执行打开动画
   } else {
-    anim.opacity(0).step().height(0).scaleY(0).step(); // 第3步：执行关闭动画
+    anim.opacity(0).step().height(0).step(); // 第3步：执行关闭动画
+  }
+  return anim;
+};
+
+/**
+* 打开和关闭回复区域
+* @param boolean showReplyArea 是否打开回复区域
+* @return animation 动画实例
+*/
+function switchReplyArea(showReplyArea) {
+  var anim = wx.createAnimation({ // 第1步：创建动画实例
+    duration: 1000,  // 动画时长
+    timingFunction: "linear",
+    delay: 0,  // 0则不延迟
+    transformOrigin: "center center 0",
+  });
+  if (!showReplyArea) {
+    anim.translateY('-1000rpx').step();
+  } else {
+    anim.scaleY(0).step(); // 第3步：执行关闭动画
   }
   return anim;
 };
@@ -47,4 +67,5 @@ function switchConBmyArea() {
 module.exports = {
   switchWriteArea: switchWriteArea,
   switchConBmyArea: switchConBmyArea,
+  switchReplyArea: switchReplyArea,
 };

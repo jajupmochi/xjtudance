@@ -20,6 +20,8 @@ Page({
     hideSend: false,
     imgUrl_formswitch: app.global_data.server_url + "images/bmy1.png",
     imgUrl_formswitch2: app.global_data.server_url + "images/bmy3-s.png",
+
+    showReplyArea: false,
   },
   // 载入页面事件
   onLoad: function () {
@@ -124,7 +126,7 @@ Page({
       data: {
         'skip': that.data.diaries_length,
         'limit': limit,
-        'list_order': 'updated',
+        'list_order': 'mama',
       },
       header: {
         'content-type': 'application/json'
@@ -336,9 +338,102 @@ Page({
     // 显示  
     if (currentStatu == false) {
       this.setData({
-        showConBmyArea: true
+        showConBmyArea: true,
       });
     }
-  }
+  },
+
+  // 点击回复打开回复窗口
+  openReplyArea: function (e) {
+    console.log(e);
+    this.setData({
+      diaryId_replying: e.currentTarget.dataset.id.$id,
+      //anim_openReplyArea: anims.switchReplyArea(false).export(),
+      showReplyArea: true,
+      pen_y: 0,
+    });
+  },
+
+  // 点击回复窗口空白区域关闭回复窗口
+  closeReplyArea: function () {
+    this.setData({
+      diaryId_replying: null,
+      // anim_openReplyArea: anims.switchReplyArea(true).export(),
+      showReplyArea: false,
+      pen_y: app.global_data.systemInfo.windowHeight - 80,
+    });
+  },
+
+  // 回复日记
+  replyDiary: function (e) {
+    var that = this;
+    var formId = e.detail.formId;
+    var values = e.detail.value;
+    var title = values.title;
+    var content = values.content;
+    if (title != "" || content != "") {
+      wx.request({
+        url: app.global_data.server_url + 'php/wx_replyDiary.php',
+        data: {
+          'title': title, // 标题
+          "author": app.global_data.userInfo._id.$id, // 作者
+          'content': content, // 内容
+          'fatherId': this.data.diaryId_replying, // 被回复帖子的id
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        method: "POST",
+        success: function (res) {
+          if (res.data.msg == "ERR_WRONG_INFO") {
+            /*  this.tobmy_anim(this.data.showConBmyArea);
+              wx.showToast({
+                title: '兵马俑BBS账号或密码错误!',
+                icon: '../../images/dance1-200.png',
+                duration: 1000
+              });*/
+          } else {
+            var diary_list = that.data.diaries;
+            var cur_mama = diary_list[that.data.diaryId_replying];
+            cur_mama.reply = res.data.concat(cur_mama.reply);
+            var obj = new Object();
+            obj[that.data.diaryId_replying] = cur_mama;
+            delete diary_list[that.data.diaryId_replying];
+            that.setData({
+              diaryId_replying: null,
+              showReplyArea: false,
+              pen_y: app.global_data.systemInfo.windowHeight - 80,
+              diaries: Object.assign(obj, diary_list), // 将数据传给全局变量diaries
+            });
+            wx.showToast({ // 显示成功提示
+              title: '回复成功！积分+' + 5 * (false ? 2 : 1),
+              icon: '../../images/dance1-200.png',
+              duration: 2000
+            });
+          }
+        }
+      });
+    } else {
+      wx.showToast({
+        title: '标题内容至少写一个吧？',
+        image: '../../images/smiley-6_64.png',
+        duration: 2000,
+      });
+    }
+  },
+
+  // 转发本页
+  onShareAppMessage: function (res) {
+    return {
+      title: 'The Diary of DANCE',
+      path: '/page/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
 
 })

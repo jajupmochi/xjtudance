@@ -52,6 +52,24 @@ foreach ($diaries_arr as &$diary) {
 			'degree' => $degree);
 	}
 	
+ 	$reply = array();  // 添加reply内容需要的信息
+	foreach ($diary['reply'] as $replyId) { // 这可以改用where???????????????????????????
+		$cur_reply = $collection_diaries->findOne(array('_id' => $replyId));
+	
+		if (!is_string($cur_reply['author'])) { // 给这条回复添加作者信息
+			$author = $collection_users->findOne(array('_id' => $cur_reply['author']), 
+				array('_id' => true, 'id_dance' => true, 'nickname' => true, 'avatar_url' => true, 'degree' => true));
+			$cur_reply['author'] = $author;
+		} else { // author非字符串时，为来自兵马俑BBS且未关联到用户的文章
+			$degree = array('level' => '凭栏', 'credit' => 0);
+			$cur_reply['author'] = array('id_dance' => '', 'nickname' => $cur_reply['author'], 
+				'avatar_url' => 'https://57247578.qcloud.la/test/images/wanted-200.jpg',
+				'degree' => $degree);
+		}
+		$reply = array_merge($reply, array($cur_reply));
+	}
+	rsort($reply); // 反序	
+	$diary['reply'] = $reply;
 }
 unset($diary);
 

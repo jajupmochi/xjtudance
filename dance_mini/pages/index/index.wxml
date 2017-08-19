@@ -2,11 +2,14 @@
 <view class="background">
   <movable-area class="movable-area">
 
+    <!-- 笔，可移动视图 -->
     <movable-view class="movable-view" direction="all" x="{{pen_x}}" y="{{pen_y}}">
       <image class="img-write" src="{{imgUrl_write}}" mode="aspectFit" bindtap="write_sth" />
     </movable-view>
 
+    <!-- 发表文章及日记区 -->
     <view class="diary-area .flex-wrp" style="flex-direction:column; justify-content:flex-start;">
+      <!-- 发表文章区 -->
       <form report-submit bindsubmit="writeDiary" class="form_box .col-0" animation="{{anim_openWrite}}">
         <view class="top"></view>
         <view class="top grid">
@@ -30,6 +33,7 @@
         </view>
       </form>
 
+      <!-- 日记区，可滚动视图 -->
       <scroll-view scroll-y="true" class="diary-area .col-1" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{diaries}}" wx:key="" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
           <view class="diary-item">
@@ -60,8 +64,8 @@
                   <view class="like dot">
                     <a> 顶帖 {{item.upup}}</a>
                   </view>
-                  <view class="comments dot">
-                    <a> 回复 {{item.reply.num}}</a>
+                  <view class="comments dot" bindtap="openReplyArea" data-id="{{item._id}}">
+                    <a> 回复 {{item.reply.length}}</a>
                   </view>
                   <view class="follow-it">
                     <a> 收藏 {{item.favori}}</a>
@@ -70,11 +74,32 @@
               </view>
             </view>
           </view>
+
+          <!-- 回复区 -->
+          <view class="reply-area">
+            <block wx:for="{{item.reply}}" wx:key="" wx:for-index="idx" wx:for-item="reply" data-idx="{{idx}}">
+              <view class="reply-item">
+                <view class="reply-infoline">
+                  <view class="reply-infoleft">
+                    <text class="reply_author">{{reply.author.nickname}}: </text>
+                    <text class="reply_author">{{reply.title}}</text>
+                    <view class="avatar" wx:if="{{reply.bmyurl != ''}}">
+                      <image src="{{imgUrl_formswitch2}}"></image>
+                    </view>
+                  </view>
+                  <view class="reply-inforight">
+                    <image bindtap="deleteArticle" data-id="{{item._id}}" class="reply_delete" mode="aspectFit" src="../../images/more.png"></image>
+                  </view>
+                </view>
+                <text class="reply-content" aid="{{diary}}">{{reply.content}}</text>
+              </view>
+            </block>
+          </view>
         </block>
       </scroll-view>
     </view>
 
-    <!-- 连接兵马俑bbs账户的弹出窗口，使用animation属性指定需要执行的动画-->
+    <!-- 连接兵马俑bbs账户的弹出窗口，使用animation属性指定需要执行的动画 -->
     <view class="drawer_screen" wx:if="{{showConBmyArea}}">
       <form bindsubmit="connectBmy" animation="{{anim_connectBmy}}" class="drawer_box">
         <!--drawer content-->
@@ -94,6 +119,26 @@
           <button class="btn_ok" form-type="submit">妥了</button>
         </view>
       </form>
+    </view>
+
+    <!-- 回复文章的区域 -->
+    <view class="reply_screen" wx:if="{{showReplyArea}}">
+      <form report-submit bindsubmit="replyDiary" class="reply_box">
+        <view class="top"></view>
+        <view class="top grid">
+          <label class="form_title col-0">标题：</label>
+          <input class="input-title col-1" type="text" name="title" value="" />
+        </view>
+        <view class="top grid">
+          <label class="form_title col-0">内容：</label>
+          <textarea maxlength="-1" class="input-content col-1" type="text" name="content" value="" />
+        </view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+          <button class="form_btn_submit" form-type="submit" />
+        </view>
+      </form>
+      <view class="reply_close" bindtap="closeReplyArea">
+      </view>
     </view>
 
   </movable-area>

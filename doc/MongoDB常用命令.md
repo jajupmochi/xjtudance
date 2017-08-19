@@ -45,3 +45,6 @@ db.COLLECTION.storageSize()
 db.COLLECTION.totalIndexSize()
 ## 集合中索引+data所占空间
 db.COLLECTION.totalSize()
+	
+# 备份数据库
+db.copyDatabase('fromdb', 'todb');

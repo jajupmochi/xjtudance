@@ -1,5 +1,5 @@
 {
-  "window": {
+  /*"window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0068C4",
     "navigationBarTitleText": "我要发表文章",
@@ -43,5 +43,5 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true*/
 }

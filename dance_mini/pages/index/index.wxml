@@ -7,34 +7,15 @@
       <image class="img-write" src="{{imgUrl_write}}" mode="aspectFit" bindtap="write_sth" />
     </movable-view>
 
+<button bindtap="uploadImage">上传图片</button>
+
     <!-- 发表文章及日记区 -->
     <view class="diary-area .flex-wrp" style="flex-direction:column; justify-content:flex-start;">
       <!-- 发表文章区 -->
-      <form report-submit bindsubmit="writeDiary" class="form_box .col-0" animation="{{anim_openWrite}}">
-        <view class="top"></view>
-        <view class="top grid">
-          <label class="form_title col-0">标题：</label>
-          <input class="input-title col-1" type="text" name="title" value="" />
-        </view>
-        <view class="top grid">
-          <label class="form_title col-0">作者：</label>
-          <input disabled class="input-title col-1" value="{{user_nickname}}" />
-        </view>
-        <view class="top grid">
-          <label class="form_title col-0">正文：</label>
-          <textarea maxlength="-1" class="input-content col-1" type="text" name="content" value="" />
-        </view>
-        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
-          <image class="form_switch2" src="{{imgUrl_formswitch2}}" mode="aspectFit" wx:if="{{post2bmy}}" />
-          <image class="form_switch" src="{{imgUrl_formswitch}}" mode="aspectFit" bindtap="switchChange" />
-        </view>
-        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
-          <button class="form_btn_submit" form-type="submit" />
-        </view>
-      </form>
+      <include src="/pages/writeDiary/writeDiary.wxml"/>
 
       <!-- 日记区，可滚动视图 -->
-      <scroll-view scroll-y="true" class="diary-area .col-1" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <scroll-view scroll-y="true" class="diary-area" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
         <block wx:for="{{diaries}}" wx:key="" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
           <view class="diary-item">
             <view class="feed-source">
@@ -64,7 +45,7 @@
                   <view class="like dot">
                     <a> 顶帖 {{item.upup}}</a>
                   </view>
-                  <view class="comments dot" bindtap="openReplyArea" data-id="{{item._id}}">
+                  <view class="comments dot" bindtap="openReplyArea" data-mama="{{item._id}}">
                     <a> 回复 {{item.reply.length}}</a>
                   </view>
                   <view class="follow-it">
@@ -75,10 +56,11 @@
             </view>
           </view>
 
-          <!-- 回复区 -->
+          <!-- 对文章的回复区 -->
           <view class="reply-area">
             <block wx:for="{{item.reply}}" wx:key="" wx:for-index="idx" wx:for-item="reply" data-idx="{{idx}}">
-              <view class="reply-item">
+            <!-- 1.5.0后长按改为taplongpress？？？？？？？？？？？？ -->
+              <view class="reply-item" bindtap="openReplyArea" data-mama="{{item._id}}" data-father="{{reply._id}}" data-fa="{{reply.author.nickname}}">
                 <view class="reply-infoline">
                   <view class="reply-infoleft">
                     <text class="reply_author">{{reply.author.nickname}}: </text>
@@ -127,7 +109,7 @@
         <view class="top"></view>
         <view class="top grid">
           <label class="form_title col-0">标题：</label>
-          <input class="input-title col-1" type="text" name="title" value="" />
+          <input class="input-title col-1" type="text" name="title" value="" placeholder="{{titlePh_replying}}"/>
         </view>
         <view class="top grid">
           <label class="form_title col-0">内容：</label>

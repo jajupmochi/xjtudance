@@ -41,7 +41,14 @@ Page({
         post2bmy: app.global_data.userInfo.bmy.id === "" ? false : true,
         imgUrl_formswitch: app.global_data.server_url + (app.global_data.userInfo.bmy.id === "" ? "images/bmy1.png" : "images/bmy2.png"),
       });
-    }
+    };
+    wx.showToast({
+      title: '加载成功',
+      icon: 'success',
+      duration: 2000
+    });
+    wx.hideNavigationBarLoading();
+
   },
   // onShow事件，每次回到该页面时都会调用
   onShow: function () {
@@ -345,9 +352,17 @@ Page({
 
   // 点击回复打开回复窗口
   openReplyArea: function (e) {
-    console.log(e);
+    // console.log(e);
+    var titlePh_replying = "";
+    var diaryFather_replying = e.currentTarget.dataset.mama.$id;
+    if (e.currentTarget.dataset.father) {
+      titlePh_replying = '@' + e.currentTarget.dataset.fa + ' ';
+      diaryFather_replying = e.currentTarget.dataset.father.$id;
+    }
     this.setData({
-      diaryId_replying: e.currentTarget.dataset.id.$id,
+      diaryMama_replying: e.currentTarget.dataset.mama.$id, // 被回复的主帖
+      diaryFather_replying: diaryFather_replying, // 被回复的父帖
+      titlePh_replying: titlePh_replying, // 给回复框占位符加上@被回复父帖的作者昵称
       //anim_openReplyArea: anims.switchReplyArea(false).export(),
       showReplyArea: true,
       pen_y: 0,
@@ -357,7 +372,9 @@ Page({
   // 点击回复窗口空白区域关闭回复窗口
   closeReplyArea: function () {
     this.setData({
-      diaryId_replying: null,
+      diaryMama_replying: null,
+      diaryFather_replying: null,
+      titlePh_replying: null,
       // anim_openReplyArea: anims.switchReplyArea(true).export(),
       showReplyArea: false,
       pen_y: app.global_data.systemInfo.windowHeight - 80,
@@ -378,7 +395,8 @@ Page({
           'title': title, // 标题
           "author": app.global_data.userInfo._id.$id, // 作者
           'content': content, // 内容
-          'fatherId': this.data.diaryId_replying, // 被回复帖子的id
+          'mamaId': this.data.diaryMama_replying, // 回复的主帖
+          'fatherId': this.data.diaryFather_replying, // 被回复帖子的id
         },
         header: {
           'content-type': 'application/json'
@@ -394,13 +412,15 @@ Page({
               });*/
           } else {
             var diary_list = that.data.diaries;
-            var cur_mama = diary_list[that.data.diaryId_replying];
+            var cur_mama = diary_list[that.data.diaryMama_replying];
             cur_mama.reply = res.data.concat(cur_mama.reply);
             var obj = new Object();
-            obj[that.data.diaryId_replying] = cur_mama;
-            delete diary_list[that.data.diaryId_replying];
+            obj[that.data.diaryMama_replying] = cur_mama;
+            delete diary_list[that.data.diaryMama_replying];
             that.setData({
-              diaryId_replying: null,
+              diaryMama_replying: null,
+              diaryFather_replying: null,
+              titlePh_replying: null,
               showReplyArea: false,
               pen_y: app.global_data.systemInfo.windowHeight - 80,
               diaries: Object.assign(obj, diary_list), // 将数据传给全局变量diaries
@@ -423,10 +443,11 @@ Page({
   },
 
   // 转发本页
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     return {
-      title: 'The Diary of DANCE',
-      path: '/page/index',
+      title: '不Dance，怎么嗨！',
+      path: '/pages/index/index',
+      imageUrl: app.global_data.server_url + 'images/dance-logo.jpg',
       success: function (res) {
         // 转发成功
       },
@@ -434,6 +455,33 @@ Page({
         // 转发失败
       }
     }
+  },
+
+  uploadImage: function() {
+    wx.chooseImage({
+      success: function (res) {
+        console.log(res);
+        var tempFilePaths = res.tempFilePaths;
+        wx.uploadFile({
+          url: app.global_data.server_url + 'php/testupload.php', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            'user': 'test'
+          },
+          success: function (res) {
+            console.log(res.data);
+            console.log('success');
+            var data = res.data
+            //do something
+          },
+          fail: function () {
+            console.log(res);
+            console.log('fail');
+          }
+        })
+      }
+    });
   },
 
 })

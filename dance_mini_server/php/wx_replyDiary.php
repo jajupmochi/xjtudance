@@ -86,7 +86,7 @@ if ($save2db == true) {
 		"favori" => 0, // 收藏数
 		"viewed" => 0, // 查看次数
 		"father" => new MongoId($data['fatherId']), // ObjectId of 父帖，如值为""则说明没有父帖
-		"mama" => new MongoId($data['fatherId']), // ObjectId of 对应主题帖，如为主帖则表示主帖和回复的最近修改时间
+		"mama" => new MongoId($data['mamaId']), // ObjectId of 对应主题帖，如为主帖则表示主帖和回复的最近修改时间
 		"discuss" => 1, // 讨论人数，只有自己
 		"reply" => array(), // 回帖
 		"highlight" => "", // 精华区路径（未加精）
@@ -105,9 +105,9 @@ if ($save2db == true) {
 	$collection_diaries = $db->diaries;
 	$collection_diaries->insert($doc_diary);
 	
-	// 更新父帖
-	$fatherDiaryInfo = $collection_diaries->findOne(array('_id' => new MongoId($data['fatherId'])), array('reply' => true, 'author' => true));
-	$reply = array_merge($fatherDiaryInfo['reply'], array($doc_diary['_id']));
+	// 更新母帖（主题帖）
+	$mamaDiaryInfo = $collection_diaries->findOne(array('_id' => new MongoId($data['mamaId'])), array('reply' => true, 'author' => true));
+	$reply = array_merge($mamaDiaryInfo['reply'], array($doc_diary['_id']));
 	$author_reply = array();
 	foreach ($reply as $replyId) {
 		$cur_author = $collection_diaries->findOne(array('_id' => $replyId), array('author' => true)); // 这可以改用where???????????????????????????
@@ -115,10 +115,29 @@ if ($save2db == true) {
 	}
 	$author_reply = array_unique($author_reply); // 删除重复元素
 	$discuss = count($author_reply);
-	$discuss = in_array($fatherDiaryInfo['author'], $author_reply) ? $discuss : ($discuss + 1); // 参与讨论人数
-	$collection_diaries->update(array('_id' => new MongoId($data['fatherId'])), 
+	$discuss = in_array($mamaDiaryInfo['author'], $author_reply) ? $discuss : ($discuss + 1); // 参与讨论人数
+	$collection_diaries->update(array('_id' => new MongoId($data['mamaId'])), 
 		array('$set' => array('mama' => $time, 'discuss' => $discuss, 'reply' => $reply)));
 	
+	if ($data['fatherId'] != $data['mamaId']) {
+		// 更新父帖
+		$fatherDiaryInfo = $collection_diaries->findOne(array('_id' => new MongoId($data['fatherId'])), array('reply' => true, 'author' => true));
+		$reply = array_merge($fatherDiaryInfo['reply'], array($doc_diary['_id']));
+		$author_reply = array();
+		foreach ($reply as $replyId) {
+			$cur_author = $collection_diaries->findOne(array('_id' => $replyId), array('author' => true)); // 这可以改用where???????????????????????????
+			$author_reply = array_merge($author_reply, array($cur_author['author']));
+		}
+		$author_reply = array_unique($author_reply); // 删除重复元素
+		$discuss = count($author_reply);
+		$discuss = in_array($fatherDiaryInfo['author'], $author_reply) ? $discuss : ($discuss + 1); // 参与讨论人数
+		$collection_diaries->update(array('_id' => new MongoId($data['fatherId'])), 
+			array('$set' => array('discuss' => $discuss, 'reply' => $reply)));
+		
+		$father_nickname = $collection_users->findOne(array('_id' => $fatherDiaryInfo['author']), array('nickname' => true));
+		$doc_diary['title'] = "@".$father_nickname['nickname']." ".$doc_diary['title']; // 添加@父帖作者昵称字段
+	}
+
 	// 更新users数据库
 	$userInfo = $collection_users->findOne(array('_id' => new MongoId($author)), array('degree.credit' => true, 'diaries.posts' => true));
 	$credit = $userInfo['degree']['credit'] + 5 * ($post2bmy ? 2 : 1); // 发文5分，如同步到兵马俑BBS则乘以2

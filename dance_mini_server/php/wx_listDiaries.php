@@ -66,6 +66,11 @@ foreach ($diaries_arr as &$diary) {
 				'avatar_url' => 'https://57247578.qcloud.la/test/images/wanted-200.jpg',
 				'degree' => $degree);
 		}
+		if ($cur_reply['father'] != $cur_reply['mama']) {
+			$father_author = $collection_diaries->findOne(array('_id' => $cur_reply['father']), array('author' => true));
+			$father_nickname = $collection_users->findOne(array('_id' => $father_author['author']), array('nickname' => true));
+			$cur_reply['title'] = "@".$father_nickname['nickname']." ".$cur_reply['title']; // 添加@父帖作者昵称字段
+		}
 		$reply = array_merge($reply, array($cur_reply));
 	}
 	rsort($reply); // 反序	

@@ -1,47 +1,355 @@
 /**index.wxss**/
 
-.container{
-  height: 1500rpx;
-}
-.container .search{
-  width: 735rpx;
-  height: 65rpx;
-  padding: 12.5rpx 0 12.5rpx 15rpx;
-  background: #2A8CE5;
-}
-.container .search-left{
-  flex: 8;
-  background: #4EA3E7;
-  text-align: left;
-}
-.container .search-left input{
-  display: inline-block;
-  height: 65rpx;
-  font-size: 26rpx;
-}
-.search-placeholder{
-  color: #8CCEFD;
-  line-height: 20rpx;
-}
-.container .search .search-left image{
-  display: inline-block;
-  width: 35rpx;
-  height: 35rpx;
-  padding: 15rpx 15rpx 15rpx 20rpx;
-}
-.container .search .search-right{
-  flex: 1;
-}
-.container .search .search-right image{
-  width: 45rpx;
-  height: 45rpx;
-  padding: 10rpx;
+/* 背景 */
+
+.background {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+  background-image: url("https://57247578.qcloud.la/test/images/bg1-s.jpg");
 }
 
-.container{
+/* 可移动框-笔 */
+
+.movable-area {
+  width: 100%;
+  height: 100%;
+}
+
+.movable-view {
+  width: 40px;
+  height: 60px;
+  z-index: 1050;
+}
+
+.img-write {
+  width: 100%;
+  height: 100%;
+}
+
+/* diary-area 日记区 */
+
+.diary-area {
+  height: 100%;
   padding: 0;
   font-size: 14rpx;
-  background: #F0F4F3;
+  color: #000;
+  z-index: 999;
+}
+
+.diary-area .diary-item {
+  width: 690rpx;
+  padding: 30rpx 30rpx 20rpx;
+  margin: 7rpx 0 6rpx 0;
+}
+
+.diary-area .diary-item .feed-source {
+  width: 690rpx;
+  left: 0;
+  height: 70rpx;
+}
+
+.diary-area .diary-item .feed-source .avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.diary-area .diary-item .feed-source a {
+  display: inline-block;
+  height: 40rpx;
+}
+
+.diary-area .diary-item .feed-source .avatar image {
+  /*position: absolute;*/
+  display: inline-block;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 45rpx;
+  top: 10rpx;
+  vertical-align: middle;
+}
+
+.diary-area .diary-item .feed-source text {
+  /*position: absolute;*/
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  vertical-align: middle;
+  margin: 0 0 0 15rpx;
+  color: #a0acac;
+  font-size: 35rpx;
+}
+
+.diary-area .diary-item .feed-source .item-more {
+  display: inline-block;
+  width: 40rpx;
+  height: 45rpx;
+  float: right;
+}
+
+.diary-area .diary-item .feed-content {
+  padding: 10rpx 0 0 0;
+}
+
+.diary-area .diary-item .feed-content .diary-title text {
+  font-size: 38rpx;
+  font-weight: 600px;
+  line-height: 50rpx;
+}
+
+.diary-area .diary-item .feed-content .diary-body {
+  padding: 10rpx 0 0 0;
+  /*height: 10rpx;*/
+  font-size: 36rpx;
+  line-height: 40rpx;
+  color: #5b5b5b;
+}
+
+.diary-area .diary-item .feed-content .diary-actions {
+  width: 690rpx;
+  padding: 10rpx 0 0;
+  color: #a0acac;
+}
+
+.diary-area .diary-item .feed-content .diary-actions view {
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0 10rpx 0 0;
+  font-size: 30rpx;
+}
+
+.diary-area .diary-item .feed-content .diary-actions .dot ::after {
+  content: "•";
+}
+
+.diary_credit {
+  font-size: 10rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/** 日记回复区样式 */
+
+.reply-area {
+  width: 710rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: auto;
+  border-radius: 10rpx;
+}
+
+.reply-item {
+  width: 100%;
+  padding: 10rpx 20rpx 10rpx 20rpx;
+  margin: 0rpx 0 0rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.reply-infoline {
+  width: 710rpx;
+  left: 0;
+  height: 45rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.reply-infoleft {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.reply_author {
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 0rpx 10rpx;
+}
+
+.reply_delete {
+  height: 40rpx;
+  width: 50rpx;
+  margin-right: 35rpx;
+}
+
+.reply-content {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  color: #5b5b5b;
+}
+
+/** 添加自定义button点击态样式类**/
+
+.other-button-hover {
+  background-color: #7ed3e7;
+}
+
+@import "/pages/writeDiary/writeDiary.wxss";
+
+/* 以下为定义 连接兵马俑bbs账户的弹出窗口的 样式 */
+
+/*mask*/
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/*content*/
+
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 45%;
+  left: 0;
+  z-index: 1002;
+  background: #fafafa;
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 3px;
+}
+
+.drawer_title {
+  padding: 15px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+}
+
+.drawer_content {
+  height: 100px;
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+}
+
+.btn_ok {
+  padding: 10px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #3cc51f;
+  flex: 50%;
+}
+
+.top {
+  padding-top: 8px;
+}
+
+.bottom {
+  padding-bottom: 8px;
+}
+
+.title {
+  height: 30px;
+  line-height: 30px;
+  width: 160rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.input_h30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.input_h60 {
+  height: 60px;
+}
+
+.input_view {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+  line-height: 30px;
+}
+
+input {
+  font: 12px "microsoft yahei";
+  background: #fff;
   color: #000;
 }
-/*feed-item part is in app.wxss for multiplexing*/
+
+radio {
+  margin-right: 20px;
+}
+
+.grid {
+  display: -webkit-box;
+  display: box;
+}
+
+.col-0 {
+  -webkit-box-flex: 0;
+  box-flex: 0;
+}
+
+.col-1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* 以下为定义 回复帖子区域 样式 */
+
+/*mask*/
+
+.reply_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.reply_box {
+  width: 96%;
+  overflow: hidden;
+  z-index: 1031;
+  top: 2%;
+  left: 2%;
+  right: 2%;
+  background-color: #e8e8ea;
+  position: fixed;
+  border-radius: 80rpx;
+}
+
+.reply_close {
+  width: 100%;
+  overflow: hidden;
+  z-index: 1031;
+  top: 50%;
+  height: 100%;
+  position: fixed;
+}

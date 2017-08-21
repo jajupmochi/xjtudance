@@ -1,0 +1,83 @@
+/* 以下为发表文章form的样式 */
+
+.form_box {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  overflow-y: visible;
+}
+
+.form_title {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 160rpx;
+  text-align: center;
+  display: inline-block;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.form_label {
+  height: 30rpx;
+  line-height: 30rpx;
+  width: 100%;
+  text-align: left;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.form_switch {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-right: 10rpx;
+  width: 120rpx;
+  height: 40rpx;
+  margin-right: 40rpx;
+}
+
+.form_switch2 {
+  padding-top: 8rpx;
+  width: 120rpx;
+  height: 60rpx;
+}
+
+.form_btn_submit {
+  padding: 10rpx;
+  width: 200rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("https://57247578.qcloud.la/test/images/send1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.input-title {
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-bottom: 1rpx solid tan;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input-content {
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+  height: 200rpx;
+  line-height: 30rpx;
+  border-bottom: 1rpx solid tan;
+  font: 300 28rpx/30px "microsoft yahei";
+}
+
+.input-placeholder {
+  color: #fff;
+  line-height: 20rpx;
+}

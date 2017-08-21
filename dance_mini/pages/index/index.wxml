@@ -1,53 +1,128 @@
 <!--index.wxml-->
-<view>
-  <button bindtap="postArticle" class="other-button-hover">我要发表文章</button>
-</view>
-<view>
-  <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-    <view class="search flex-wrp">
-      <view class="search-left flex-item">
-        <image src="../../images/search.png"></image>
-        <input placeholder="版内查询" placeholder-class="search-placeholder" />
-      </view>
-      <view class="search-right flex-item" bindtap="upper">
-        <image src="../../images/lighting.png"></image>
-      </view>
-    </view>
-    <block wx:for="{{feed}}" wx:key="_id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-      <view class="feed-item">
-        <view class="feed-source">
-          <a class="">
-            <view class="avatar">
-              <image src="../../images/icon1.jpeg"></image>
+<view class="background">
+  <movable-area class="movable-area">
+
+    <!-- 笔，可移动视图 -->
+    <movable-view class="movable-view" direction="all" x="{{pen_x}}" y="{{pen_y}}">
+      <image class="img-write" src="{{imgUrl_write}}" mode="aspectFit" bindtap="write_sth" />
+    </movable-view>
+
+<button bindtap="uploadImage">上传图片</button>
+
+    <!-- 发表文章及日记区 -->
+    <view class="diary-area .flex-wrp" style="flex-direction:column; justify-content:flex-start;">
+      <!-- 发表文章区 -->
+      <include src="/pages/writeDiary/writeDiary.wxml"/>
+
+      <!-- 日记区，可滚动视图 -->
+      <scroll-view scroll-y="true" class="diary-area" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+        <block wx:for="{{diaries}}" wx:key="" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+          <view class="diary-item">
+            <view class="feed-source">
+              <a class="">
+                <view class="avatar">
+                  <image src="{{item.author.avatar_url}}"></image>
+                </view>
+                <text>{{item.author.nickname}}</text>
+                <text>[{{item.author.degree.level}}]</text>
+                <view class="avatar" wx:if="{{item.bmyurl != ''}}">
+                  <image src="{{imgUrl_formswitch2}}"></image>
+                </view>
+              </a>
+              <image bindtap="deleteArticle" data-id="{{item._id}}" class="item-more" mode="aspectFit" src="../../images/more.png"></image>
             </view>
-            <text>{{item.author}}（Williance）</text>
-          </a>
-          <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
-        </view>
-        <view class="feed-content">
-          <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
-            <a class="question-link">
+            <view class="feed-content" bindtap="showArticle" data-id="{{item._id}}">
+              <view class="diary-title" qid="{{question_id}}">
+                <a class="question-link">
                         <text>{{item.title}}</text>
                     </a>
+              </view>
+              <view class="diary-body">
+                <view>
+                  <text class="diary-txt" aid="{{diary}}">{{item.content}}</text>
+                </view>
+                <view class="diary-actions">
+                  <view class="like dot">
+                    <a> 顶帖 {{item.upup}}</a>
+                  </view>
+                  <view class="comments dot" bindtap="openReplyArea" data-mama="{{item._id}}">
+                    <a> 回复 {{item.reply.length}}</a>
+                  </view>
+                  <view class="follow-it">
+                    <a> 收藏 {{item.favori}}</a>
+                  </view>
+                </view>
+              </view>
+            </view>
           </view>
-          <view class="answer-body">
-            <view bindtap="bindItemTap"> 
-              <text class="answer-txt" aid="{{answer_id}}">{{item.content}}</text>
-            </view>
-            <view class="answer-actions" bindtap="bindItemTap">
-              <view class="like dot">
-                <a> 顶帖 112</a>
+
+          <!-- 对文章的回复区 -->
+          <view class="reply-area">
+            <block wx:for="{{item.reply}}" wx:key="" wx:for-index="idx" wx:for-item="reply" data-idx="{{idx}}">
+            <!-- 1.5.0后长按改为taplongpress？？？？？？？？？？？？ -->
+              <view class="reply-item" bindtap="openReplyArea" data-mama="{{item._id}}" data-father="{{reply._id}}" data-fa="{{reply.author.nickname}}">
+                <view class="reply-infoline">
+                  <view class="reply-infoleft">
+                    <text class="reply_author">{{reply.author.nickname}}: </text>
+                    <text class="reply_author">{{reply.title}}</text>
+                    <view class="avatar" wx:if="{{reply.bmyurl != ''}}">
+                      <image src="{{imgUrl_formswitch2}}"></image>
+                    </view>
+                  </view>
+                  <view class="reply-inforight">
+                    <image bindtap="deleteArticle" data-id="{{item._id}}" class="reply_delete" mode="aspectFit" src="../../images/more.png"></image>
+                  </view>
+                </view>
+                <text class="reply-content" aid="{{diary}}">{{reply.content}}</text>
               </view>
-              <view class="comments dot">
-                <a> 回复 13</a>
-              </view>
-              <view class="follow-it">
-                <a> 收藏 1</a>
-              </view>
-            </view>
+            </block>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- 连接兵马俑bbs账户的弹出窗口，使用animation属性指定需要执行的动画 -->
+    <view class="drawer_screen" wx:if="{{showConBmyArea}}">
+      <form bindsubmit="connectBmy" animation="{{anim_connectBmy}}" class="drawer_box">
+        <!--drawer content-->
+        <view class="drawer_title">朕要连接兵马俑bbs账号</view>
+        <view class="drawer_content">
+          <view class="top grid">
+            <label class="title col-0">朕的账号</label>
+            <input name="id" class="input_base input_h30 col-1" value="" focus="true" maxlength="12" placeholder="2-12字符, 必须全为英文字母"></input>
+          </view>
+          <view class="top grid">
+            <label class="title col-0">朕的密码</label>
+            <input name="password" password class="input_base input_h30 col-1" value="" maxlength="12" placeholder="4-12字符"></input>
           </view>
         </view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-center;">
+          <button class="btn_ok" bindtap="quitConnectBmy">麻痹不填了</button>
+          <button class="btn_ok" form-type="submit">妥了</button>
+        </view>
+      </form>
+    </view>
+
+    <!-- 回复文章的区域 -->
+    <view class="reply_screen" wx:if="{{showReplyArea}}">
+      <form report-submit bindsubmit="replyDiary" class="reply_box">
+        <view class="top"></view>
+        <view class="top grid">
+          <label class="form_title col-0">标题：</label>
+          <input class="input-title col-1" type="text" name="title" value="" placeholder="{{titlePh_replying}}"/>
+        </view>
+        <view class="top grid">
+          <label class="form_title col-0">内容：</label>
+          <textarea maxlength="-1" class="input-content col-1" type="text" name="content" value="" />
+        </view>
+        <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+          <button class="form_btn_submit" form-type="submit" />
+        </view>
+      </form>
+      <view class="reply_close" bindtap="closeReplyArea">
       </view>
-    </block>
-  </scroll-view>
+    </view>
+
+  </movable-area>
+
 </view>

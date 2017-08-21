@@ -42,6 +42,7 @@ $doc_dance = array(
 	"ball_tickets" => array(), // 舞会门票
 	"book" => array() // 精华区
 );
+
 // 请手动填写小程序appid和小程序密匙
 $doc_wxmini = array(
 	"name" => "wxmini",

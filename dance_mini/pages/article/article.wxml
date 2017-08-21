@@ -1,0 +1,58 @@
+<!--answer.wxml-->
+<view class="container">
+  <view class="question" bindtap="toQuestion">
+    <text class="question-title">{{feed.title}}</text>
+  </view>
+  <view class="answerer-wrp">
+    <view class="bg-half"></view>
+    <view class="answerer flex-wrp">
+      <view class="avatar flex-item">
+        <image src="../../images/icon1.jpeg"></image>
+      </view>
+      <view class="answerer-info flex-item">
+        <text class="answerer-name">{{feed.author}} </text>
+        <text class="answerer-des">天行健，君子当自强不息</text>
+      </view>
+      <view class="follow flex-item">
+        <text>十 喜欢ta</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="answer-content">
+    <text>{{feed.content}}</text>
+  </view>
+
+  <view class="answer-footer flex-wrp">
+    <view class="good flex-item">
+      <view class="good-bad">
+        <image src="../../images/good-bad.png"></image>
+      </view>
+      <view class="good-num">2.1k</view>
+    </view>
+    <view class="operation-wrp flex-item">
+      <view class="operation flex-wrp flex-tab">
+        <view class="operation-btn flex-item" bindtap="modifyArticle">
+          <image src="../../images/write.png"></image>
+          <text>修改</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/heart2.png"></image>
+          <text>{{feed.upup}}</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/star2.png"></image>
+          <text>{{feed.favori}}</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/comment.png"></image>
+          <text>{{feed.discuss}}</text>
+        </view>
+
+      </view>
+    </view>
+
+
+
+  </view>
+</view>

@@ -1,0 +1,24 @@
+/* pages/post/post.wxss */
+.input-title{
+  width: 735rpx;
+  padding: 12.5rpx 0 12.5rpx 15rpx;
+  background: #7ED3E7;
+  border-top: 5x solid #eee;
+  border-bottom: 3px solid #eee;
+  box-shadow: 0 2px 5px #eeeeee;
+}
+
+.input-content{
+  width: 735rpx;
+  padding: 12.5rpx 0 12.5rpx 15rpx;
+  background: #7ED3E7;
+  height: 700rp;
+  border-top: 5x solid #eee;
+  border-bottom: 3px solid #eee;
+  box-shadow: 0 2px 5px #eeeeee;
+}
+
+.input-placeholder{
+  color: #FFFFFF;
+  line-height: 20rpx;
+}

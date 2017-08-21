@@ -3,16 +3,13 @@ App({
   global_data: {
     server_url: "https://57247578.qcloud.la/test/", // 服务器地址
     userInfo: null, // 用户信息
-    systemInfo: null, // 系统信息
   },
   openid: null,
   onLaunch: function () {
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-      duration: 3000
-    });
-    wx.showNavigationBarLoading();
+    //调用API从本地缓存中获取数据
+    //var logs = wx.getStorageSync('logs') || []
+    //logs.unshift(Date.now())
+    //wx.setStorageSync('logs', logs)
 
     // 登录并获取用户信息
     var that = this;
@@ -34,12 +31,8 @@ App({
               success: function (res) {
                 if (res.data !== null) {
                   that.global_data.userInfo = res.data;
-                  wx.showToast({
-                    title: 'Hi, ' + res.data.nickname + '！O(∩_∩)O~~ 积分+2',
-                    image: '../../images/dance1-200.png',
-                    duration: 2000,
-                  });
                   console.log(that.global_data.userInfo);
+                  console.log("hohoho");
                 } else { // 如果用户不存在则注册
                   wx.login({ // 重新登录获取code
                     success: function (res) {
@@ -63,11 +56,6 @@ App({
                             method: "POST",
                             success: function (res) {
                               that.global_data.userInfo = res.data;
-                              wx.showToast({
-                                title: '亲爱的' + res.data.nickname + '，欢迎回家！积分+20',
-                                image: '../../images/dance1-200.png',
-                                duration: 2000,
-                              });
                               // console.log(that.global_data.userInfo);
                             }
                           })
@@ -80,13 +68,6 @@ App({
             })
           }
         });
-      },
-    });
-
-    // 获取系统信息
-    wx.getSystemInfo({
-      success: function(res) {
-        that.global_data.systemInfo = res;
       },
     });
 

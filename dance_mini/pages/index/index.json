@@ -1,4 +1,9 @@
-
 {
-
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#e6bd89",
+    "navigationBarTitleText": "The Diary of DANCE",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  }
 }

@@ -1,5 +1,0 @@
-/* pages/post/post.wxss */
-.input-content{
-  height: 500rpx;
-  border:1px solid red;
-}

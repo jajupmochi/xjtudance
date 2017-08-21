@@ -1,0 +1,23 @@
+<!-- 发表文章区 -->
+<form report-submit bindsubmit="writeDiary" class="form_box" animation="{{anim_openWrite}}">
+  <view class="top"></view>
+  <view class="top grid">
+    <label class="form_title col-0">标题：</label>
+    <input class="input-title col-1" type="text" name="title" value="" />
+  </view>
+  <view class="top grid">
+    <label class="form_title col-0">作者：</label>
+    <input disabled class="input-title col-1" value="{{user_nickname}}" />
+  </view>
+  <view class="top grid">
+    <label class="form_title col-0">正文：</label>
+    <input maxlength="-1" class="input-content col-1" type="text" name="content" value="" />
+  </view>
+  <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+    <image class="form_switch2" src="{{imgUrl_formswitch2}}" mode="aspectFit" wx:if="{{post2bmy}}" />
+    <image class="form_switch" src="{{imgUrl_formswitch}}" mode="aspectFit" bindtap="switchChange" />
+  </view>
+  <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-end;">
+    <button class="form_btn_submit" form-type="submit" />
+  </view>
+</form>

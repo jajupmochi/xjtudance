@@ -10,12 +10,49 @@ Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
 /**
+* 返回微信小程序报到内容。
+* @param string $id id
+* @param string $nickname 昵称
+* @param string $gender 性别
+* @param string $height 身高
+* @param string $grade 年级
+* @param string $major 专业
+* @param string $hometown 家乡
+* @param string $selfIntro 自我介绍
+* @param string $danceLevel 舞蹈水平
+* @return string 报到内容
+* @access public
+*/
+function wxminiBaodao($id, $nickname, $gender, $height, $grade, $major, $hometown, $selfIntro, $danceLevel) {
+	$id = ($id == 'jiaodadance' ? '小dance代发' : $id);
+	return "[0;1;31m[I您的id是:[m\n".$id.
+		"\n\n[0;1;32m[I昵称呢?:[m\n".$nickname.
+		"\n\n[0;1;33m[I性别:[m\n".$gender.
+		"\n\n[0;1;34m[I身高可别忘了:[m\n".$height.
+		"\n\n[0;1;35m[I学院/专业:[m\n".$major.
+		"\n\n[0;1;36m[I年级:[m\n".$grade.
+		"\n\n[0;1;31m[I家乡:[m\n".$hometown.
+		"\n\n[0;1;32m[I再介绍一下自己啦:[m\n".$selfIntro.
+		"\n\n[0;1;33m[I您的舞蹈水平(参加培训情况等)/擅长或喜欢的舞种?:[m\n".$danceLevel.
+		"\n\n[0;1;34m[I打开微信小程序\"西交dance\"查看美照啦~[m";
+}
+
+/**
 * 微信小程序水印，从小程序发文到兵马俑BBS时添加到文末。
-* @param integer $credit 积分
+* @param string $time 时间
+* @param MongoDB $db mongo数据库
+* @param string $level 用户等级
 * @return string 水印
 * @access public
 */
 function wxminiWatermark4bmy($time, $db, $level) {
+	$time = explode('.', $time);
+	$time = $time[0];
+	$time = substr_replace($time, '-', 4, 0);
+	$time = substr_replace($time, '-', 7, 0);
+	$time = substr_replace($time, ' ', 10, 0);
+	$time = substr_replace($time, ':', 13, 0);
+	$time = substr_replace($time, ':', 16, 0);
 	$watermark = "\n\n
 			[1;34m********************************************************************************[m
 			[1;33m".$time."[m

@@ -1,0 +1,80 @@
+<!--dancerPro.wxml-->
+<view class="drawer_screen">
+  <view class="drawer_box">
+    <!--drawer content-->
+    <view class="drawer_title">{{dancer_info.nickname}}</view>
+    <view class="drawer_content">
+
+      <view class="drawer_item">
+        <label class="title col-0">性别: </label>
+        <text class="content col-0" selectable>{{dancer_info.gender}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">破蛋日: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.eggday}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">年级: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.grade}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">专业: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.major}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">身高: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.height}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">家乡: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.hometown}}</text>
+      </view>
+
+      <view class="drawer_item" wx:if="{{isBanban}}">
+        <label class="title col-0">微信号: </label>
+        <text class="content col-0" selectable>{{dancer_info.wechat.id}}</text>
+      </view>
+
+      <view class="drawer_item" wx:if="{{isBanban}}">
+        <label class="title col-0">QQ号: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.QQ}}</text>
+      </view>
+
+      <view class="drawer_item" wx:if="{{isBanban}}">
+        <label class="title col-0">联系方式: </label>
+        <text class="content col-0" selectable>{{dancer_info.person_info.contact}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">现有舞蹈水平: </label>
+        <text class="content col-0" selectable>{{dancer_info.dance.danceLevel}}</text>
+      </view>
+
+      <view class="drawer_item" wx:if="{{isBanban}}">
+        <label class="title col-0">你从哪里知道了dance: </label>
+        <text class="content col-0" selectable>{{dancer_info.dance.knowdancefrom}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">再介绍一下自己啦: </label>
+        <text class="content col-0" selectable>{{dancer_info.dance.selfIntro}}</text>
+      </view>
+
+      <view class="drawer_item">
+        <label class="title col-0">PP: </label>
+        <image class="photo" src="{{photo}}" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-center;">
+      <button class="btn_ok" open-type="share">分享本页</button>
+    </view>
+
+    <view style="height:40rpx;"></view>
+  </view>
+</view>

@@ -1,18 +1,19 @@
 {
-  "pages":[
-    "pages/index/index"
-
+  "pages": [
+    "pages/baodao/baodao",
+    "pages/dancers/dancers",
+    "pages/dancerPro/dancerPro"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#e6bd89",
-    "navigationBarTitleText": "The Diary of DANCE",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "purple",
+    "navigationBarTitleText": "Welcome to Dance!",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh": true
   },
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": false
 }

@@ -9,8 +9,8 @@ Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
-$dance_release = false; // 是否为发布版本
+$dance_release = true; // 是否为发布版本
 
-$dance_db = "xjtudance_test"; // 数据库名称（在用户体验版和正式发布版中，$dance_db = "xjtudance"）
-$dance_db_backup = "xjtudance_backup_test"; // 备份数据库名称（在用户体验版和正式发布版中，$dance_db_backup = "xjtudance_backup"）
+$dance_db = "xjtudance"; // 数据库名称（在用户体验版和正式发布版中，$dance_db = "xjtudance"）
+$dance_db_backup = "xjtudance_backup"; // 备份数据库名称（在用户体验版和正式发布版中，$dance_db_backup = "xjtudance_backup"）
 ?>  

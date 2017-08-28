@@ -25,6 +25,7 @@ $collection_users = $db->users;
 
 $sec = explode(' ', microtime()); // get t value
 $micro = explode('.', $sec[0]);
+date_default_timezone_set("Asia/Shanghai");
 $time = date("YmdHis").".".substr($micro[1], 0, 3);
 
 if ($post2bmy) {

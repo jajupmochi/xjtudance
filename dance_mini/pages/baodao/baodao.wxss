@@ -1,0 +1,183 @@
+/* pages/baodao/baodao.wxss */
+
+/* 可移动框-进入页面 */
+
+.movable-area {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.movable-view {
+  width: 80px;
+  height: 80px;
+  z-index: 1050;
+}
+
+.img-dancers {
+  width: 100%;
+  height: 100%;
+}
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #fafafa;
+  overflow-y: scroll;
+}
+
+/*content*/
+
+.drawer_box {
+  width: 650rpx;
+  height: 100%;
+  overflow: visible;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  background: #fafafa;
+  margin: 20px 50rpx 0 50rpx;
+  border-radius: 3px;
+}
+
+.drawer_item {
+  padding: 20rpx 0rpx 20rpx 0rpx;
+}
+
+.drawer_title {
+  padding: 15px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+}
+
+.drawer_content {
+  padding: 0px;
+}
+
+.photo {
+  margin: 0rpx 40rpx 0rpx 40rpx;
+}
+
+.btn_ok {
+  padding: 10px;
+  font: 20px "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #3cc51f;
+  flex: 50%;
+  margin: 0px 40rpx 0 40rpx;
+}
+
+.btn_chooseimage {
+  width: 120rpx;
+  height: 120rpx;
+  font: 80rpx "microsoft yahei";
+  font-weight: 800;
+  text-align: center;
+  color: blue;
+  margin: 10rpx 40rpx 0 40rpx;
+}
+
+.top {
+  padding-top: 8px;
+}
+
+.bottom {
+  padding-bottom: 8px;
+}
+
+.title {
+  height: 30px;
+  line-height: 30px;
+  width: 650rpx;
+  text-align: left;
+  display: inline-block;
+  margin: 0rpx 40rpx 0rpx 40rpx;
+  font: 400 28rpx/30px "microsoft yahei";
+}
+
+.description {
+  width: 650rpx;
+  text-align: left;
+  display: inline-block;
+  margin: 0rpx 40rpx 10rpx 40rpx;
+  font: 300 26rpx/28rpx "microsoft yahei";
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin: 0rpx 40rpx 0rpx 40rpx;
+}
+
+.redmark {
+  text-align: left;
+  margin: 0rpx 40rpx 0rpx 40rpx;
+  font: 300 26rpx/28rpx "microsoft yahei";
+  color: red;
+}
+
+.input_h30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.input_h60 {
+  height: 60px;
+}
+
+.input_view {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+  line-height: 30px;
+}
+
+.input {
+  font: 12px "microsoft yahei";
+  background: #fff;
+  color: #000;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0rpx 40rpx 10rpx 40rpx;
+}
+
+.radio {
+  margin: 0rpx 0rpx 0rpx 0rpx;
+  font: 28rpx "microsoft yahei";
+  height: 55rpx;
+}
+
+.grid {
+  display: -webkit-box;
+  display: box;
+}
+
+.col-0 {
+  -webkit-box-flex: 0;
+  box-flex: 0;
+}
+
+.col-1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+

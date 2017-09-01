@@ -1,3 +1,3 @@
 # xjtudance
-这是西安交大dance版的报名微信小程序。
-![Welcome to Dance!](/images/screenshot/welcome_to_dance.jpg "dance版微信小程序报名页")
+这是西安交大爱尚salsa社交舞团的报名微信小程序。
+包括萨友列表，萨友信息，报到和爱尚salsa介绍页。

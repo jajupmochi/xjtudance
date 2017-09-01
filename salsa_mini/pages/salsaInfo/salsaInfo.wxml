@@ -1,0 +1,10 @@
+<!--salsaInfo.wxml-->
+<view class="drawer_screen">
+  <view class="drawer_box">
+    <image class="drawer-pic" src="{{pic5}}" mode="widthFix" bindload="finishLoadImg"></image>
+    <view class="drawer-words" wx:if="{{showword}}">扫码进入salsa萌萌新群</view>
+    <view class="drawer-words2" wx:if="{{showword}}">点击二维码打开，然后点击右上角的点点保存后扫码</view>
+    <image class="drawer-qr" src="{{wechat_qr}}" mode="widthFix" data-src="{{wechat_qr}}" bindtap="previewImage"></image>
+    <image class="mini-qr" src="{{mini_qr}}" mode="widthFix" data-src="{{mini_qr}}" bindtap="previewImage"></image>
+  </view>
+</view>

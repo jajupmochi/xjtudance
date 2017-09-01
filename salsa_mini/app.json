@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/dancers/dancers",
+    "pages/salsaInfo/salsaInfo",
+    "pages/baodao/baodao",
+    "pages/dancerPro/dancerPro"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "darkorange",
+    "navigationBarTitleText": "爱尚salsa，爱上salsa",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/dancers/dancers",
+        "text": "萨友"
+      },
+      {
+        "pagePath": "pages/baodao/baodao",
+        "text": "报名"
+      },
+      {
+        "pagePath": "pages/salsaInfo/salsaInfo",
+        "text": "爱尚salsa"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

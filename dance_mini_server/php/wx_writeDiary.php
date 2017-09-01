@@ -44,7 +44,7 @@ if ($post2bmy) {
 		$title_bmy = $data['title'] == '' ? '无题' : $data['title']; // 向bmy post文章
 		$credit = $collection_users->findOne(array('_id' => new MongoId($author)), array('degree.credit' => true));
 		$content_bmy = $data['content'].wxminiWatermark4bmy($time, $db, credit2level($credit['degree']['credit'] + 5 * ($post2bmy ? 2 : 1))); // 添加微信小程序水印
-		$postdata = "title=".urlencode(iconv("UTF-8", "GB2312//IGNORE", $title_bmy))."&text=".urlencode(iconv("UTF-8", "GB2312//IGNORE", $content_bmy));
+		$postdata = "title=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $title_bmy))."&text=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $content_bmy));
 		$url = "http://bbs.xjtu.edu.cn/".$_SESSION["sessionurl"]."/bbssnd?board=dance&th=-1&signature=1";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_POST, 1);

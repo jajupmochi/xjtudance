@@ -53,7 +53,7 @@ $proxy_url = "http://bbs.xjtu.edu.cn/BMY/bbslogin?ipmask=8&t={$timeBmy}&id={$bmy
 $result = file_get_html($proxy_url);
 $sessionurl_t = myfind($result, "url=/", "/", 0); // 通过bmy的proxy_url获取sessionurl
 $_SESSION["sessionurl"] = $sessionurl_t[0];
-$postdata = "title=".urlencode(iconv("UTF-8", "GB2312//IGNORE", $bmy_title))."&text=".urlencode(iconv("UTF-8", "GB2312//IGNORE", $bmy_content));
+$postdata = "title=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $bmy_title))."&text=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $bmy_content));
 $url = "http://bbs.xjtu.edu.cn/".$_SESSION["sessionurl"]."/bbssnd?board=dance&th=-1&signature=1";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_POST, 1);

@@ -14,6 +14,7 @@ include('base_fun.php'); // 基本函数
 include('net_fun.php'); // 网络函数
 include('bmy_fun.php'); // 兵马俑BBS相关函数
 include('img_fun.php'); // 图像处理函数
+include('db_fun.php'); // 数据库函数
 
 include('simple_html_dom.php'); // 这是一个第三方网络处理函数库
 ?>  

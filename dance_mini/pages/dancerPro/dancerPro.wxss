@@ -5,7 +5,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1030;
   background-color: #fafafa;
   overflow-y: scroll;
   
@@ -14,20 +13,15 @@
 /*content*/
 
 .drawer_box {
-  width: 750rpx;
-  height: 100%;
   overflow: visible;
   top: 0;
   left: 0;
-  z-index: 1002;
   background: #fafafa;
-  padding: 20px 0rpx 0 0rpx;
-  margin: auto;
-  border-radius: 3px;
+  padding: 40rpx 40rpx 40rpx 40rpx;
 }
 
 .drawer_title {
-  padding: 50rpx;
+  padding: 50rpx 10rpx 50rpx 0;
   font: 50rpx "microsoft yahei";
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
@@ -35,131 +29,46 @@
   text-align: right;
 }
 
-.drawer_item {
-  padding: 20rpx 0rpx 20rpx 0rpx;
-}
-
 .drawer_content {
+  width: 100%;
   padding: 0px;
 }
 
-.photo {
-  margin: 0rpx 40rpx 0rpx 40rpx;
-}
-
-.btn_ok {
-  padding: 10px;
-  font: 20px "microsoft yahei";
-  text-align: center;
-  border-top: 1px solid #e8e8ea;
-  color: #3cc51f;
-  flex: 50%;
-  margin: 0px 40rpx 0 40rpx;
-}
-
-.btn_chooseimage {
-  width: 120rpx;
-  height: 120rpx;
-  font: 80rpx "microsoft yahei";
-  font-weight: 800;
-  text-align: center;
-  color: blue;
-  margin: 10rpx 40rpx 0 40rpx;
-}
-
-.top {
-  padding-top: 8px;
-}
-
-.bottom {
-  padding-bottom: 8px;
+.drawer_item {
+  padding: 20rpx 0rpx 20rpx 0rpx;
 }
 
 .title {
   height: 30px;
   line-height: 30px;
-  width: 750rpx;
+  width: 100%;
   text-align: left;
   display: inline-block;
-  margin: 0rpx 40rpx 0rpx 40rpx;
   font: 600 40rpx/30px "microsoft yahei";
   color: black;
 }
 
-.description {
-  width: 650rpx;
-  text-align: left;
-  display: inline-block;
-  margin: 0rpx 40rpx 10rpx 40rpx;
-  font: 300 26rpx/28rpx "microsoft yahei";
-}
-
-.input_base {
-  border: 2rpx solid #ccc;
-  padding-left: 10rpx;
-  margin: 0rpx 40rpx 0rpx 40rpx;
-}
-
 .content {
   text-align: left;
-  padding: 0rpx 40rpx 0rpx 40rpx;
+  width: 100%;
   font: 500 37rpx/37rpx "microsoft yahei";
   color: rgba(0, 0, 0, 0.8);
 }
 
-.input_h30 {
-  height: 30px;
-  line-height: 30px;
-}
-
-.input_h60 {
-  height: 60px;
-}
-
-.input_view {
-  font: 12px "microsoft yahei";
-  background: #fff;
-  color: #000;
-  line-height: 30px;
-}
-
-.input {
-  font: 12px "microsoft yahei";
-  background: #fff;
-  color: #000;
-}
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 0rpx 40rpx 10rpx 40rpx;
-}
-
-.radio {
+.photo {
+  width: 100%;
   margin: 0rpx 0rpx 0rpx 0rpx;
-  font: 28rpx "microsoft yahei";
-  height: 55rpx;
 }
 
-.grid {
-  display: -webkit-box;
-  display: box;
+.btn_container {
+  width: 100%;
+  padding-top: 8px;
 }
 
-.col-0 {
-  -webkit-box-flex: 0;
-  box-flex: 0;
-}
-
-.col-1 {
-  -webkit-box-flex: 1;
-  box-flex: 1;
-}
-
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
+.btn_ok {
+  width: 100%;
+  font: 40rpx/90rpx "microsoft yahei";
+  text-align: center;
+  border: 1px solid #e8e8ea;
+  color: #3cc51f;
 }

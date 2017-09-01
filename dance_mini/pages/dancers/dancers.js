@@ -20,7 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (this.data.dancer_list == null) {
+      this.listDancers();
+    }
+    this.userLogin();
   },
 
   /**
@@ -34,9 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.dancer_list == null) {
-      this.listDancers();
-    }
+
   },
 
   /**
@@ -90,10 +91,83 @@ Page({
     this.listDancers();
   },
 
+  /**
+   * 用户登录
+   */
+  userLogin: function () {
+    var that = this;
+    wx.showLoading({
+      title: '正在跳转...',
+      mask: true,
+    });
+    wx.login({
+      success: function (res) {
+        wx.request({
+          url: app.global_data.server_url + 'php/wx_getUser.php',
+          data: {
+            'code': res.code,
+            '_id': '',
+            'getValues': '_id/dance.baodao/rights.banban.is',
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          method: "POST",
+          success: function (res) {
+            wx.hideLoading();
+            if (res.data !== null) {
+              that.setData({
+                isBanban: res.data.rights.banban.is,
+              });
+              app.global_data.userInfo = res.data;
+            } else { // 用户不在数据库中
+              wx.showToast({
+                title: '奇怪，你不在我们的数据库中...',
+                image: '../../images/more.png',
+                duration: 2000,
+                mask: true,
+              });
+            }
+          },
+          fail: function () {
+            wx.hideLoading();
+            wx.showToast({
+              title: 'oops，网络bug了，再试一次吧',
+              image: '../../images/more.png',
+              duration: 2000,
+              mask: true,
+            });
+          }
+        });
+      },
+      fail: function () { // 获取微信code失败
+        wx.hideLoading();
+        wx.showToast({
+          title: 'oops，网络bug了，再试一次吧',
+          image: '../../images/more.png',
+          duration: 2000,
+          mask: true,
+        });
+      }
+    });
+  },
+
+  /**
+   * 跳转到dance介绍页
+   */
+  toDanceIntro: function () {
+    wx.navigateTo({
+      url: '../danceIntro/danceIntro',
+    });
+  },
+
+  /**
+   * 跳转到用户页面
+   */
   openDancerProfile: function (e) {
     var _id = e.currentTarget.dataset._id.$id;
-    if (0) {//app.global_data.userInfo != null) {
-     /* if (app.global_data.userInfo.dance.baodao != '') { // 跳转
+    if (app.global_data.userInfo != null) {
+        if (app.global_data.userInfo.dance.baodao != '') { // 跳转
         wx.navigateTo({
           url: '../dancerPro/dancerPro?_id=' + _id,
         });
@@ -104,75 +178,13 @@ Page({
           duration: 2000,
           mask: true,
         });
-      }*/
+      }
     } else { // 没有用户信息
-      var that = this;
-      wx.showLoading({
-        title: '正在跳转...',
+      wx.showToast({
+        title: 'oops! 你的信息丢掉了...',
+        image: '../../images/more.png',
+        duration: 2000,
         mask: true,
-      });
-      wx.login({
-        success: function (res) {
-          wx.request({
-            url: app.global_data.server_url + 'php/wx_getUser.php',
-            data: {
-              'code': res.code,
-              '_id': '',
-              'getValues': '_id/dance.baodao/rights.banban.is',
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            method: "POST",
-            success: function (res) {
-              wx.hideLoading();
-              if (res.data !== null) {
-                console.log(res.data);
-                that.setData({
-                  isBanban: res.data.rights.banban.is,
-                });
-                app.global_data.userInfo = res.data;
-                if (app.global_data.userInfo.dance.baodao != '') { // 跳转
-                  wx.navigateTo({
-                    url: '../dancerPro/dancerPro?_id=' + _id,
-                  });
-                } else { // 没有报到
-                  wx.showToast({
-                    title: '报到才可查阅哦！',
-                    image: '../../images/more.png',
-                    duration: 2000,
-                    mask: true,
-                  });
-                }
-              } else { // 用户不在数据库中
-                wx.showToast({
-                  title: '报到才可查阅哦！',
-                  image: '../../images/more.png',
-                  duration: 2000,
-                  mask: true,
-                });
-              }
-            },
-            fail: function () {
-              wx.hideLoading();
-              wx.showToast({
-                title: 'oops，网络bug了，再试一次吧',
-                image: '../../images/more.png',
-                duration: 2000,
-                mask: true,
-              });
-            }
-          });
-        },
-        fail: function () { // 获取微信code失败
-          wx.hideLoading();
-          wx.showToast({
-            title: 'oops，网络bug了，再试一次吧',
-            image: '../../images/more.png',
-            duration: 2000,
-            mask: true,
-          });
-        }
       });
     }
   },
@@ -209,7 +221,7 @@ Page({
         }
         that.setData({
           dancer_list: that.data.dancer_list ? Object.assign(that.data.dancer_list, res.data) : res.data, // 将数据传给全局变量dancer_list
-          dancers_length: that.data.dancers_length.length,
+          dancers_length: that.data.dancers_length + limit,
         });
         console.log(that.data.dancer_list);
         app.global_data.dancer_list = that.data.dancer_list;

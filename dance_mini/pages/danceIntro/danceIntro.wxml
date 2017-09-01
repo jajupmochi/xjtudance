@@ -1,0 +1,17 @@
+<!--danceIntro.wxml-->
+<view class="container">
+  <view class="page-body">
+    <view class="page-title">dance主要有以下舞种</view>
+    <block wx:for="{{dance_list}}">
+      <view class="page-item">
+        <view class="item-title">{{item.name}}</view>
+        <view class="item-media">
+          <audio class="item-audio" style="text-align: left" src="{{item.audio_src}}" poster="{{item.audio_poster}}" name="{{item.audio_name}}" author="{{item.audio_author}}" action="{{audioAction}}" controls></audio>
+        </view>
+        <view class="item-media">
+          <video class="item-video" src="{{item.video_src}}" poster="{{item.video_poster}}" binderror="videoErrorCallback" controls></video>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

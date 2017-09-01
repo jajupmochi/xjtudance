@@ -137,6 +137,10 @@ Page({
   * 上传报到信息
   */
   baodao: function (e) {
+    wx.showLoading({
+      title: '处理中...',
+      mask: true,
+    });
     // console.log(e.detail.value);
     var isSend = true;
     if (e.detail.value.nickname == '') {
@@ -219,6 +223,7 @@ Page({
     }
 
     if (!isSend) {
+      wx.hideLoading();
       wx.showToast({
         title: '请完善表格再提交~',
         image: '../../images/smiley-6_64.png',
@@ -226,10 +231,6 @@ Page({
         mask: true,
       });
     } else {
-      wx.showLoading({
-        title: '上传中...',
-        mask: true,
-      });
       var formId = e.detail.formId;
       var that = this;
       var knowdancefrom = this.data.knowdancefrom;

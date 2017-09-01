@@ -12,10 +12,7 @@
   box-sizing: border-box;
 }
 
-.container.withtab{
-  margin: 105rpx 0 0 0;
-  /*top: 105rpx;*/
-}
+
 .flex-wrp{
   display: flex;
 }
@@ -44,4 +41,27 @@
 .toptab.active{
   color: #ffffff;
   border-bottom: solid 2px #ffffff;
+}
+
+/* 整个页面 */
+.container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fafafa;
+  overflow-y: auto;
+}
+
+.page-body {
+  width: 670rpx;
+  top: 0;
+  left: 0;
+  background: #fafafa;
+  margin: 40rpx 40rpx 40rpx 40rpx;
+}
+
+.page-item {
+  margin: 20rpx 0rpx 20rpx 0rpx;
 }

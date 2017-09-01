@@ -7,13 +7,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isBanban: app.global_data.userInfo ? app.global_data.userInfo.rights.banban.is : false,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    if (app != null) {
+      this.setData({
+        isBanban: app.global_data.userInfo ? app.global_data.userInfo.rights.banban.is : false,
+      });
+    } else {
+      this.setData({
+        isBanban: false,
+      });
+    }
     var _id = e._id;
     this.getDancerInfo(_id);
   },
@@ -89,7 +98,7 @@ Page({
       title: '正在跳转...',
       mask: true,
     });
-    if (app.global_data.userInfo.rights.banban.is) {
+    if (this.data.isBanban) {
       var getValues = '_id/nickname/gender/person_info.eggday/person_info.grade/person_info.major/person_info.height/person_info.hometown/dance.danceLevel/dance.selfIntro/dance.photos/dance.baodao/wechat.id/person_info.QQ/person_info.contact/dance.knowdancefrom';
     } else {
       var getValues = '_id/nickname/gender/person_info.eggday/person_info.grade/person_info.major/person_info.height/person_info.hometown/dance.danceLevel/dance.selfIntro/dance.photos/dance.baodao';
@@ -108,7 +117,7 @@ Page({
       success: function (res) {
         wx.hideLoading();
         if (res.data !== null) {
-          console.log(res.data);
+          // console.log(res.data);
           that.setData({
             dancer_info: res.data,
             photo: app.global_data.server_url + res.data.dance.photos[res.data.dance.photos.length - 1],
@@ -145,5 +154,17 @@ Page({
         }, 1500);
       }
     });
-  }
+  },
+
+  /**
+   * 预览照片
+   */
+  previewImage: function (e) {
+    console.log(e);
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current],
+    });
+  },
 })

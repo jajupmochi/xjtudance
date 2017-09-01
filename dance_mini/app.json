@@ -2,7 +2,8 @@
   "pages": [
     "pages/baodao/baodao",
     "pages/dancers/dancers",
-    "pages/dancerPro/dancerPro"
+    "pages/dancerPro/dancerPro",
+    "pages/danceIntro/danceIntro"
   ],
   "window": {
     "backgroundTextStyle": "light",

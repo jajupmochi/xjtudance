@@ -6,6 +6,18 @@
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #fafafa;
+}
+
+.btn-todances {
+  width: 210rpx;
+  margin: 20rpx 40rpx 20rpx 40rpx;
+  font: 30rpx/70rpx "microsoft yahei";
+  text-align: center;
+  border: 0px solid #e8e8ea;
+  background-color: purple;
+  color: white;
+  float: right;
 }
 
 .dancer-item {
@@ -33,24 +45,21 @@
 }
 
 .dancer-nickname {
-  height: 20%;
-  padding: 15rpx 40rpx 10rpx 0rpx;
+  padding: 20rpx 40rpx 5rpx 0rpx;
   font-weight: 600;
   font-size: 35rpx;
   color: purple;
 }
 
 .dancer-intro {
-  height: 50%;
-  padding: 10rpx 40rpx 15rpx 0rpx;
+  padding: 10rpx 0rpx 20rpx 0rpx;
   font-weight: 500;
   font-size: 30rpx;
   color: rgba(0, 0, 0, 0.5);
 }
 
 .button-container {
-  height: 30%;
-  padding: 0rpx 40rpx 15rpx 0rpx;
+  padding: 0rpx 20rpx 15rpx 0rpx;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -62,6 +71,7 @@
   background-color: #8A2BE2;
   color: white;
   font-size: 25rpx;
+  line-height: 58rpx;
   text-align: center;
   padding: 0px;
 }

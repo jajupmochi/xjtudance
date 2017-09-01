@@ -15,7 +15,7 @@
 
         <view class="drawer_item">
           <label class="title col-0">昵称 *</label>
-          <input name="nickname" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="请填写1-20个字" cursor-spacing="10rpx"></input>
+          <input name="nickname" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="请填写1-20个字" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_nickname}}">× 请填写昵称</label>
         </view>
 
@@ -35,7 +35,7 @@
             <view class="section__title"></view>
             <picker mode="date" value="{{date}}" start="1900-01-01" end="2020-09-01" bindchange="eggdayChange">
               <view class="picker">
-                <view name="eggday" class="input_base input_h30 col-1" cursor-spacing="10rpx">{{eggday}}</view>
+                <view name="eggday" class="input_base input_h30 col-1" cursor-spacing="150">{{eggday}}</view>
               </view>
             </picker>
           </view>
@@ -43,52 +43,52 @@
         </view>
 
         <view class="drawer_item">
-          <label class="title col-0">年级 *</label>
-          <input name="grade" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="10rpx"></input>
-          <label class="redmark col-0" wx:if="{{showmiss_grade}}">× 请填写年级</label>
+          <label class="title col-0">年级/毕业时间 *</label>
+          <input name="grade" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
+          <label class="redmark col-0" wx:if="{{showmiss_grade}}">× 请填写年级/毕业时间</label>
         </view>
 
         <view class="drawer_item">
           <label class="title col-0">专业 *</label>
-          <input name="major" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="10rpx"></input>
+          <input name="major" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_major}}">× 请填写专业</label>
         </view>
 
         <view class="drawer_item">
           <label class="title col-0">身高 *</label>
-          <input name="height" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="10rpx"></input>
+          <input name="height" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_height}}">× 请填写身高</label>
         </view>
 
         <view class="drawer_item">
           <label class="title col-0">家乡 *</label>
           <label class="description col-0">看看dance有你的老乡没~</label>
-          <input name="hometown" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx"></input>
+          <input name="hometown" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_hometown}}">× 请填写家乡</label>
         </view>
 
         <view class="drawer_item">
-          <label class="title col-0">微信号 *</label>
-          <input name="wechat_id" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx"></input>
+          <label class="title col-0">微信号（仅版主可见） *</label>
+          <input name="wechat_id" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_wechat_id}}">× 请填写微信号，便于加入dance微信群</label>
         </view>
 
         <view class="drawer_item">
-          <label class="title col-0">QQ号 *</label>
-          <input name="QQ" type="number" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx"></input>
+          <label class="title col-0">QQ号（仅版主可见） *</label>
+          <input name="QQ" type="number" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_QQ}}">× 请填写QQ号，便于加入dance六群</label>
         </view>
 
         <view class="drawer_item">
-          <label class="title col-0">联系方式</label>
-          <input name="contact" type="number" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="10rpx"></input>
+          <label class="title col-0">联系方式（仅版主可见）</label>
+          <input name="contact" type="number" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
         </view>
 
         <view class="drawer_item">
           <label class="title col-0">现有舞蹈水平 *</label>
           <label class="description col-0">是小白还是大神都是我们的菜~</label>
           <text class="description col-0">小白、交谊、拉丁、摩登、街舞、爵士、中国舞等等，以及相应的水平。（如：学过3年拉丁舞；没有舞蹈基础；学过一点摩登基础等等）</text>
-          <input name="danceLevel" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx"></input>
+          <input name="danceLevel" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_danceLevel}}">× 请填写现有舞蹈水平</label>
         </view>
 
@@ -99,14 +99,14 @@
           <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
           </checkbox-group>
-          <input name="knowfromElse" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx"></input>
+          <input name="knowfromElse" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
           <label class="redmark col-0" wx:if="{{showmiss_knowdancefrom}}">× 请选择了解dance的途径</label>
         </view>
 
         <view class="drawer_item">
           <label class="title col-0">再介绍一下自己啦~ *</label>
           <label class="description col-0">是逗逼还是男神女神，是学霸还是游戏达人，运动健将同样也能找到炼铁的ta~</label>
-          <input name="selfIntro" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="10rpx" />
+          <input name="selfIntro" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150" />
           <label class="redmark col-0" wx:if="{{showmiss_selfIntro}}">× 请自我介绍一下吧</label>
         </view>
 

@@ -16,7 +16,7 @@
       </view>
 
       <view class="drawer_item">
-        <label class="title col-0">年级: </label>
+        <label class="title col-0">年级/毕业时间: </label>
         <text class="content col-0" selectable>{{dancer_info.person_info.grade}}</text>
       </view>
 
@@ -47,7 +47,7 @@
 
       <view class="drawer_item" wx:if="{{isBanban}}">
         <label class="title col-0">联系方式: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.contact}}</text>
+        <text class="content col-0" selectable>{{dancer_info.person_info.contact == '' ? '未填写' : dancer_info.person_info.contact}}</text>
       </view>
 
       <view class="drawer_item">
@@ -67,14 +67,12 @@
 
       <view class="drawer_item">
         <label class="title col-0">PP: </label>
-        <image class="photo" src="{{photo}}" mode="aspectFit"></image>
+        <image class="photo" src="{{photo}}" mode="aspectFit" data-src="{{photo}}" bindtap="previewImage"></image>
       </view>
     </view>
 
-    <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-center;">
+    <view class="btn_container">
       <button class="btn_ok" open-type="share">分享本页</button>
     </view>
-
-    <view style="height:40rpx;"></view>
   </view>
 </view>

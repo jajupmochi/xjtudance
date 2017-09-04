@@ -19,6 +19,7 @@ Page({
     pic10: app.global_data.server_url + 'data/images/salsa/pic10.png',
     wechat_qr: app.global_data.server_url + 'data/images/salsa/wechat_qr.png',
     mini_qr: app.global_data.server_url + 'data/images/salsa/mini_qr.jpg',
+        
   },
 
   /**
@@ -35,6 +36,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    //this.audioCtx = wx.createAudioContext('myAudio')
+    //this.videoContext = wx.createVideoContext('myVideo')
   },
 
   /**

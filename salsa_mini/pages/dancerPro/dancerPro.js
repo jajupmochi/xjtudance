@@ -13,7 +13,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (e) {
+  onLoad: function (e) {  // 一加载就获取信息
     if (app != null) {
       this.setData({
         isBanban: app.global_data.userInfo ? app.global_data.userInfo.rights.banban.is : false,
@@ -98,10 +98,10 @@ Page({
       title: '正在跳转...',
       mask: true,
     });
-    if (this.data.isBanban) {
-      var getValues = '_id/nickname/gender/person_info.eggday/person_info.grade/person_info.major/person_info.height/person_info.hometown/dance.danceLevel/dance.selfIntro/dance.photos/dance.baodao/wechat.id/person_info.QQ/person_info.contact/dance.knowdancefrom';
+    if (this.data.isBanban) {   // 根据是否为管理员获得不同值
+      var getValues = '_id/realname/nickname/gender/person_info.eggday/person_info.major/person_info.hometown/dance.selfIntro/dance.photos/dance.baodao/wechat.id/person_info.QQ/person_info.contact/dance.knowdancefrom';
     } else {
-      var getValues = '_id/nickname/gender/person_info.eggday/person_info.grade/person_info.major/person_info.height/person_info.hometown/dance.danceLevel/dance.selfIntro/dance.photos/dance.baodao';
+      var getValues = '_id/nickname/gender/person_info.eggday/person_info.major/person_info.hometown/dance.selfIntro/dance.photos/dance.baodao';
     }
     wx.request({
       url: app.global_data.server_url + 'php/wx_getUser.php',
@@ -114,7 +114,7 @@ Page({
         'content-type': 'application/json'
       },
       method: "POST",
-      success: function (res) {
+      success: function (res) { // 成功获取信息
         wx.hideLoading();
         if (res.data !== null) {
           // console.log(res.data);
@@ -124,7 +124,7 @@ Page({
           });
           wx.setNavigationBarTitle({
             title: '萨友' + res.data.nickname + '的信息',
-          });
+          });          
         } else { // 用户不在数据库中
           wx.showToast({
             title: 'ohoh，这位萨友的信息好像丢了~',
@@ -132,7 +132,7 @@ Page({
             duration: 1500,
             mask: true,
           });
-          setTimeout(function () {
+          setTimeout(function () {  // 返回，应用vabigateback？
             wx.navigateTo({
               url: '../dancers/dancers',
             });

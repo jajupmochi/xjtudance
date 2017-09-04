@@ -17,13 +17,13 @@ App({
       mask: true,
     });
     wx.request({
-      url: 'https://xjtudance.top/aishangsalsa/php/wx_connectServer.php',
+      url: 'https://41375612.qcloud.la/aishangsalsa/php/wx_connectServer.php',
       method: "POST",
       success: function (res) {
-        that.global_data.server_url = res.data.msg == 'SERVER_CON_SUCCESS' ? 'https://xjtudance.top/aishangsalsa/' : 'https://57247578.qcloud.la/aishangsalsa/';
+        that.global_data.server_url = res.data.msg == 'SERVER_CON_SUCCESS' ? 'https://41375612.qcloud.la/aishangsalsa/' : 'https://xjtudance.top/aishangsalsa/';
       },
       fail: function (res) {
-        that.global_data.server_url = 'https://57247578.qcloud.la/aishangsalsa/';
+        that.global_data.server_url = 'https://xjtudance.top/aishangsalsa/';
       },
       complete: function() {
         console.log('server_url: ' + that.global_data.server_url);

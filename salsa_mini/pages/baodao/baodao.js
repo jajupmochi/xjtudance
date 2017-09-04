@@ -1,5 +1,5 @@
 // pages/baodao/baodao.js
-var app = getApp();
+var app = getApp(); //获取小程序实例
 
 Page({
 
@@ -10,13 +10,13 @@ Page({
     gender_items: [
       { name: 'gentleman', value: 'Boy' },
       { name: 'lady', value: 'Girl' },
-      { name: 'else', value: 'Gender Questionning' },
+      //{ name: 'else', value: 'Gender Questionning' },
     ],
     knowfrom_items: [
-      { name: '同学、朋友、教研室等', value: '同学、朋友、教研室等' },
-      { name: '宣传单、海报等', value: '宣传单、海报等' },
-      { name: '微信朋友圈、公众号、小程序等线上宣传', value: '微信朋友圈、公众号、小程序等线上宣传' },
-      { name: '看到了舞会（思源、宪梓堂、四大发明广场）', value: '看到了舞会' },
+      { name: '朋友', value: '朋友介绍' },
+      { name: '海报', value: '海报' },
+      { name: '微信', value: '微信（朋友圈、公众号、小程序等）' },
+      { name: '思源', value: '路过思源就来玩啦' },
       { name: '其他', value: '其他' },
     ],
     pic_title: '../../images/salsa-logo.jpg',
@@ -131,7 +131,7 @@ Page({
   },
 
   /**
-  * 上传报到信息
+  * submit后上传报到信息
   */
   baodao: function (e) {
     wx.showLoading({
@@ -157,22 +157,10 @@ Page({
         showmiss_eggday: true,
       });
       isSend = false;
-    }
-    if (e.detail.value.grade == '') {
-      this.setData({
-        showmiss_grade: true,
-      });
-      isSend = false;
-    }
+    }    
     if (e.detail.value.major == '') {
       this.setData({
         showmiss_major: true,
-      });
-      isSend = false;
-    }
-    if (e.detail.value.height == '') {
-      this.setData({
-        showmiss_height: true,
       });
       isSend = false;
     }
@@ -182,21 +170,15 @@ Page({
       });
       isSend = false;
     }
-    if (e.detail.value.wechat_id == '') {
-      this.setData({
-        showmiss_wechat_id: true,
-      });
-      isSend = false;
-    }
     if (e.detail.value.QQ == '') {
       this.setData({
         showmiss_QQ: true,
       });
       isSend = false;
     }
-    if (e.detail.value.danceLevel == '') {
+    if (e.detail.value.contact == '') {
       this.setData({
-        showmiss_danceLevel: true,
+        showmiss_contact: true,
       });
       isSend = false;
     }
@@ -227,7 +209,7 @@ Page({
         duration: 2000,
         mask: true,
       });
-    } else {
+    } else {  // 表格已完善
       var formId = e.detail.formId;
       var that = this;
       var knowdancefrom = this.data.knowdancefrom;
@@ -250,14 +232,10 @@ Page({
               'nickname': e.detail.value.nickname,
               'gender': that.data.gender,
               'eggday': that.data.eggday,
-              'grade': e.detail.value.grade,
               'major': e.detail.value.major,
-              'height': e.detail.value.height,
               'hometown': e.detail.value.hometown,
-              'wechat_id': e.detail.value.wechat_id,
               'QQ': e.detail.value.QQ,
               'contact': e.detail.value.contact,
-              'danceLevel': e.detail.value.danceLevel,
               'knowdancefrom': knowdancefrom,
               'selfIntro': e.detail.value.selfIntro,
             },
@@ -265,8 +243,8 @@ Page({
               app.global_data.userInfo = res.data;
               wx.hideLoading();
               wx.showToast({
-                title: '报到成功！欢迎加入爱尚salsa大家庭！',
-                image: '../../images/dance1-200.png',
+                title: '报名成功！欢迎加入爱尚salsa大家庭！',
+                //image: '../../images/dance1-200.png',
                 duration: 2000,
                 mask: true,
               });
@@ -276,7 +254,7 @@ Page({
                 });
               }, 2000);
             },
-            fail: function () {
+            fail: function () { // 上传失败
               wx.hideLoading(); // 网络错误
               wx.showToast({
                 title: '报到失败！请点击重试！',

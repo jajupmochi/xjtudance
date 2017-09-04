@@ -7,18 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pic_title: '../../images/salsa-logo.jpg',
-    pic2: app.global_data.server_url + 'data/images/salsa/pic2.png',
-    pic3: app.global_data.server_url + 'data/images/salsa/pic3.png',
-    pic4: app.global_data.server_url + 'data/images/salsa/pic4.jpg',
-    pic5: app.global_data.server_url + 'data/images/salsa/pic5.png',
-    pic6: app.global_data.server_url + 'data/images/salsa/pic6.png',
-    pic7: app.global_data.server_url + 'data/images/salsa/pic7.jpg',
-    pic8: app.global_data.server_url + 'data/images/salsa/pic8.png',
-    pic9: app.global_data.server_url + 'data/images/salsa/pic9.jpg',
-    pic10: app.global_data.server_url + 'data/images/salsa/pic10.png',
-    wechat_qr: app.global_data.server_url + 'data/images/salsa/wechat_qr.png',
-    mini_qr: app.global_data.server_url + 'data/images/salsa/mini_qr.jpg',
         
   },
 
@@ -29,6 +17,20 @@ Page({
     wx.showLoading({
       title: '加载中...',
       mask: true,
+    });
+    this.setData({
+      pic_title: '../../images/salsa-logo.jpg',
+      pic2: app.global_data.server_url + 'data/images/salsa/pic2.png',
+      pic3: app.global_data.server_url + 'data/images/salsa/pic3.png',
+      pic4: app.global_data.server_url + 'data/images/salsa/pic4.jpg',
+      pic5: app.global_data.server_url + 'data/images/salsa/pic5.png',
+      pic6: app.global_data.server_url + 'data/images/salsa/pic6.png',
+      pic7: app.global_data.server_url + 'data/images/salsa/pic7.jpg',
+      pic8: app.global_data.server_url + 'data/images/salsa/pic8.png',
+      pic9: app.global_data.server_url + 'data/images/salsa/pic9.jpg',
+      pic10: app.global_data.server_url + 'data/images/salsa/pic10.png',
+      wechat_qr: app.global_data.server_url + 'data/images/salsa/wechat_qr.png',
+      mini_qr: app.global_data.server_url + 'data/images/salsa/mini_qr.jpg',
     });
   },
 

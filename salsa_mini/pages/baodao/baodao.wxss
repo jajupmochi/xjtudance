@@ -55,7 +55,8 @@
   font: 20px "microsoft yahei";
   text-align: center;
   border-top: 1px solid #e8e8ea;
-  color: #3cc51f;
+  background-color: #3cc51f;
+  color: white;
   flex: 50%;
   margin: 0px 40rpx 0 40rpx;
 }

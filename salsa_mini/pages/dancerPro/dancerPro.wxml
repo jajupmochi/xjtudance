@@ -1,4 +1,5 @@
 <!--dancerPro.wxml-->
+<!--去除身高与舞蹈水平by阿达201793-->
 <view class="drawer_screen">
   <view class="drawer_box">
     <!--drawer content-->
@@ -16,18 +17,8 @@
       </view>
 
       <view class="drawer_item">
-        <label class="title">年级/毕业时间: </label>
-        <text class="content" selectable>{{dancer_info.person_info.grade}}</text>
-      </view>
-
-      <view class="drawer_item">
-        <label class="title">专业: </label>
+        <label class="title">专业班级: </label>
         <text class="content" selectable>{{dancer_info.person_info.major}}</text>
-      </view>
-
-      <view class="drawer_item">
-        <label class="title">身高: </label>
-        <text class="content" selectable>{{dancer_info.person_info.height}}</text>
       </view>
 
       <view class="drawer_item">
@@ -50,11 +41,6 @@
         <text class="content" selectable>{{dancer_info.person_info.contact == '' ? '未填写' : dancer_info.person_info.contact}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title">现有舞蹈水平: </label>
-        <text class="content" selectable>{{dancer_info.dance.danceLevel}}</text>
-      </view>
-
       <view class="drawer_item" wx:if="{{isBanban}}">
         <label class="title">你从哪里知道了爱尚salsa: </label>
         <text class="content" selectable>{{dancer_info.dance.knowdancefrom}}</text>
@@ -66,7 +52,7 @@
       </view>
 
       <view class="drawer_item">
-        <label class="title">PP: </label>
+        <label class="title">皂片: </label>
         <image class="photo" src="{{photo}}" mode="aspectFit" data-src="{{photo}}" bindtap="previewImage"></image>
       </view>
     </view>

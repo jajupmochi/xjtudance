@@ -134,7 +134,7 @@ Page({
   * submit后上传报到信息
   */
   baodao: function (e) {
-	wx.showLoading({
+    wx.showLoading({
       title: '处理中...',
       mask: true,
     });
@@ -248,8 +248,8 @@ Page({
                 duration: 2000,
                 mask: true,
               });
-              setTimeout(function () {               
-                wx.switchTab({
+              setTimeout(function () {
+                wx.switchTab({ // 跳转到TabBar必须使用wx.switchTab()
                   url: '../dancers/dancers',
                 });
               }, 2000);

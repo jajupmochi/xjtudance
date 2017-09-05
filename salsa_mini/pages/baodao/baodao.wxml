@@ -73,7 +73,7 @@
       <view class="drawer_item">
         <label class="title col-0">再介绍一下自己啦~ *</label>
         <label class="description col-0">是逗逼还是男神女神，是学霸还是游戏达人，运动健将同样也能找到炼铁的ta~</label>
-        <input name="selfIntro" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150" />
+        <textarea name="selfIntro" class="input_base input_h60 col-1" value="" placeholder="" cursor-spacing="150" />
         <label class="redmark col-0" wx:if="{{showmiss_selfIntro}}">× 请自我介绍一下吧</label>
       </view>
 

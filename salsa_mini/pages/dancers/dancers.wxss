@@ -75,5 +75,5 @@
 }
 
 .button-placeholder {
-  width: 70%;
+  width: 30%;
 }

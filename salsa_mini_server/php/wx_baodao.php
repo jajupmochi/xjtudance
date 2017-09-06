@@ -274,7 +274,7 @@ $collection_global->update(array('name' => 'dance'), array('$set' =>
 	array('diary_num' => $diary_num, 'user_num' => $user_num, 
 	'baodao_num' => $global_info['baodao_num'] + 1)));
 
-// 报到成功模板消息
+// 报名成功模板消息
 $formId = $_POST['formId'];
 $templateId = 'E5MPQmFpqHGLMoCgbhq5UK5e_63F3EWDvbzoyF3FfLw';
 $time = explode('.', $time);

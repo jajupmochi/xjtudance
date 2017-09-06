@@ -10,6 +10,7 @@
           <view class="button-container" wx:if="{{isBanban}}">
             <view class="button-placeholder"></view>
             <button class="button" bindtap="copyQQ" data-qq="{{item.person_info.QQ}}">复制QQ号</button>
+            <button class="button" bindtap="copyContact" data-contact="{{item.person_info.contact}}">复制手机号</button>
           </view>
         </view>
       </view>

@@ -1,6 +1,6 @@
 <!--salsaInfo.wxml-->
-<view class="drawer_screen">
-  <view class="drawer_box">
+<view class="container">
+  <view class="page-body drawer_box">
     <!--<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{audio_src}}" id="myAudio"></audio>-->
     <image class="drawer-pic" src="{{pic5}}" mode="widthFix" bindload="finishLoadImg"></image>
     <view class="drawer-words" wx:if="{{showword}}">扫码进入爱尚salsa萌萌新群</view>

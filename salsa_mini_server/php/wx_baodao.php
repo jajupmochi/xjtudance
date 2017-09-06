@@ -1,10 +1,10 @@
 <?php
 /*******************************************************************************
 接受用户从小程序端提交的报到信息，储存到mongo数据库，需要时同步发表到兵马俑BBS。
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 2 $)
+Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-26
+Updated: 2017-09-06
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -44,9 +44,8 @@ if ($user_info == null || $user_info['bmy']['id'] == '') { // 未绑定账户使
 }
 $credit = ($user_info == null ? 0: $user_info['degree']['credit']) + 400;
 $bmy_content = wxminiBaodao($bmy_id, $_POST['nickname'], $_POST['gender'], 
-	$_POST['height'], $_POST['grade'], 
 	$_POST['major'], $_POST['hometown'], 
-	$_POST['selfIntro'], $_POST['danceLevel']).
+	$_POST['selfIntro']).
 	wxminiWatermark4bmy($time, $db, credit2level($credit));
 
 $proxy_url = "http://bbs.xjtu.edu.cn/BMY/bbslogin?ipmask=8&t={$timeBmy}&id={$bmy_id}&pw={$bmy_password}";
@@ -81,7 +80,7 @@ for ($offset = 19; $offset >= 0; $offset--) {
 if ($user_info == null) {
 	// user数据	
  	$doc_user = array(
-		"id_dance" => "", // dance的id
+		"id_dance" => "", // salsa的id
 		"nickname" => $_POST['nickname'], // 昵称
 		"password" => "", // 密码
 		"avatar_url" => "", //$avatar_url, // 头像图片url，使用微信的??????????????????????
@@ -93,14 +92,15 @@ if ($user_info == null) {
 			"last_attend" => "" // 上次签到时间
 		),
 		"person_info" => array(
+			"realname" => $_POST['realname'], // 真实姓名
 			"eggday" => $_POST['eggday'], // 生日
-			"grade" => $_POST['grade'], // 年级
-			"major" => $_POST['major'], // 专业
+			"grade" => "", // 年级
+			"major" => $_POST['major'], // 专业班级
 			"hometown" => $_POST['hometown'], // 家乡
 			"address" => "", // 所在地（经度 + 纬度）?????????????????????????????
 			"QQ" => $_POST['QQ'], // QQ号
 			"contact" => $_POST['contact'], // 联系方式
-			"height" => $_POST['height'] // 身高
+			"height" => "" // 身高
 		),
 		"web" => array(
 			"duration" => 0, // 上站时间/秒
@@ -166,14 +166,14 @@ if ($user_info == null) {
 			"password" => "" // 兵马俑登录密码
 		),
 		"wechat" => array(
-			"openid_mini" => $str['openid'], // 与dance微信小程序对应的用户openid
-			"id" => $_POST['wechat_id'] // 微信id
+			"openid_mini" => $str['openid'], // 与salsa微信小程序对应的用户openid
+			"id" => "" // 微信id
 		),
 		"dance" => array(
 			"baodao" => $time, // 报到时间，为空时未报到
 			"ball_tickets" => array(), // 舞会门票
-			"danceLevel" => $_POST['danceLevel'], // 初入dance时的舞蹈水平
-			"knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
+			"danceLevel" => "", // 初入salsa时的舞蹈水平
+			"knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道salsa????????????????
 			"selfIntro" => $_POST['selfIntro'], // 自我介绍
 			"photos" => array($photo_path) // 照片地址
 		),
@@ -194,23 +194,20 @@ if ($user_info == null) {
 		$photos = array($photo_path);
 	}
 	$doc_user = array(
+		"realname" => $_POST['realname'], // 真实姓名
 		"nickname" => $_POST['nickname'], // 昵称
 		"gender" => $_POST['gender'], // 性别
 		"degree.level" => credit2level($credit), // 等级
 		"degree.credit" => $credit,
 		"person_info.eggday" => $_POST['eggday'], // 生日
-		"person_info.grade" => $_POST['grade'], // 年级
-		"person_info.major" => $_POST['major'], // 专业
+		"person_info.major" => $_POST['major'], // 专业班级
 		"person_info.hometown" => $_POST['hometown'], // 家乡
 		"person_info.QQ" => $_POST['QQ'], // QQ号
 		"person_info.contact" => $_POST['contact'], // 联系方式
-		"person_info.height" => $_POST['height'], // 身高
 		"web.visit_from" => "wxmini", // 访问位置
 		"web.lastvisit" => $time, // 上次访问时间
-		"wechat.id" => $_POST['wechat_id'], // 微信id
 		"dance.baodao" => $time, // 报到时间，为空时未报到
-		"dance.danceLevel" => $_POST['danceLevel'], // 初入dance时的舞蹈水平
-		"dance.knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
+		"dance.knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道salsa????????????????
 		"dance.selfIntro" => $_POST['selfIntro'], // 自我介绍
 		"dance.photos" => $photos // 照片地址?????????????????????????????????????????
 	);
@@ -224,13 +221,10 @@ $id = ($bmy_id == 'jiaodadance' ? '小dance代发' : $bmy_id);
 $content = "您的id是:\n".$id.
 	"\n\n昵称呢?:\n".$_POST['nickname'].
 	"\n\n性别:\n".$_POST['gender'].
-	"\n\n身高可别忘了:\n".$_POST['height'].
-	"\n\n学院/专业:\n".$_POST['major'].
-	"\n\n年级:\n".$_POST['grade'].
+	"\n\n专业班级:\n".$_POST['major'].
 	"\n\n家乡:\n".$_POST['hometown'].
 	"\n\n再介绍一下自己啦:\n".$_POST['selfIntro'].
-	"\n\n您的舞蹈水平(参加培训情况等)/擅长或喜欢的舞种?:\n".$_POST['danceLevel'].
-	"\n\n打开微信小程序\"西交dance\"查看美照啦~";
+	"\n\n打开微信小程序\"aishangsalsa\"查看美照啦~";
 $doc_diary = array(
 	"title" => $bmy_title, // 标题
 	"author" => $user_id, // 作者
@@ -244,10 +238,10 @@ $doc_diary = array(
 	"mama" => $time, // ObjectId of 对应主题帖，如为主帖则表示主帖和回复的最近修改时间
 	"discuss" => 1, // 讨论人数，只有自己
 	"reply" => array(), // 回帖
-	"highlight" => "虫虫报到/".date('Y')."年新手报到集", // 精华区路径
+	"highlight" => "萨友报名/".date('Y')."年萨友报名集", // 精华区路径
 	"top" => false, // 是否置顶
 	"location" => "", // 定位 ?????????????????????
-	"tags" => array('新人报到'), // 标签 ?????????????????????
+	"tags" => array('萨友报名'), // 标签 ?????????????????????
 	"from" => "wxmini", // 发表位置
 	"bmyurl" => $bmyurl, // 兵马俑bbs链接 ??????????????????？？？？？？？？？？？？？？？？？
 	"coiners" => array(), // 金主
@@ -268,7 +262,7 @@ $collection_global = $db->globaldata;
 $global_info = $collection_global->findOne(array('name' => 'dance'), array('baodao_num' => true, 'book' => true)); // ?????????????????????????报到人数这直接加一，没有考虑一个人多次报到的情况，且未更新visited和user_online数据
 $diary_num = $collection_diaries->count(); // 文章总数
 $user_num = $collection_users->count(); // 用户总数
-$baodaoY = date('Y')."年新手报到集";
+$baodaoY = date('Y')."年萨友报名集";
 /*  			 $baodaos = $global_info['book']['虫虫报到'][$baodaoY]; ?????????????????????????????????????????????此处未考虑到没有如果已经有book的情况，
 			if (!is_array($baodaos)) {
 				$book = array(
@@ -280,7 +274,7 @@ $collection_global->update(array('name' => 'dance'), array('$set' =>
 	array('diary_num' => $diary_num, 'user_num' => $user_num, 
 	'baodao_num' => $global_info['baodao_num'] + 1)));
 
-// 报到成功模板消息
+// 报名成功模板消息
 $formId = $_POST['formId'];
 $templateId = 'E5MPQmFpqHGLMoCgbhq5UK5e_63F3EWDvbzoyF3FfLw';
 $time = explode('.', $time);
@@ -325,18 +319,15 @@ $res = httpPost($templateData, $templateApi);
 // 返回报到用户提醒给版务
 $banbans = $collection_users->find(array('rights.banban.is' => true), array('_id' => true, 'messages' => true));
 $baodao_info = array(
+	'realname' => $_POST['realname'], // 真实姓名
 	'nickname' => $_POST['nickname'], // 昵称
 	'gender' => $_POST['gender'], // 性别
 	'eggday' => $_POST['eggday'], // 生日
-	'grade' => $_POST['grade'], // 年级
-	'major' => $_POST['major'], // 专业
+	'major' => $_POST['major'], // 专业班级
 	'hometown' => $_POST['hometown'], // 家乡
 	'QQ' => $_POST['QQ'], // QQ号
 	'contact' => $_POST['contact'], // 联系方式
-	'height' => $_POST['height'], // 身高
-	'wxid' => $_POST['wechat_id'], // 微信id
-	'danceLevel' => $_POST['danceLevel'], // 初入dance时的舞蹈水平
-	'knowdancefrom' => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
+	'knowdancefrom' => $_POST['knowdancefrom'], // 从哪里知道salsa????????????????
 	'selfIntro' => $_POST['selfIntro'], // 自我介绍
 	'photos' => $photo_path // 照片地址
 );

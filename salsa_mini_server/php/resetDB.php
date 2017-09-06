@@ -3,7 +3,7 @@
 重置数据库。（注意，暂未添加重置前删除数据库操作，此操作将删除数据库所有数据，请
 谨慎执行。）
 Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin Jia <jajupmochi@gmail.com>
 Updated: 2017-08-06
 Licensed under The GNU General Public License 3.0

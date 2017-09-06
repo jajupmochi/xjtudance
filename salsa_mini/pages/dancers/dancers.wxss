@@ -1,11 +1,17 @@
 /* dancers.wxss */
 
+.drawer_screen {
+  background-color: #fafafa;
+}
+
 .dancers-area {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  padding: 15rpx 0;
+  box-sizing: border-box;
 }
 
 .dancer-item {
@@ -36,14 +42,18 @@
   padding: 20rpx 40rpx 5rpx 0rpx;
   font-weight: 600;
   font-size: 35rpx;
-  color: orange;
+  color: #FFA500;
+  text-align: justify;
+  text-justify: distribute;
 }
 
 .dancer-intro {
-  padding: 10rpx 0rpx 20rpx 0rpx;
+  padding: 10rpx 40rpx 20rpx 0rpx;
   font-weight: 500;
   font-size: 30rpx;
   color: rgba(0, 0, 0, 0.5);
+  text-align: justify;
+  text-justify: distribute;
 }
 
 .button-container {
@@ -57,7 +67,7 @@
   height: 58rpx;
   width: 30%;
   background-color: #FF8C00;
-  color: white;
+  color: #FFFFFF;
   font-size: 25rpx;
   line-height: 58rpx;
   text-align: center;

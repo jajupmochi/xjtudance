@@ -2,7 +2,7 @@
 /*******************************************************************************
 接受用户从小程序端提交的用户id或微信code，从数据库中读取用户信息。
 Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin <jajupmochi@gmail.com>
 Updated: 2017-08-26
 Licensed under The GNU General Public License 3.0

@@ -94,7 +94,7 @@ Page({
   },
 
   /**
- * 下拉刷新函数
+ * 下拉触顶函数
  
   upper: function (e) {
     //this.listDancers();

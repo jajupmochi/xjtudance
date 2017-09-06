@@ -36,7 +36,7 @@
         <label class="title col-0">破蛋日 *</label>
         <view class="section">
           <view class="section__title"></view>
-          <picker mode="date" value="{{date}}" start="1900-01-01" end="2020-09-01" bindchange="eggdayChange">
+          <picker mode="date" value="{{date}}" start="1980-01-01" end="2010-06-15" bindchange="eggdayChange">
             <view class="picker">
               <view name="eggday" class="input_base input_h30 col-1" cursor-spacing="150">{{eggday}}</view>
             </view>

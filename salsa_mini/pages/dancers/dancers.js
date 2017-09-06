@@ -21,6 +21,7 @@ Page({
    */
   onLoad: function (options) {
     this.userLogin();
+    console.log("onload dancers");
   },
 
   /**
@@ -37,6 +38,7 @@ Page({
     if (this.data.dancer_list == null) {
       this.listDancers();
     }
+    console.log("onshow dancers");
   },
 
   /**
@@ -57,14 +59,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("onPullDownRefresh dancers");
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("onReachBottom dancers");
   },
 
   /**
@@ -84,11 +86,20 @@ Page({
   },
 
   /**
-   * 下拉刷新函数
+   * 上拉触底函数
    */
   lower: function (e) {
     this.listDancers();
+    console.log("lower dancers");
   },
+
+  /**
+ * 下拉刷新函数
+ 
+  upper: function (e) {
+    //this.listDancers();
+    console.log("upper dancers");
+  },*/
 
   /**
    * 用户登录

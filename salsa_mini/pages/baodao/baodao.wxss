@@ -69,6 +69,7 @@
   text-align: center;
   color: darkorange;
   margin: 10rpx 40rpx 0 40rpx;
+  background-color: white;
 }
 
 .top {
@@ -101,6 +102,7 @@
   border: 2rpx solid #ccc;
   padding-left: 10rpx;
   margin: 0rpx 40rpx 0rpx 40rpx;
+  background-color: white;
 }
 
 .redmark {

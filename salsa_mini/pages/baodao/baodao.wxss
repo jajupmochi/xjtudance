@@ -1,28 +1,13 @@
 /* pages/baodao/baodao.wxss */
 
 .drawer_screen {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1030;
   background-color: #fafafa;
-  overflow-y: scroll;
 }
 
 /*content*/
 
 .drawer_box {
-  width: 650rpx;
-  height: 100%;
-  overflow: visible;
-  top: 0;
-  left: 0;
-  z-index: 1002;
-  background: #fafafa;
-  margin: 20px 50rpx 0 50rpx;
-  border-radius: 3px;
+  padding: 50rpx 30rpx 30rpx 30rpx;
 }
 
 .drawer-pic {
@@ -35,30 +20,55 @@
 }
 
 .drawer_title {
-  padding: 0 15px 15px 15px;
+  padding: 40rpx 30rpx;
   font: 20px "microsoft yahei";
   text-align: center;
   font-weight: 800;
-  color: darkorange;
+  color: #FF8C00;
 }
 
-.drawer_content {
-  padding: 0px;
+.title {
+  height: 50rpx;
+  width: 100%;
+  text-align: justify;
+  text-justify: distribute;
+  display: inline-block;
+  font: 400 28rpx/40rpx "microsoft yahei";
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  margin: 8rpx 0;
+  padding-left: 10rpx;
+  line-height: 30px;
+  background-color: #FFFFFF;
+}
+
+.description {
+  width: 100%;
+  text-align: justify;
+  text-justify: distribute;
+  display: inline-block;
+  font: 300 26rpx/35rpx "microsoft yahei";
+}
+
+.redmark {
+  height: 50rpx;
+  font: 300 26rpx/40rpx "microsoft yahei";
+  text-align: justify;
+  text-justify: distribute;
+  display: inline-block;
+  color: #FF0000;
 }
 
 .photo {
-  margin: 0rpx 40rpx 0rpx 40rpx;
+  width: 100%;
 }
 
-.btn_ok {
-  padding: 10px;
-  font: 20px "microsoft yahei";
-  text-align: center;
-  border-top: 1px solid #e8e8ea;
-  background-color: #3cc51f;
-  color: white;
-  flex: 50%;
-  margin: 0px 40rpx 0 40rpx;
+.chooseimage-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .btn_chooseimage {
@@ -67,47 +77,18 @@
   font: 80rpx "microsoft yahei";
   font-weight: 800;
   text-align: center;
-  color: darkorange;
-  margin: 10rpx 40rpx 0 40rpx;
+  color: #FF8C00;
+  margin: 0rpx 20rpx 0 0rpx;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.top {
-  padding-top: 8px;
-}
-
-.bottom {
-  padding-bottom: 8px;
-}
-
-.title {
-  height: 30px;
-  line-height: 30px;
-  width: 650rpx;
-  text-align: left;
-  display: inline-block;
-  margin: 0rpx 40rpx 0rpx 40rpx;
-  font: 400 28rpx/30px "microsoft yahei";
-}
-
-.description {
-  width: 650rpx;
-  text-align: left;
-  display: inline-block;
-  margin: 0rpx 40rpx 10rpx 40rpx;
-  font: 300 26rpx/28rpx "microsoft yahei";
-}
-
-.input_base {
-  border: 2rpx solid #ccc;
-  padding-left: 10rpx;
-  margin: 0rpx 40rpx 0rpx 40rpx;
-}
-
-.redmark {
-  text-align: left;
-  margin: 0rpx 40rpx 0rpx 40rpx;
-  font: 300 26rpx/28rpx "microsoft yahei";
-  color: red;
+.btn_ok {
+  width: 100%;
+  font: 40rpx/90rpx "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  background-color: #3cc51f;
+  color: #FFFFFF;
 }
 
 .input_h30 {
@@ -119,52 +100,15 @@
   height: 60px;
 }
 
-.input_view {
-  font: 12px "microsoft yahei";
-  background: #fff;
-  color: #000;
-  line-height: 30px;
-}
-
-.input {
-  font: 12px "microsoft yahei";
-  background: #fff;
-  color: #000;
-}
-
 .radio-group {
   display: flex;
   flex-direction: column;
-  margin: 0rpx 40rpx 10rpx 40rpx;
+  margin: 0rpx 0rpx 10rpx 0rpx;
 }
 
 .radio {
-  margin: 0rpx 0rpx 0rpx 0rpx;
   font: 28rpx "microsoft yahei";
+  text-align: justify;
+  text-justify: distribute;
   height: 55rpx;
 }
-
-.grid {
-  display: -webkit-box;
-  display: box;
-}
-
-.col-0 {
-  -webkit-box-flex: 0;
-  box-flex: 0;
-}
-
-.col-1 {
-  -webkit-box-flex: 1;
-  box-flex: 1;
-}
-
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-

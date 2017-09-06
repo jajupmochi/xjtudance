@@ -252,29 +252,4 @@ Page({
       }
     });
   },
-
-  /**
-  * 复制微信id到剪切板
-  */
-  copyWxid: function (e) {
-    wx.setClipboardData({
-      data: e.currentTarget.dataset.wxid,
-      success: function (res) {
-        wx.showToast({
-          title: '微信id已复制到手机剪切板',
-          icon: 'success',
-          duration: 1500,
-          mask: true,
-        });
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: 'oops，复制失败了...',
-          image: '../../images/more.png',
-          duration: 1500,
-          mask: true,
-        });
-      }
-    });
-  },
 })

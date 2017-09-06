@@ -140,6 +140,12 @@ Page({
     });
     // console.log(e.detail.value);
     var isSend = true;
+    if (e.detail.value.realname == '') {
+      this.setData({
+        showmiss_realname: true,
+      });
+      isSend = false;
+    }
     if (e.detail.value.nickname == '') {
       this.setData({
         showmiss_nickname: true,
@@ -229,6 +235,7 @@ Page({
             formData: {
               'formId': formId,
               'code': res.code,
+              'realname': e.detail.value.realname,
               'nickname': e.detail.value.nickname,
               'gender': that.data.gender,
               'eggday': that.data.eggday,

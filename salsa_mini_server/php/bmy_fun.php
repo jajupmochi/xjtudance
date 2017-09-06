@@ -1,10 +1,10 @@
 <?php  
 /*******************************************************************************
 兵马俑BBS相关函数
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 2 $)
+Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-15
+Updated: 2017-09-06
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -14,26 +14,20 @@ Redistributions of files must retain the above copyright notice.
 * @param string $id id
 * @param string $nickname 昵称
 * @param string $gender 性别
-* @param string $height 身高
-* @param string $grade 年级
-* @param string $major 专业
+* @param string $major 专业班级
 * @param string $hometown 家乡
 * @param string $selfIntro 自我介绍
-* @param string $danceLevel 舞蹈水平
 * @return string 报到内容
 * @access public
 */
-function wxminiBaodao($id, $nickname, $gender, $height, $grade, $major, $hometown, $selfIntro, $danceLevel) {
+function wxminiBaodao($id, $nickname, $gender, $major, $hometown, $selfIntro) {
 	$id = ($id == 'jiaodadance' ? '小dance代发' : $id);
 	return "[0;1;31m[I您的id是:[m\n".$id.
 		"\n\n[0;1;32m[I昵称呢?:[m\n".$nickname.
 		"\n\n[0;1;33m[I性别:[m\n".$gender.
-		"\n\n[0;1;34m[I身高可别忘了:[m\n".$height.
-		"\n\n[0;1;35m[I学院/专业:[m\n".$major.
-		"\n\n[0;1;36m[I年级:[m\n".$grade.
+		"\n\n[0;1;35m[I专业班级:[m\n".$major.
 		"\n\n[0;1;31m[I家乡:[m\n".$hometown.
 		"\n\n[0;1;32m[I再介绍一下自己啦:[m\n".$selfIntro.
-		"\n\n[0;1;33m[I您的舞蹈水平(参加培训情况等)/擅长或喜欢的舞种?:[m\n".$danceLevel.
 		"\n\n[0;1;34m[I打开微信小程序\"aishangsalsa\"查看美照啦~[m";
 }
 

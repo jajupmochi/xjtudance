@@ -1,15 +1,15 @@
 {
   "pages": [
-    "pages/salsaInfo/salsaInfo",
     "pages/dancers/dancers",
+    "pages/salsaInfo/salsaInfo",
     "pages/baodao/baodao",
     "pages/dancerPro/dancerPro"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "darkorange",
+    "navigationBarBackgroundColor": "#FF8C00",
     "navigationBarTitleText": "爱尚salsa，爱上salsa",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "#FFFFFF",
     "enablePullDownRefresh": true
   },
   "tabBar": {

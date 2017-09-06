@@ -90,7 +90,6 @@
   background-color: #3cc51f;
   color: #FFFFFF;
 }
-
 .input_h30 {
   height: 30px;
   line-height: 30px;

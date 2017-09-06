@@ -19,7 +19,7 @@
   padding: 0rpx 0rpx 20rpx 0rpx;
 }
 
-.drawer_title {;
+.drawer_title {
   padding: 40rpx 30rpx;
   font: 20px "microsoft yahei";
   text-align: center;
@@ -80,7 +80,6 @@
   color: #FF8C00;
   margin: 0rpx 20rpx 0 0rpx;
   background-color: rgba(0, 0, 0, 0);
-  background-color: white;
 }
 
 .btn_ok {

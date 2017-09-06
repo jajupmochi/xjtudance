@@ -2,7 +2,7 @@
 /*******************************************************************************
 包含全局变量、常用函数配置文件（参考bmy_wap的配置方法）
 Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin Jia <jajupmochi@gmail.com>
 Updated: 2017-07-21
 Licensed under The GNU General Public License 3.0

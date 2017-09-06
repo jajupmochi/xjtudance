@@ -1,104 +1,107 @@
 <!--pages/baodao/baodao.wxml-->
 <!-- 报到 -->
-<view class="drawer_screen">
+<view class="container drawer_screen">
   <image class="drawer-pic" src="{{pic_title}}" mode="widthFix"></image>
 
-  <form bindsubmit="baodao" animation="{{anim_connectBmy}}" class="drawer_box" report-submit>
+  <form bindsubmit="baodao" animation="{{anim_connectBmy}}" class="page-body drawer_box" report-submit>
     <!--drawer content-->
-    <view class="drawer_title">Salsa is a lifesytle</view>
-    <view class="drawer_content">
+    <view class="page-body drawer_title">Salsa is a lifesytle</view>
+    <view class="page-body">
 
-      <view class="drawer_item">
-        <label class="title col-0">姓名 *</label>
-        <input name="realname" class="input_base input_h30 col-1" value="" maxlength="20"  cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_realname}}">× 请填写姓名</label>
+      <view class="page-section page-section-gap">
+        <label class="title">姓名 *</label>
+        <input name="realname" class="input_base input_h30" value="" maxlength="20"  cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_realname}}">× 请填写姓名</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">昵称 *</label>
-        <label class="description col-0">如昊昊、包子、玉米</label>
-        <input name="nickname" class="input_base input_h30 col-1" value="" maxlength="20"  cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_nickname}}">× 请填写昵称</label>
+      <view class="page-section page-section-gap">
+        <label class="title">昵称 *</label>
+        <label class="description">如昊昊、包子、玉米</label>
+        <input name="nickname" class="input_base input_h30" value="" maxlength="20"  cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_nickname}}">× 请填写昵称</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">性别 *</label>
+      <view class="page-section page-section-gap">
+        <label class="title">性别 *</label>
         <radio-group class="radio-group" bindchange="genderChange">
           <label class="radio" wx:for="{{gender_items}}">
           <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>    
         </radio-group>
         <!--变量名默认为item-->
-        <label class="redmark col-0" wx:if="{{showmiss_gender}}">× 请选择性别</label>
+        <label class="redmark" wx:if="{{showmiss_gender}}">× 请选择性别</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">破蛋日 *</label>
+      <view class="page-section page-section-gap">
+        <label class="title">破蛋日 *</label>
         <view class="section">
           <view class="section__title"></view>
           <picker mode="date" value="{{date}}" start="1980-01-01" end="2010-06-15" bindchange="eggdayChange">
             <view class="picker">
-              <view name="eggday" class="input_base input_h30 col-1" cursor-spacing="150">{{eggday}}</view>
+              <view name="eggday" class="input_base input_h30" cursor-spacing="150">{{eggday}}</view>
             </view>
           </picker>
         </view>
-        <label class="redmark col-0" wx:if="{{showmiss_eggday}}">× 请选择破蛋日</label>
+        <label class="redmark" wx:if="{{showmiss_eggday}}">× 请选择破蛋日</label>
       </view>
      
-      <view class="drawer_item">
-        <label class="title col-0">专业班级 *</label>
-        <input name="major" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_major}}">× 请填写专业班级</label>
+      <view class="page-section page-section-gap">
+        <label class="title">专业班级 *</label>
+        <input name="major" class="input_base input_h30" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_major}}">× 请填写专业班级</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">家乡 *</label>
-        <label class="description col-0">看看salsa有你的老乡没~</label>
-        <input name="hometown" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_hometown}}">× 请填写家乡</label>
+      <view class="page-section page-section-gap">
+        <label class="title">家乡 *</label>
+        <label class="description">看看salsa有你的老乡没~</label>
+        <input name="hometown" class="input_base input_h30" value="" placeholder="" cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_hometown}}">× 请填写家乡</label>
       </view>
       
-      <view class="drawer_item">
-        <label class="title col-0">QQ号（仅团长可见） *</label>
-        <input name="QQ" type="number" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_QQ}}">× 请填写QQ号，便于加入爱尚salsa QQ群</label>
+      <view class="page-section page-section-gap">
+        <label class="title">QQ号（仅团长可见） *</label>
+        <input name="QQ" type="number" class="input_base input_h30" value="" placeholder="" cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_QQ}}">× 请填写QQ号，便于加入爱尚salsa QQ群</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">手机（仅团长可见） *</label>
-        <input name="contact" type="number" class="input_base input_h30 col-1" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_contact}}">× 请填写手机号，方便日后联系</label>
+      <view class="page-section page-section-gap">
+        <label class="title">手机（仅团长可见） *</label>
+        <input name="contact" type="number" class="input_base input_h30" value="" maxlength="20" placeholder="" cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_contact}}">× 请填写手机号，方便日后联系</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">再介绍一下自己啦~ *</label>
-        <label class="description col-0">是逗逼还是男神女神，是学霸还是游戏达人，运动健将同样也能找到炼铁的ta~</label>
-        <input name="selfIntro" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150" />
-        <label class="redmark col-0" wx:if="{{showmiss_selfIntro}}">× 请自我介绍一下吧</label>
+      <view class="page-section page-section-gap">
+        <label class="title">再介绍一下自己啦~ *</label>
+        <label class="description">是逗逼还是男神女神，是学霸还是游戏达人，运动健将同样也能找到炼铁的ta~</label>
+        <input name="selfIntro" class="input_base input_h30" value="" placeholder="" cursor-spacing="150" />
+        <label class="redmark" wx:if="{{showmiss_selfIntro}}">× 请自我介绍一下吧</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">你从哪里知道了爱尚salsa *</label>
+      <view class="page-section page-section-gap">
+        <label class="title">你从哪里知道了爱尚salsa *</label>
         <checkbox-group class="radio-group" bindchange="knowfromChange">
           <label class="radio" wx:for-items="{{knowfrom_items}}">
           <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
         </checkbox-group>
-        <input name="knowfromElse" class="input_base input_h30 col-1" value="" placeholder="" cursor-spacing="150"></input>
-        <label class="redmark col-0" wx:if="{{showmiss_knowdancefrom}}">× 请选择了解爱尚salsa的途径</label>
+        <input name="knowfromElse" class="input_base input_h30" value="" placeholder="" cursor-spacing="150"></input>
+        <label class="redmark" wx:if="{{showmiss_knowdancefrom}}">× 请选择了解爱尚salsa的途径</label>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">上传你的照片吧，让大家早点认识你~（照片仅限内部使用，不会外传！）*</label>
+      <view class="page-section page-section-gap">
+        <label class="title">上传你的照片吧，让大家早点认识你~（照片仅限内部使用，不会外传！）*</label>
         <label class="" wx:for="{{photo_items}}">
             <image class="photo" src="{{photo_items}}" mode="aspectFit"></image>
-          </label>
-        <button class="btn_chooseimage" bindtap="choosePhotos">+</button>
+        </label>
+        <label class="redmark" wx:if="{{showmiss_photo}}">× 请上传一张照片</label>
+        <view class="chooseimage-view">
+          <button class="btn_chooseimage" bindtap="choosePhotos">+</button>
+        </view>
       </view>
-      <label class="redmark col-0" wx:if="{{showmiss_photo}}">× 请上传一张照片</label>
+      
     </view>
 
-    <view class="top .flex-wrp" style="flex-direction:row; justify-content:flex-center;">
+    <view class="page-body page-section-gap">
       <button class="btn_ok" form-type="submit">妥了</button>
     </view>
   </form>

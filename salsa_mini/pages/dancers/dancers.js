@@ -206,7 +206,7 @@ Page({
         'skip': that.data.dancers_length,
         'limit': limit,
         'list_order': 'dance.baodao',
-        'getValues': '_id/nickname/gender/person_info.QQ/wechat.id/dance.selfIntro', // 用/号分隔需要获取的value
+        'getValues': '_id/nickname/gender/person_info.QQ/person_info.contact/dance.selfIntro', // 用/号分隔需要获取的value
       },
       header: {
         'content-type': 'application/json'
@@ -265,14 +265,14 @@ Page({
   },
 
   /**
-  * 复制微信id到剪切板
+  * 复制手机号到剪切板
   */
-  copyWxid: function (e) {
+  copyContact: function (e) {
     wx.setClipboardData({
-      data: e.currentTarget.dataset.wxid,
+      data: e.currentTarget.dataset.contact,
       success: function (res) {
         wx.showToast({
-          title: '微信id已复制到手机剪切板',
+          title: '手机号已复制到手机剪切板',
           icon: 'success',
           duration: 1500,
           mask: true,

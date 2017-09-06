@@ -7,9 +7,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "purple",
+    "navigationBarBackgroundColor": "#800080",
     "navigationBarTitleText": "Welcome to Dance!",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "#FFFFFF",
     "enablePullDownRefresh": true
   },
   "networkTimeout": {

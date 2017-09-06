@@ -148,9 +148,7 @@ Page({
           mask: true,
         });
         setTimeout(function () {
-          wx.navigateTo({
-            url: '../dancers/dancers',
-          });
+          wx.navigateBack();
         }, 1500);
       }
     });

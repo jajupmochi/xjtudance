@@ -1,77 +1,77 @@
 <!--dancerPro.wxml-->
-<view class="drawer_screen">
-  <view class="drawer_box">
+<view class="container">
+  <view class="page-body drawer_box">
     <!--drawer content-->
-    <view class="drawer_title">{{dancer_info.nickname}}</view>
-    <view class="drawer_content">
+    <view class="page-body drawer_title">{{dancer_info.nickname}}</view>
+    <view class="page-body">
 
-      <view class="drawer_item">
-        <label class="title col-0">性别: </label>
-        <text class="content col-0" selectable>{{dancer_info.gender}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">性别: </label>
+        <text class="content" selectable>{{dancer_info.gender}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">破蛋日: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.eggday}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">破蛋日: </label>
+        <text class="content" selectable>{{dancer_info.person_info.eggday}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">年级/毕业时间: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.grade}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">年级/毕业时间: </label>
+        <text class="content" selectable>{{dancer_info.person_info.grade}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">专业: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.major}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">专业: </label>
+        <text class="content" selectable>{{dancer_info.person_info.major}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">身高: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.height}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">身高: </label>
+        <text class="content" selectable>{{dancer_info.person_info.height}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">家乡: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.hometown}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">家乡: </label>
+        <text class="content" selectable>{{dancer_info.person_info.hometown}}</text>
       </view>
 
-      <view class="drawer_item" wx:if="{{isBanban}}">
-        <label class="title col-0">微信号: </label>
-        <text class="content col-0" selectable>{{dancer_info.wechat.id}}</text>
+      <view class="page-section page-section-gap" wx:if="{{isBanban}}">
+        <label class="title">微信号: </label>
+        <text class="content" selectable>{{dancer_info.wechat.id}}</text>
       </view>
 
-      <view class="drawer_item" wx:if="{{isBanban}}">
-        <label class="title col-0">QQ号: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.QQ}}</text>
+      <view class="page-section page-section-gap" wx:if="{{isBanban}}">
+        <label class="title">QQ号: </label>
+        <text class="content" selectable>{{dancer_info.person_info.QQ}}</text>
       </view>
 
-      <view class="drawer_item" wx:if="{{isBanban}}">
-        <label class="title col-0">联系方式: </label>
-        <text class="content col-0" selectable>{{dancer_info.person_info.contact == '' ? '未填写' : dancer_info.person_info.contact}}</text>
+      <view class="page-section page-section-gap" wx:if="{{isBanban}}">
+        <label class="title">联系方式: </label>
+        <text class="content" selectable>{{dancer_info.person_info.contact == '' ? '没有填耶' : dancer_info.person_info.contact}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">现有舞蹈水平: </label>
-        <text class="content col-0" selectable>{{dancer_info.dance.danceLevel}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">现有舞蹈水平: </label>
+        <text class="content" selectable>{{dancer_info.dance.danceLevel}}</text>
       </view>
 
-      <view class="drawer_item" wx:if="{{isBanban}}">
-        <label class="title col-0">你从哪里知道了dance: </label>
-        <text class="content col-0" selectable>{{dancer_info.dance.knowdancefrom}}</text>
+      <view class="page-section page-section-gap" wx:if="{{isBanban}}">
+        <label class="title">你从哪里知道了dance: </label>
+        <text class="content" selectable>{{dancer_info.dance.knowdancefrom}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">再介绍一下自己啦: </label>
-        <text class="content col-0" selectable>{{dancer_info.dance.selfIntro}}</text>
+      <view class="page-section page-section-gap">
+        <label class="title">再介绍一下自己啦: </label>
+        <text class="content" selectable>{{dancer_info.dance.selfIntro}}</text>
       </view>
 
-      <view class="drawer_item">
-        <label class="title col-0">PP: </label>
+      <view class="page-section page-section-gap">
+        <label class="title">PP: </label>
         <image class="photo" src="{{photo}}" mode="aspectFit" data-src="{{photo}}" bindtap="previewImage"></image>
       </view>
     </view>
 
-    <view class="btn_container">
+    <view class="page-body">
       <button class="btn_ok" open-type="share">分享本页</button>
     </view>
   </view>

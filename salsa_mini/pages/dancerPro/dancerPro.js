@@ -122,6 +122,9 @@ Page({
             dancer_info: res.data,
             photo: app.global_data.server_url + res.data.dance.photos[res.data.dance.photos.length - 1],
           });
+          that.setData({
+            'dancer_info.person_info.eggday': res.data.person_info.eggday.slice(5),
+          });
           wx.setNavigationBarTitle({
             title: '萨友' + res.data.nickname + '的信息',
           });          

@@ -28,6 +28,12 @@ Page({
   onLoad: function (options) {
     console.log("onload baodao");
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log("onload baodao");
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -210,7 +216,7 @@ Page({
     if (!isSend) {
       wx.hideLoading();
       wx.showToast({
-        title: '请完善表格再提交~',
+        title: '请完善表格~',
         image: '../../images/smiley-6_64.png',
         duration: 2000,
         mask: true,
@@ -228,6 +234,7 @@ Page({
 
       wx.login({
         success: function (res) {
+          console.log("login success");
           wx.uploadFile({
             url: app.global_data.server_url + 'php/wx_baodao.php',
             filePath: that.data.photo_items[0],
@@ -247,19 +254,21 @@ Page({
               'selfIntro': e.detail.value.selfIntro,
             },
             success: function (res) { // 上传成功，返回数据res
-              app.global_data.userInfo = res.data;
+              console.log("upload success");
+              //app.global_data.userInfo = res.data;//返回的数据为字符串而非数组？导致dancers中的opendancerpro出错
               wx.hideLoading();
               wx.showToast({
                 title: '报名成功！欢迎加入爱尚salsa大家庭！',
                 //image: '../../images/dance1-200.png',
-                duration: 2000,
+                duration: 1500,
                 mask: true,
               });
+              //app.global_data.isbaodao = true;
               setTimeout(function () {
-                wx.switchTab({ // 跳转到TabBar必须使用wx.switchTab()
+                wx.reLaunch({ // 跳转到TabBar,但switchtab只能触发onshow
                   url: '../dancers/dancers',
                 });
-              }, 2000);
+              }, 1500);
             },
             fail: function () { // 上传失败
               wx.hideLoading(); // 网络错误

@@ -24,7 +24,7 @@
       <view class="page-section page-section-gap">
         <label class="title">性别 *</label>
         <radio-group class="radio-group" bindchange="genderChange">
-          <label class="radio" wx:for="{{gender_items}}">
+          <label class="radio" wx:for="{{gender_items}}" wx:key="">
           <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>    
         </radio-group>
@@ -34,6 +34,7 @@
 
       <view class="page-section page-section-gap">
         <label class="title">破蛋日 *</label>
+        <label class="description">信息页仅显示月-日</label>
         <view class="section">
           <view class="section__title"></view>
           <picker mode="date" value="{{date}}" start="1980-01-01" end="2010-06-15" bindchange="eggdayChange">
@@ -80,7 +81,7 @@
       <view class="page-section page-section-gap">
         <label class="title">你从哪里知道了爱尚salsa *</label>
         <checkbox-group class="radio-group" bindchange="knowfromChange">
-          <label class="radio" wx:for-items="{{knowfrom_items}}">
+          <label class="radio" wx:for-items="{{knowfrom_items}}" wx:key="">
           <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
         </checkbox-group>
@@ -90,7 +91,7 @@
 
       <view class="page-section page-section-gap">
         <label class="title">上传你的照片吧，让大家早点认识你~（照片仅限内部使用，不会外传！）*</label>
-        <label class="" wx:for="{{photo_items}}">
+        <label class="" wx:for="{{photo_items}}" wx:key="">
             <image class="photo" src="{{photo_items}}" mode="aspectFit"></image>
         </label>
         <label class="redmark" wx:if="{{showmiss_photo}}">× 请上传一张照片</label>
@@ -102,7 +103,8 @@
     </view>
 
     <view class="page-body page-section-gap">
-      <button class="btn_ok" form-type="submit">妥了</button>
+      <label class="description">（再次提交可修改信息哦）</label>
+      <button class="btn_ok" form-type="submit">投入组织怀抱</button>
     </view>
   </form>
 </view>

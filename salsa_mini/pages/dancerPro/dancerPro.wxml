@@ -53,7 +53,7 @@
 
       <view class="page-section page-section-gap">
         <label class="title">皂片: </label>
-        <image class="photo" src="{{photo}}" mode="aspectFit" data-src="{{photo}}" bindtap="previewImage"></image>
+        <image class="photo" src="{{photo}}" mode="aspectFit" data-src="{{photo}}" bindtap="previewImage" wx:if="{{photo}}"></image>
       </view>
     </view>
 

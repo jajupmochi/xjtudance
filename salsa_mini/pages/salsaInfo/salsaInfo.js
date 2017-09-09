@@ -1,5 +1,8 @@
 // salsaInfo.js
 var app = getApp();
+var touchDot = 0;//触摸时的原点
+var time = 0;//  时间记录，用于滑动时且时间小于1s则执行左右滑动
+var interval = "";// 记录/清理 时间记录
 
 Page({
 
@@ -7,7 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-        
+    pic_title: '../../images/salsa-logo.jpg',
+    pic5: app.global_data.server_url + 'data/images/salsa/pic5.jpg',
+    pic8: app.global_data.server_url + 'data/images/salsa/pic8.jpg',
+    wechat_qr: app.global_data.server_url + 'data/images/salsa/wechat_qr.jpg',
+    video_src: app.global_data.server_url + 'data/videos/jumpgrace.mp4',
   },
 
   /**
@@ -18,20 +25,7 @@ Page({
       title: '加载中...',
       mask: true,
     });
-    this.setData({
-      pic_title: '../../images/salsa-logo.jpg',
-      pic2: app.global_data.server_url + 'data/images/salsa/pic2.png',
-      pic3: app.global_data.server_url + 'data/images/salsa/pic3.png',
-      pic4: app.global_data.server_url + 'data/images/salsa/pic4.jpg',
-      pic5: app.global_data.server_url + 'data/images/salsa/pic5.png',
-      pic6: app.global_data.server_url + 'data/images/salsa/pic6.png',
-      pic7: app.global_data.server_url + 'data/images/salsa/pic7.jpg',
-      pic8: app.global_data.server_url + 'data/images/salsa/pic8.png',
-      pic9: app.global_data.server_url + 'data/images/salsa/pic9.jpg',
-      pic10: app.global_data.server_url + 'data/images/salsa/pic10.png',
-      wechat_qr: app.global_data.server_url + 'data/images/salsa/wechat_qr.png',
-      mini_qr: app.global_data.server_url + 'data/images/salsa/mini_qr.jpg',
-    });
+    console.log("OnLoad salsainfo");
   },
 
   /**
@@ -76,6 +70,37 @@ Page({
   onReachBottom: function () {
   
   },
+
+/*// 触摸开始事件
+touchStart: function(e){ 
+   touchDot = e.touches[0].pageX; // 获取触摸时的原点
+   // 使用js计时器记录时间    
+   interval = setInterval(function(){
+       time++;
+   },100); 
+},
+// 触摸移动事件
+touchMove: function(e){ 
+   var touchMove = e.touches[0].pageX;
+   console.log("Move:"+touchMove+" Dot:"+touchDot+" diff:"+(touchMove - touchDot)+" time:"+time);
+   // 向左滑动   
+   if(touchMove - touchDot <= -40 && time < 10){
+       ;
+       }
+   // 向右滑动
+   if(touchMove - touchDot >= 40 && time < 10){
+         wx.switchTab({
+           url: '../baodao/baodao',
+       });
+   }
+   // touchDot = touchMove; //每移动一次把上一次的点作为原点（好像没啥用）
+},
+ // 触摸结束事件
+touchEnd: function(e){
+   clearInterval(interval); // 清除setInterval
+   time = 0;
+   tmpFlag = true; // 回复滑动事件
+},*/
 
   /**
    * 用户点击右上角分享

@@ -65,7 +65,7 @@
 
 .button {
   height: 58rpx;
-  width: 30%;
+  width: 20%;
   background-color: #FF8C00;
   color: #FFFFFF;
   font-size: 25rpx;
@@ -75,5 +75,5 @@
 }
 
 .button-placeholder {
-  width: 30%;
+  width: 50%;
 }

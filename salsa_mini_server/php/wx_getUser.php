@@ -21,7 +21,7 @@ $getValues = $data['getValues'];
 $values = explode('/', $getValues);
 $which = array();
 foreach ($values as $value) {
-	$which = array_merge($which, array($value => true));
+	$which = array_merge($which, array($value => true));	// 生成findOne的参数
 }
 
 $mongo = new MongoClient();

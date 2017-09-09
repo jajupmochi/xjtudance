@@ -246,7 +246,7 @@ Page({
               'knowdancefrom': knowdancefrom,
               'selfIntro': e.detail.value.selfIntro,
             },
-            success: function (res) { // 报到成功
+            success: function (res) { // 上传成功，返回数据res
               app.global_data.userInfo = res.data;
               wx.hideLoading();
               wx.showToast({

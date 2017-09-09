@@ -14,6 +14,7 @@ Page({
     imgUrl_girl: '../../images/girl-500.png',
 
     isBanban: app.global_data.userInfo ? app.global_data.userInfo.rights.banban.is : false,
+    isListAll: false,
   },
 
   /**
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("onReady dancers");
   },
 
   /**
@@ -45,14 +46,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("onHide dancers");
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("onUnload dancers");
   },
 
   /**
@@ -89,17 +90,11 @@ Page({
    * 上拉触底函数
    */
   lower: function (e) {
-    this.listDancers();
+    if (!this.data.isListAll) {
+      this.listDancers();
+    }
     console.log("lower dancers");
   },
-
-  /**
- * 下拉触顶函数
- 
-  upper: function (e) {
-    //this.listDancers();
-    console.log("upper dancers");
-  },*/
 
   /**
    * 用户登录
@@ -214,9 +209,12 @@ Page({
       method: "POST",
       success: function (res) {
         wx.hideLoading();
-        if (res.data == []) {
+        if (res.data.length == 0) {
+          that.setData({
+            isListAll: true,
+          })
           wx.showToast({
-            title: '这是全部舞友了...',
+            title: '这是全部萨友啦...',
             duration: 2000
           });
         }
@@ -224,8 +222,8 @@ Page({
           dancer_list: that.data.dancer_list ? Object.assign(that.data.dancer_list, res.data) : res.data, // 将数据传给全局变量dancer_list
           dancers_length: that.data.dancers_length + limit,
         });
-        console.log(that.data.dancer_list);
-        app.global_data.dancer_list = that.data.dancer_list;
+        //console.log(that.data.dancer_list);
+        //app.global_data.dancer_list = that.data.dancer_list;//tab页面数据不会被销毁
       },
       fail: function (res) {
         wx.hideLoading();

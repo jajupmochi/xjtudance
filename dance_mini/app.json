@@ -1,9 +1,13 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/huyou/list/list",
     "pages/baodao/baodao",
     "pages/dancers/dancers",
     "pages/dancerPro/dancerPro",
-    "pages/danceIntro/danceIntro"
+    "pages/danceIntro/danceIntro",
+    "pages/huyou/post/post",
+    "pages/huyou/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

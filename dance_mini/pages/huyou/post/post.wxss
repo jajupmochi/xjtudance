@@ -1,0 +1,84 @@
+/* post.wxss */
+/*content*/
+
+.page-section {
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+
+.drawer_box {
+  padding: 50rpx 30rpx 30rpx 30rpx;
+}
+
+.title {
+  height: 45rpx;
+  width: 100%;
+  text-align: justify;
+  text-justify: distribute;
+  display: inline-block;
+  color: #800080;
+  font: 400 28rpx/40rpx "microsoft yahei";
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  margin: 0rpx 0;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  line-height: 30px;
+  background-color: #FFFFFF;
+  border-radius: 40rpx;
+}
+
+.redmark {
+  height: 50rpx;
+  font: 300 26rpx/40rpx "microsoft yahei";
+  text-align: justify;
+  text-justify: distribute;
+  display: inline-block;
+  color: #FF0000;
+}
+
+.photo {
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.chooseimage-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.btn_chooseimage {
+  width: 120rpx;
+  height: 120rpx;
+  font: 80rpx "microsoft yahei";
+  font-weight: 800;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0rpx 10rpx 0 0rpx;
+  background-color: #800080;
+}
+
+.btn_ok {
+  width: 100%;
+  font: 40rpx/90rpx "microsoft yahei";
+  text-align: center;
+  border-top: 1px solid #e8e8ea;
+  color: #FFFFFF;
+  background-color: #800080;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+}
+
+.input_h30 {
+  height: 30px;
+}
+
+.input_h60 {
+  height: 60px;
+}

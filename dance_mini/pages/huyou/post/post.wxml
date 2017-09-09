@@ -1,0 +1,60 @@
+<!--post.wxml-->
+<!-- 发表忽悠 -->
+
+<view class="container drawer_screen">
+  <form bindsubmit="baodao" animation="{{anim_connectBmy}}" class="page-body drawer_box" report-submit>
+    <!--drawer content-->
+    <view class="page-body">
+
+      <view class="page-section page-section-gap">
+        <label class="title">忽悠名称</label>
+        <input name="name" class="input_base input_h30" value="" maxlength="20" placeholder="{{name}}" cursor-spacing="150"></input>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <label class="title">时间</label>
+        <input name="time" class="input_base input_h30" value="" maxlength="" placeholder="{{time}}" cursor-spacing="150"></input>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <label class="title">地点</label>
+        <input name="place" class="input_base input_h30" value="" maxlength="" placeholder="{{place}}" cursor-spacing="150"></input>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <label class="title">说点什么吧</label>
+        <input name="comment" type="number" class="input_base input_h30" value="" placeholder="{{comment}}" cursor-spacing="150"></input>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <label class="title">忽悠图片</label>
+        <label class="" wx:for="{{photo_items}}">
+            <image class="photo" src="{{photo_items}}" mode="aspectFit"></image>
+        </label>
+        <view class="chooseimage-view">
+          <button class="btn_chooseimage" bindtap="choosePhotos">+</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section page-section-gap">
+      <label class="title">标签</label>
+      <input name="tag" class="input_base input_h30" value="" maxlength="20" placeholder="{{tag}}" cursor-spacing="150"></input>
+    </view>
+
+    <view class="page-section page-section-gap">
+      <label class="title">发起人</label>
+      <input name="initator" class="input_base input_h30" value="" maxlength="20" placeholder="{{initator}}" cursor-spacing="150"></input>
+    </view>
+
+    <view class="page-section page-section-gap">
+      <label class="title">人数</label>
+      <input name="peopleNum" type="number" class="input_base input_h30" value="" placeholder="{{peopleNum}}" cursor-spacing="150"></input>
+    </view>
+
+    <view class="page-body page-section-gap">
+      <button class="btn_ok" form-type="submit">发忽悠</button>
+    </view>
+  </form>
+
+</view>

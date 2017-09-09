@@ -183,6 +183,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '不Dance，怎么嗨！',
+      path: '/pages/danceIntro/danceIntro',
+      imageUrl: app.global_data.server_url + 'data/images/dance/dance-logo-5_4.jpg',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

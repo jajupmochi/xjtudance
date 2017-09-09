@@ -5,6 +5,7 @@ App({
     userInfo: null, // 用户信息
     systemInfo: null, // 系统信息
     dancer_list: null, // 报到舞友列表
+    huyou_list: null, // 忽悠列表
   },
 
   onLaunch: function () {

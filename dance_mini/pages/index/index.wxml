@@ -1,0 +1,18 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <swiper class="page-body" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+    <block wx:for="{{swiper_list}}">
+      <swiper-item bindtap="toSwiperContent" data-_id="{{item._id}}">
+        <image src="{{item.imgUrl}}" class="slide-image" mode="aspectFill"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="page-body drawer_box">
+    <button class="drawer_btn" bindtap="toBaodao">报到</button>
+    <button class="drawer_btn" bindtap="toHuyou">忽悠</button>
+  </view>
+  <view class="page-body drawer_box">
+    <button class="drawer_btn" bindtap="toDancerList">舞友</button>
+    <button class="drawer_btn" bindtap="toDanceIntro">dance</button>
+  </view>
+</view>

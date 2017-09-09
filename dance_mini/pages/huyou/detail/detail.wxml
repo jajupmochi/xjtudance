@@ -1,0 +1,33 @@
+<!--pages/huyou/detail/detail.wxml-->
+<view class="container">
+  <image class="page-body pic" src="{{huyou_info.photos}}" mode="aspectFill" data-src="{{huyou_info.photos}}" bindtap="previewImage"></image>
+  <view class="page-body drawer_box">
+    <!--drawer content-->
+    <view class="page-body drawer_title">{{huyou_info.name}}</view>
+    <view class="page-body">
+
+      <view class="page-section-gap drawer_item">
+        <label class="title">时间: </label>
+        <text class="content" selectable>{{huyou_info.start_time}}</text>
+      </view>
+
+      <view class="page-section-gap drawer_item">
+        <label class="title">地点: </label>
+        <text class="content" selectable>{{huyou_info.place}}</text>
+      </view>
+
+      <view class="page-section-gap drawer_item">
+        <label class="title">发起人: </label>
+        <text class="content" selectable>{{huyou_info.initator}}</text>
+      </view>
+
+      <view class="page-section-gap drawer_comment">
+        <text class="content" selectable>{{huyou_info.comment}}</text>
+      </view>
+    </view>
+
+    <view class="page-body drawer_item">
+      <button class="btn_ok" open-type="share">分享本页</button>
+    </view>
+  </view>
+</view>

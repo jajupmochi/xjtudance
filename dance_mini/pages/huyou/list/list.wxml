@@ -1,0 +1,19 @@
+<!--list.wxml-->
+<scroll-view scroll-y="true" class="dancers-area" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <button class="btn-todances" bindtap="toPostHuyou" wx:if="{{isBanban}}">发忽悠</button>
+  <block wx:for="{{huyou_list}}" wx:key="">
+    <view class="dancer-item" data-id="{{item._id}}">
+      <image class="dancer-avatar" bindtap="openHuyou" data-_id="{{item._id}}" src="{{item.photos}}" mode="aspectFill"></image>
+      <view class="dancer-info">
+        <text class="dancer-nickname" bindtap="openHuyou" data-_id="{{item._id}}">{{item.name}} | {{item.start_time}} | {{item.place}}</text>
+        <text class="dancer-intro" bindtap="openHuyou" data-_id="{{item._id}}">{{item.comment}}</text>
+        <view class="button-container" wx:if="{{isBanban}}">
+          <view class="button-placeholder"></view>
+          <button class="button" bindtap="update" data-qq="{{item.person_info.QQ}}">修改</button>
+          <button class="button" bindtap="hopin" data-wxid="{{item.wechat.id}}">报名</button>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view style="height:20rpx;"></view>
+</scroll-view>

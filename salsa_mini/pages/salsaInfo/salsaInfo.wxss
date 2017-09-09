@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.drawer-video {
+  width: 100%;
+}
+
 .drawer-words {
   padding: 40rpx 40rpx 10rpx 40rpx;
   text-align: center;
@@ -29,10 +33,4 @@
   width: 450rpx;
   left: 0;
   margin: 0 150rpx 0 150rpx;
-}
-
-.mini-qr {
-  width: 350rpx;
-  left: 0;
-  margin: 0 40rpx 0 360rpx;
 }

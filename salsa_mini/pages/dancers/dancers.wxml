@@ -1,6 +1,6 @@
 <!--dancers.wxml-->
 <view class="container drawer_screen">
-  <scroll-view scroll-y="true" class="dancers-area" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <scroll-view scroll-y="true" class="dancers-area" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
     <block wx:for="{{dancer_list}}" wx:key="">
       <view class="dancer-item" data-id="{{item._id}}">
         <image class="dancer-avatar" bindtap="openDancerProfile" data-_id="{{item._id}}" src="{{item.gender == 'gentleman' ? imgUrl_boy : imgUrl_girl}}" mode="aspectFit"></image>
@@ -9,8 +9,8 @@
           <text class="dancer-intro" bindtap="openDancerProfile" data-_id="{{item._id}}">{{item.dance.selfIntro}}</text>
           <view class="button-container" wx:if="{{isBanban}}">
             <view class="button-placeholder"></view>
-            <button class="button" bindtap="copyQQ" data-qq="{{item.person_info.QQ}}">复制QQ号</button>
-            <button class="button" bindtap="copyContact" data-contact="{{item.person_info.contact}}">复制手机号</button>
+            <button class="button" bindtap="copyQQ" data-qq="{{item.person_info.QQ}}">QQ</button>
+            <button class="button" bindtap="copyContact" data-contact="{{item.person_info.contact}}">手机</button>
           </view>
         </view>
       </view>

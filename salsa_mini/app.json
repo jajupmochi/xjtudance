@@ -15,12 +15,12 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/dancers/dancers",
-        "text": "萨友"
-      },
-      {
         "pagePath": "pages/baodao/baodao",
         "text": "报名"
+      },
+      {
+        "pagePath": "pages/dancers/dancers",
+        "text": "萨友"
       },
       {
         "pagePath": "pages/salsaInfo/salsaInfo",

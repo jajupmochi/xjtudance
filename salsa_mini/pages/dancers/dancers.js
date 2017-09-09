@@ -14,6 +14,7 @@ Page({
     imgUrl_girl: '../../images/girl-500.png',
 
     isBanban: app.global_data.userInfo ? app.global_data.userInfo.rights.banban.is : false,
+    isListAll: false,
   },
 
   /**
@@ -28,16 +29,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    if (this.data.dancer_list == null) {
+      this.listDancers();
+    }
+    console.log("onReady dancers");
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    if (this.data.dancer_list == null) {
-      this.listDancers();
-    }
+  onShow: function () {    
     console.log("onshow dancers");
   },
 
@@ -45,14 +46,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("onHide dancers");
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("onUnload dancers");
   },
 
   /**
@@ -89,17 +90,11 @@ Page({
    * 上拉触底函数
    */
   lower: function (e) {
-    this.listDancers();
+    if (!this.data.isListAll) {
+      this.listDancers();
+    }
     console.log("lower dancers");
   },
-
-  /**
- * 下拉刷新函数
- 
-  upper: function (e) {
-    //this.listDancers();
-    console.log("upper dancers");
-  },*/
 
   /**
    * 用户登录
@@ -112,6 +107,7 @@ Page({
     });
     wx.login({
       success: function (res) {
+        console.log("login success");
         wx.request({
           url: app.global_data.server_url + 'php/wx_getUser.php',
           data: {
@@ -125,11 +121,14 @@ Page({
           method: "POST",
           success: function (res) {
             wx.hideLoading();
+            console.log(res.data);
+            console.log("getinfo success");
             if (res.data !== null) {
               that.setData({
                 isBanban: res.data.rights.banban.is,
               });
               app.global_data.userInfo = res.data;
+              console.log("in database");
             } else { // 用户不在数据库中
               wx.showToast({
                 title: '点击下方报名啦！',
@@ -141,6 +140,7 @@ Page({
           },
           fail: function () {
             wx.hideLoading();
+            console.log("getinfo fail");
             wx.showToast({
               title: 'oops，网络bug了，再试一次吧',
               image: '../../images/more.png',
@@ -152,6 +152,7 @@ Page({
       },
       fail: function () { // 获取微信code失败
         wx.hideLoading();
+        console.log("login fail");
         wx.showToast({
           title: 'oops，网络bug了，再试一次吧',
           image: '../../images/more.png',
@@ -167,6 +168,7 @@ Page({
    */
   openDancerProfile: function (e) {
     var _id = e.currentTarget.dataset._id.$id;
+    console.log(app.global_data);
     if (app.global_data.userInfo != null) {
         if (app.global_data.userInfo.dance.baodao != '') { // 跳转
         wx.navigateTo({
@@ -214,9 +216,12 @@ Page({
       method: "POST",
       success: function (res) {
         wx.hideLoading();
-        if (res.data == []) {
+        if (res.data.length == 0) {
+          that.setData({
+            isListAll: true,
+          })
           wx.showToast({
-            title: '这是全部舞友了...',
+            title: '这是全部萨友啦...',
             duration: 2000
           });
         }
@@ -224,8 +229,8 @@ Page({
           dancer_list: that.data.dancer_list ? Object.assign(that.data.dancer_list, res.data) : res.data, // 将数据传给全局变量dancer_list
           dancers_length: that.data.dancers_length + limit,
         });
-        console.log(that.data.dancer_list);
-        app.global_data.dancer_list = that.data.dancer_list;
+        //console.log(that.data.dancer_list);
+        //app.global_data.dancer_list = that.data.dancer_list;//tab页面数据不会被销毁
       },
       fail: function (res) {
         wx.hideLoading();

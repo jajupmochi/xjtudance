@@ -186,7 +186,7 @@ if ($user_info == null) {
 	);
 	$collection_users->insert($doc_user);
 	$user_id = $doc_user['_id']; // 用户_id
-} else {
+} else {	//不为空，更新数据
 	if (array_key_exists('photos', $user_info['dance'])) {
 		$photos = $user_info['dance']['photos'];
 		$photos[] = $photo_path;

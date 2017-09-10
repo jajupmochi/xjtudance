@@ -16,7 +16,7 @@ if ($dance_release) {
 	$fromurl="https://57247578.qcloud.la/"; // 跳转往这个地址。
 	if( $_SERVER['HTTP_REFERER'] == "" )
 	{
-		header("Location:".$fromurl);
+		header("Location:".$fromurl);	// 发送header给浏览器以进行跳转
 		exit;
 	}
 }
@@ -43,7 +43,7 @@ $db = $mongo->$dance_db; // 获取dance的数据库（xjtudance）
 $collection_users = $db->users;
 $where = array('dance.baodao' => array('$ne' => ''));
 $doc_users = $collection_users->find($where, $which)->
-	sort(array($list_order => -1))->skip($skip)->limit($limit);
+	sort(array($list_order => -1))->skip($skip)->limit($limit);	// 对find结果进行处理，返回的是数据在遍历过程中的内部指针
 $users_arr = iterator_to_array($doc_users); // 将cursor转换为array
 
 echo json_encode($users_arr);

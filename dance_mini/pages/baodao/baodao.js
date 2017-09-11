@@ -265,6 +265,7 @@ Page({
               'selfIntro': e.detail.value.selfIntro,
             },
             success: function (res) { // 报到成功
+            console.log(res.data);
               app.global_data.userInfo = res.data;
               wx.hideLoading();
               wx.showToast({

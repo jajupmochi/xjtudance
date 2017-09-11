@@ -78,8 +78,10 @@ for ($offset = 19; $offset >= 0; $offset--) {
 }
 
 // 保存数据到数据库
+$collection_diaries = $db->diaries;
 if ($user_info == null) {
 	// user数据	
+	$diary_posts = array();
  	$doc_user = array(
 		"id_dance" => "", // dance的id
 		"nickname" => $_POST['nickname'], // 昵称
@@ -121,7 +123,7 @@ if ($user_info == null) {
 			"post2bmy" => true // 是否将文章同步到兵马俑
 		),
 		"diaries" => array(
-			"posts" => array(), // 发表文章
+			"posts" => $diary_posts, // 发表文章
 			"upup" => array(), // 顶帖文章
 			"favori" => array(), // 收藏文章
 			"viewd" => array(), // 已查看文章
@@ -171,6 +173,7 @@ if ($user_info == null) {
 		),
 		"dance" => array(
 			"baodao" => $time, // 报到时间，为空时未报到
+			"baodao_bmyurl" => $bmyurl, // 报到对应的兵马俑BBS报到帖
 			"ball_tickets" => array(), // 舞会门票
 			"danceLevel" => $_POST['danceLevel'], // 初入dance时的舞蹈水平
 			"knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
@@ -187,12 +190,31 @@ if ($user_info == null) {
 	$collection_users->insert($doc_user);
 	$user_id = $doc_user['_id']; // 用户_id
 } else {
+	// 删除上次报到的信息
+	// 删除兵马俑BBS对应报到帖
+ 	if (array_key_exists('baodao_bmyurl', $user_info['dance'])) {
+		$bmyurl_old = $user_info['dance']['baodao_bmyurl'];
+		$proxy_url = "http://bbs.xjtu.edu.cn/".$_SESSION["sessionurl"]."/del?B=dance&F=".$bmyurl_old;
+		$result = file_get_html($proxy_url);
+	}
+	// 删除对应diary
+	if (array_key_exists('baodao_diaryId', $user_info['dance'])) {
+		$diaryId_old = $user_info['dance']['baodao_diaryId'];
+		$collection_diaries->remove(array('_id' => $diaryId_old), array('justOne' => true));
+		$diary_posts = $user_info['diary']['posts']; // 删除user中对应的post信息
+		$key_id = array_search($diaryId_old, $diary_posts);
+		if ($key_id != false) {
+			array_splice($diary_posts, $key_id, 1);
+		}
+	}
+	// 删除照片
 	if (array_key_exists('photos', $user_info['dance'])) {
 		$photos = $user_info['dance']['photos'];
-		$photos[] = $photo_path;
-	} else {
-		$photos = array($photo_path);
-	}
+		foreach ($photos as $photo) {
+			unlink($_SERVER['DOCUMENT_ROOT']."/".$photo);
+		}
+	} 
+	
 	$doc_user = array(
 		"nickname" => $_POST['nickname'], // 昵称
 		"gender" => $_POST['gender'], // 性别
@@ -209,10 +231,11 @@ if ($user_info == null) {
 		"web.lastvisit" => $time, // 上次访问时间
 		"wechat.id" => $_POST['wechat_id'], // 微信id
 		"dance.baodao" => $time, // 报到时间，为空时未报到
+		"dance.baodao_bmyurl" => $bmyurl, // 报到对应的兵马俑BBS报到帖
 		"dance.danceLevel" => $_POST['danceLevel'], // 初入dance时的舞蹈水平
 		"dance.knowdancefrom" => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
 		"dance.selfIntro" => $_POST['selfIntro'], // 自我介绍
-		"dance.photos" => $photos // 照片地址?????????????????????????????????????????
+		"dance.photos" => array($photo_path) // 照片地址?????????????????????????????????????????
 	);
 	$collection_users->update(array('wechat.openid_mini' => $str['openid']), array('$set' => $doc_user));
 	$doc_user = $collection_users->findOne(array('wechat.openid_mini' => $str['openid']));
@@ -256,12 +279,11 @@ $doc_diary = array(
 	"ipv6" => false, // 是否是ipv6 ??????????????????????
 	"shared" => 0 // 被分享到微信的次数
 );
-$collection_diaries = $db->diaries;
 $collection_diaries->insert($doc_diary);
 $diary_id = $doc_diary["_id"];
-$diary_posts = $collection_users->findOne(array('_id' => $user_id), array('diaries.posts' => true));
-$diary_posts = array_merge($diary_posts['diaries']['posts'], array(diary_id)); // 发表日记列表
-$collection_users->update(array('_id' => $user_id), array('$set' => array('diaries.posts' => $diary_posts)));
+$diary_posts[] = $diary_id; // 发表日记列表
+$collection_users->update(array('_id' => $user_id), array('$set' => 
+	array('diaries.posts' => $diary_posts, 'dance.baodao_diaryId' => $diary_id))); // 报到对应的diary id
 
 // global数据
 $collection_global = $db->globaldata;
@@ -338,7 +360,7 @@ $baodao_info = array(
 	'danceLevel' => $_POST['danceLevel'], // 初入dance时的舞蹈水平
 	'knowdancefrom' => $_POST['knowdancefrom'], // 从哪里知道dance????????????????
 	'selfIntro' => $_POST['selfIntro'], // 自我介绍
-	'photos' => $photo_path // 照片地址
+	'photos' => array($photo_path) // 照片地址
 );
 foreach ($banbans as $banban) {
 	$msgs = $banban['messages'];

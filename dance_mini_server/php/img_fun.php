@@ -27,7 +27,7 @@ function saveImage($url, $save_dir = '', $filename = '', $type = 0) {
 	}
 	if(trim($save_dir) == '') { // 保存路径为空，默认保存路径以年/月/日为目录
 		$save_dir1 = "data/images/".date('Y')."/".date('m')."/".date('d')."/";
-		$save_dir = "/data/release/xjtudance/".$save_dir1;
+		$save_dir = $_SERVER['DOCUMENT_ROOT']."/".$save_dir1;
 	}
 	if(trim($filename) == '') { // 保存文件名为空
 		$ext = strrchr($url, '.');

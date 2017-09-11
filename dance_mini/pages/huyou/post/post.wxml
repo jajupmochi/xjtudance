@@ -27,7 +27,7 @@
       </view>
 
       <view class="page-section page-section-gap">
-        <label class="title">忽悠图片</label>
+        <label class="title">忽悠图片（大小不超过20M）</label>
         <label class="" wx:for="{{photo_items}}">
             <image class="photo" src="{{photo_items}}" mode="aspectFit"></image>
         </label>

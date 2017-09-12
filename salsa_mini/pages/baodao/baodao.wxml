@@ -90,7 +90,8 @@
       </view>
 
       <view class="page-section page-section-gap">
-        <label class="title">上传你的照片吧，让大家早点认识你~（照片仅限内部使用，不会外传！）*</label>
+        <label class="title">上传你的照片吧，让大家早点认识你~ *</label>
+        <label class="description">照片大小不超过20M，照片仅限内部使用，不会外传！</label>
         <label class="" wx:for="{{photo_items}}" wx:key="">
             <image class="photo" src="{{photo_items}}" mode="aspectFit"></image>
         </label>

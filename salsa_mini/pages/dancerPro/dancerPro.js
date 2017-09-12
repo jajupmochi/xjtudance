@@ -99,7 +99,7 @@ Page({
       mask: true,
     });
     if (this.data.isBanban) {   // 根据是否为管理员获得不同值
-      var getValues = '_id/realname/nickname/gender/person_info.eggday/person_info.major/person_info.hometown/dance.selfIntro/dance.photos/dance.baodao/person_info.QQ/person_info.contact/dance.knowdancefrom';
+      var getValues = '_id/person_info.realname/nickname/gender/person_info.eggday/person_info.major/person_info.hometown/dance.selfIntro/dance.photos/dance.baodao/person_info.QQ/person_info.contact/dance.knowdancefrom';
     } else {
       var getValues = '_id/nickname/gender/person_info.eggday/person_info.major/person_info.hometown/dance.selfIntro/dance.photos/dance.baodao';
     }

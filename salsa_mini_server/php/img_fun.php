@@ -1,10 +1,10 @@
 <?php  
 /*******************************************************************************
 图像处理函数
-Version: 0.1 ($Rev: 1 $)
+Version: 0.1 ($Rev: 2 $)
 Website: https://github.com/aishangsalsa/aishangsalsa
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-25
+Updated: 2017-09-12
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -27,7 +27,7 @@ function saveImage($url, $save_dir = '', $filename = '', $type = 0) {
 	}
 	if(trim($save_dir) == '') { // 保存路径为空，默认保存路径以年/月/日为目录
 		$save_dir1 = "data/images/".date('Y')."/".date('m')."/".date('d')."/";
-		$save_dir = "/data/release/xjtudance/aishangsalsa/".$save_dir1;
+		$save_dir = $_SERVER['DOCUMENT_ROOT']."/aishangsalsa/".$save_dir1;
 	}
 	if(trim($filename) == '') { // 保存文件名为空
 		$ext = strrchr($url, '.');

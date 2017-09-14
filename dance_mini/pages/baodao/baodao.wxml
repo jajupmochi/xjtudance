@@ -10,6 +10,7 @@
 
       <view class="page-section page-section-gap">
         <label class="title">昵称 *</label>
+        <label class="description">平时大家都是以昵称相称滴~</label>
         <input name="nickname" class="input_base input_h30" value="" maxlength="20" placeholder="请填写1-20个字" cursor-spacing="150"></input>
         <label class="redmark" wx:if="{{showmiss_nickname}}">× 请填写昵称</label>
       </view>

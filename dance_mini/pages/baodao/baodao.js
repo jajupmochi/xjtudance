@@ -78,9 +78,8 @@ Page({
    */
   onShareAppMessage: function (res) {
     return {
-      title: '不Dance，怎么嗨！',
+      title: '加入dance',
       path: '/pages/baodao/baodao',
-      imageUrl: app.global_data.server_url + 'data/images/dance/dance-logo-5_4.jpg',
       success: function (res) {
         // 转发成功
       },

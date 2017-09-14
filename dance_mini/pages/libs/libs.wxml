@@ -1,0 +1,46 @@
+<!-----------------------------------------------------------------------------
+样式库
+Version: 0.1 ($Rev: 1 $)
+Website: https://github.com/jajupmochi/xjtudance
+Author: Linlin Jia <jajupmochi@gmail.com>
+Updated: 2017-09-14
+Licensed under The GNU General Public License 3.0
+Redistributions of files must retain the above copyright notice.
+------------------------------------------------------------------------------>
+
+<!-- 贴纸 -->
+<template name='sticky-note'>
+  <view class='sticky-note sticky-note1'>
+    <view class='sticky-note1'>{{text}}</view>
+    <view class='sticky-note2' />
+    <view class='sticky-note3' />
+    <view class='sticky-ribbon' />
+  </view>
+</template>
+
+<!-- 书桌 -->
+<template name='desk'>
+  <view class='desk'>
+    <view class='desk-surface' />
+    <view class='desk-undersurface' />
+    <view class='desk-legs'>
+      <view class='desk-leg' />
+      <view class='desk-leg' />
+    </view>
+  </view>
+</template>
+
+<!-- 音响 -->
+<template name='speaker'>
+  <view class='speaker'>
+    <view class='speaker-circle' />
+  </view>
+</template>
+
+<!-- 相册 -->
+<template name='photo-album'>
+  <view class='photo-album'>
+    <view class='album-bind'></view>
+    <image class='album-photo' src='{{photo}}' mode='aspectFill'></image>
+  </view>
+</template>

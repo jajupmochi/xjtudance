@@ -1,6 +1,7 @@
 // pages/index/index.js
 var app = getApp();
 var base_fun = require('../../libs/base_fun.js');
+var img_base64 = require('../../images/img_base64.js');
 
 Page({
 
@@ -22,11 +23,14 @@ Page({
         { imgUrl: app.global_data.server_url + 'data/images/dance/dance5-1920.jpg', },
         { imgUrl: app.global_data.server_url + 'data/images/dance/dance7-1920.jpg', },
       ],
-      indicatorDots: true,
+      indicatorDots: false,
       autoplay: true,
-      interval: 5000,
+      interval: 8000,
       duration: 1000,
       circular: true,
+
+      bg_white_wall: img_base64.bg_white_wall, // 白墙背景
+      img_dance: '../../images/dance-logo.jpg', //app.global_data.server_url + 'data/images/dance/dance-logo-5_4.jpg',
     });
     this.getSwiperContent();
   },
@@ -80,6 +84,7 @@ Page({
     return {
       title: '不Dance，怎么嗨！',
       path: '/pages/index/index',
+      imageUrl: app.global_data.server_url + 'data/images/dance/dance-logo-5_4.jpg',
       success: function (res) {
         // 转发成功
       },
@@ -101,7 +106,7 @@ Page({
       list_order: 'updated',
       getValues: '_id/photos', // 用/号分隔需要获取的value
       success(res) {
-        if (res.data != []) {
+        if (res.data != '') {
           var swiper_list = [];
           for (var item in res.data) {
             var photo_list = res.data[item]['photos'];
@@ -126,10 +131,12 @@ Page({
    * 跳转到swiper的对应页
    */
   toSwiperContent: function (e) {
-    var _id = e.currentTarget.dataset._id;
-    wx.navigateTo({
-      url: '../huyou/detail/detail?_id=' + _id,
-    });
+    if (e.currentTarget.dataset._id) {
+      var _id = e.currentTarget.dataset._id;
+      wx.navigateTo({
+        url: '../huyou/detail/detail?_id=' + _id,
+      });
+    }
   },
 
   /**

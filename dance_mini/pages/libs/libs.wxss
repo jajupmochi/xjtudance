@@ -1,0 +1,256 @@
+/*******************************************************************************
+样式库
+Version: 0.1 ($Rev: 1 $)
+Website: https://github.com/jajupmochi/xjtudance
+Author: Linlin Jia <jajupmochi@gmail.com>
+Updated: 2017-09-14
+Licensed under The GNU General Public License 3.0
+Redistributions of files must retain the above copyright notice.
+*******************************************************************************/
+
+/* 相框 */
+
+.photo-frame {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 450rpx;
+  height: 300rpx;
+  display: block;
+  padding: 15rpx;
+  background: #a67b5b;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 8rpx double #483c32;
+  box-shadow: 0 0 0 15rpx rgba(244, 240, 236, 0.4) inset,
+                0 0 0 12rpx rgb(180, 130, 90),
+                0 0 50rpx rgba(0, 0, 0, 0.8) inset,
+                0 20rpx 20rpx rgba(0, 0, 0, 0.3);
+  outline: 1rpx solid #333;
+  outline-offset: 0px;
+}
+
+/* 贴纸 */
+
+.sticky-note {
+  margin: 20rpx 20rpx 20rpx 20rpx;
+}
+
+/* 贴纸1 */
+
+.sticky-note1 {
+  z-index: 101;
+  width: 150rpx;
+  min-height: 186rpx;
+  position: relative;
+  background: -webkit-gradient(linear, 100% 100%, 50% 10%, from(#fff), to(#f3f3f3), color-stop(0.1, #fff)); /* -webkit-gradient已废弃，使用linear-gradient*/
+  border: 1rpx solid #ccc;
+  box-shadow: 1rpx 1rpx 3rpx rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 36rpx 3rpx;
+  font: 30rpx/135rpx "microsoft yahei";
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+/* 贴纸2 */
+
+.sticky-note2 {
+  z-index: 100;
+  content: '';
+  width: 98%;
+  height: 100%;
+  padding: 0 0 1rpx 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#fff), to(#f9f9f9), color-stop(0.1, #fff));
+  border: 1rpx solid #ccc;
+  box-shadow: 1rpx 1rpx 5rpx rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 36rpx 3rpx;
+  transform: skew(2deg, 2deg) translate(2rpx, 5rpx);
+}
+
+/* 贴纸3 */
+
+.sticky-note3 {
+  z-index: 100;
+  content: '';
+  width: 98%;
+  height: 98%;
+  padding: 0 0 1rpx 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: -webkit-gradient(linear, 0% 20%, 0% 100%, from(#f3f3f3), to(#f6f6f6), color-stop(0.1, #fff));
+  border: 1rpx solid #ccc;
+  box-shadow: 0rpx 0rpx 8rpx rgba(0, 0, 0, 0.1);
+  transform: skew(2deg, 2deg) translate(-1rpx, 2rpx);
+}
+
+/* 胶带 */
+
+.sticky-ribbon {
+  z-index: 102;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 78rpx;
+  height: 24rpx;
+  background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(0.1, rgba(0, 0, 0, 0.2)));
+  border-left: 1rpx dashed rgba(0, 0, 0, 0.1);
+  border-right: 1rpx dashed rgba(0, 0, 0, 0.1);
+  box-shadow: 0rpx 0rpx 7rpx rgba(0, 0, 0, 0.2);
+  transform: rotate(-30deg) skew(0, 0) translate(-18rpx, -12rpx);
+}
+
+/* 圆形贴纸 */
+
+.sticker-round {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 200%;
+}
+
+/* 书桌 */
+
+.desk {
+  position: relative;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 桌面 */
+
+.desk-surface {
+  width: 100%;
+  height: 25rpx;
+  background-color: #bbaa95;
+}
+
+/* 桌面下面一层 */
+
+.desk-undersurface {
+  width: 95%;
+  height: 40rpx;
+  background-color: #cebca7;
+  margin: 0 auto;
+}
+
+/* 桌腿区域 */
+
+.desk-legs {
+  width: 100%;
+  height: 145rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 80rpx;
+  box-sizing: border-box;
+}
+
+/* 桌腿 */
+
+.desk-leg {
+  width: 40rpx;
+  height: 100%;
+  background-color: #bbaa95;
+}
+
+/* 音响 */
+
+.speaker {
+  position: relative;
+  width: 150rpx;
+  height: 230rpx;
+  background-color: #383838;
+  border-radius: 1rpx;
+}
+
+/* 音响的喇叭 */
+
+.speaker-circle {
+  width: 130rpx;
+  height: 130rpx;
+  left: 10rpx;
+  top: 85rpx;
+  border-radius: 100%;
+  box-sizing: border-box;
+  border: 20rpx solid rgb(90, 90, 90);
+  box-shadow: 0 0 0 15rpx rgba(244, 240, 236, 0.4) inset,
+                0 0 50rpx rgba(0, 0, 0, 0.8) inset,
+                0 20rpx 20rpx rgba(0, 0, 0, 0.3);
+  position: absolute;
+  background-color: white;
+}
+
+/* 相册 */
+
+.photo-album {
+  position: relative;
+  width: 165rpx;
+  height: 132rpx;
+  background-color: #6b0030;
+  z-index: 2;
+}
+
+.photo-album::before {
+  content: '';
+  position: absolute;
+  width: 158rpx;
+  height: 121rpx;
+  background-color: #f98a97;
+  top: 7.7rpx;
+  left: px;
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+/* 相册的绑绳 */
+
+.album-bind {
+  position: absolute;
+  width: 24rpx;
+  height: 8.8rpx;
+  background-color: #dc435e;
+  border-radius: 22rpx;
+  left: -6.6rpx;
+  top: 17.6rpx;
+  box-shadow: 0px 22rpx 0px 0px #dc435e,
+                0px 44rpx 0px 0px #dc435e,
+                0px 66rpx 0px 0px #dc435e,
+                0px 88rpx 0px 0px #dc435e;
+  z-index: 3;
+}
+
+.album-bind::after {
+  content: "";
+  position: absolute;
+  width: 24rpx;
+  height: 8.8rpx;
+  background-color: #450015;
+  border-radius: 22rpx;
+  left: -4.4rpx;
+  top: 0px;
+  box-shadow: 0px 22rpx 0px 0px #450015,
+                0px 44rpx 0px 0px #450015,
+                0px 66rpx 0px 0px #450015,
+                0px 88rpx 0px 0px #450015;
+}
+
+.album-photo {
+  content: "";
+  position: absolute;
+  width: 114.4rpx;
+  height: 99rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.6);
+  top: 17.6rpx;
+  left: 28.6rpx;
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  z-index: 4;
+  box-sizing: border-box;
+}

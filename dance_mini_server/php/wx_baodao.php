@@ -1,10 +1,10 @@
 <?php
 /*******************************************************************************
 接受用户从小程序端提交的报到信息，储存到mongo数据库，需要时同步发表到兵马俑BBS。
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 3 $)
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-26
+Updated: 2017-09-11
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -211,7 +211,9 @@ if ($user_info == null) {
 	if (array_key_exists('photos', $user_info['dance'])) {
 		$photos = $user_info['dance']['photos'];
 		foreach ($photos as $photo) {
-			unlink($_SERVER['DOCUMENT_ROOT']."/".$photo);
+			if (is_string($photo)) {
+				unlink($_SERVER['DOCUMENT_ROOT']."/".$photo);
+			}
 		}
 	} 
 	

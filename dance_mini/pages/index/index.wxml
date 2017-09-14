@@ -1,18 +1,41 @@
 <!--pages/index/index.wxml-->
-<view class="container">
-  <swiper class="page-body" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
-    <block wx:for="{{swiper_list}}">
-      <swiper-item bindtap="toSwiperContent" data-_id="{{item._id}}">
-        <image src="{{item.imgUrl}}" class="slide-image" mode="aspectFill"/>
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="page-body drawer_box">
-    <button class="drawer_btn" bindtap="toBaodao">报到</button>
-    <button class="drawer_btn" bindtap="toHuyou">忽悠</button>
+<import src="../libs/libs.wxml" />
+
+<view class="container drawer-screen" style="background-image:url({{bg_white_wall}});">
+
+  <view class='page-body swiper-container'>
+    <view class='photo-frame photo-container'>
+      <swiper class='drawer-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+        <block wx:for="{{swiper_list}}">
+          <swiper-item bindtap="toSwiperContent" data-_id="{{item._id}}" type="width:100%;height:100%;">
+            <image src="{{item.imgUrl}}" class="slide-image" mode="aspectFill" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
   </view>
-  <view class="page-body drawer_box">
-    <button class="drawer_btn" bindtap="toDancerList">舞友</button>
-    <button class="drawer_btn" bindtap="toDanceIntro">dance</button>
+
+  <view class="drawer-box1">
+    <image class='sticker-round drawer-sticker' src='{{img_dance}}' bindtap="toDanceIntro" />
+    <view class='note-container' bindtap="toBaodao">
+      <template is="sticky-note" data="{{text: '报到'}}" />
+    </view>
+  </view>
+
+  <view class="drawer-box1">
+    <view class='speaker-container' bindtap="toHuyou">
+      <template is='speaker' />
+    </view>
+    <text class='text-hint text-huyou' bindtap="toHuyou">忽悠</text>
+    <view class='album-container' bindtap="toDancerList">
+      <template is='photo-album' data="{{photo: '../../images/group-photo.jpg'}}"/>
+    </view>
+    <text class='text-hint text-dancers' bindtap="toDancerList">舞友</text>
+  </view>
+
+  <view class="page-body">
+    <view class='desk-container'>
+      <template is='desk' />
+    </view>
   </view>
 </view>

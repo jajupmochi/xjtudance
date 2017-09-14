@@ -1,26 +1,83 @@
 /* pages/index/index.wxss */
+
+.drawer-screen {
+  min-height: 1233rpx;
+  background-repeat: repeat;
+  background-size: 100%;
+  justify-content: flex-start;
+}
+
+.swiper-container {
+  height: 500rpx;
+}
+
+.photo-container {
+  transform: rotate(-4deg);
+  margin-top: 130rpx;
+  margin-left: 120rpx;
+}
+
+.drawer-swiper {
+  width: 100%;
+  height: 100%;
+}
+
 .slide-image {
   width: 100%;
-  height: 422rpx;
+  height: 100%;
 }
 
-.drawer_box {
-  background: #FFFFFF;
-  padding: 30rpx 25rpx 0rpx 25rpx;
+.drawer-box1 {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
-.drawer_btn {
-  width: 100%;
-  height: 280rpx;
-  font: 40rpx/280rpx "microsoft yahei";
-  font-weight: 700;
+.drawer-sticker {
+  margin: 200rpx 0 0 320rpx;
+  transform: rotate(30deg);
+}
+@import "../libs/libs.wxss";
+
+.note-container {
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  margin: 30rpx 0 0 50rpx;
+  transform: rotate(1deg);
+}
+
+.speaker-container {
+  width: fit-content;
+  height: fit-content;
+  margin-left: 50rpx;
+}
+
+.album-container {
+  width: fit-content;
+  height: fit-content;
+  margin: 99rpx 0 0 150rpx;
+}
+
+/* 提示文字 */
+
+.text-hint {
+  font: 40rpx/40rpx;
+  font-weight: bold;
+  color: #615b55;
   text-align: center;
-  border: 1px solid #e8e8ea;
-  color: #FFFFFF;
-  background-color: #800080;
-  border-radius: 45rpx;
-  margin: 60rpx 30rpx 0 30rpx;
+  text-shadow: 0 8rpx 9rpx #c4b59d, 0px -2rpx 1rpx #fff;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
+
+.text-huyou {
+  margin: 90rpx 0 0 10rpx;
+}
+
+.text-dancers {
+  margin: 140rpx 0 0 10rpx;
 }

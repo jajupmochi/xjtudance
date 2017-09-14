@@ -73,7 +73,7 @@ function listData(options) {
       wx.hideLoading();
       wx.showToast({
         title: 'oops，加载失败了...',
-        image: '../images/more.png',
+        image: '../../images/more.png',
         duration: 1000,
         mask: true,
       });

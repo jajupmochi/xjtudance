@@ -1,10 +1,10 @@
 <?php  
 /*******************************************************************************
 图像处理函数
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 2 $)
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-25
+Updated: 2017-09-11
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/

@@ -1,10 +1,10 @@
 <?php  
 /*******************************************************************************
 兵马俑BBS相关函数
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 3 $)
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-08-15
+Updated: 2017-09-16
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
@@ -62,6 +62,35 @@ function wxminiWatermark4bmy($time, $db, $level) {
 			[0;36m我的称号是[m[0;31m[4m".$level."[m[m
 			[1;34m********************************************************************************[m";
 	return $watermark;
+}
+
+/**
+* 回复兵马俑文章。
+* @param string $fatherUrl 被回复文章的兵马俑url
+* @param string $fatherTitle 被回复文章的标题
+* @param string $sessionurl 用户的sessionurl
+* @param string $content 文章内容
+* @param string $title 文章标题
+* @access public
+*/
+function replyBmyArticle($fatherUrl, $fatherTitle, $sessionurl, $content, $title = '') {
+	if ($title == '') { // 标题为空时使用被回复文章标题加Re
+		$title = $fatherTitle;
+	}
+	if(!strstr($title, 'Re: ')) {
+		$title = 'Re: '.$title;
+	}
+	$ref = $fatherUrl($url, '.A');
+	$postdata = "title=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $title))."&text=".urlencode(iconv("UTF-8", "GB18030//IGNORE", $content));
+	$url = "http://bbs.xjtu.edu.cn/".$sessionurl."/bbssnd?board=dance&th=-1&ref=".$ref."&rid=-1";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
 }
 
 /*

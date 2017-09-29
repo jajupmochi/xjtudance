@@ -2,14 +2,14 @@
 /*******************************************************************************
 接受用户从小程序端提交的用户id或微信code，从数据库中读取用户信息。
 Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin <jajupmochi@gmail.com>
 Updated: 2017-08-26
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
-include('config.php');
+include_once('config.php');
 
 // 从小程序端获取数据
 $data = file_get_contents("php://input");
@@ -24,8 +24,7 @@ foreach ($values as $value) {
 	$which = array_merge($which, array($value => true));
 }
 
-$mongo = new MongoClient();
-$db = $mongo->$dance_db;
+$db = db::getMongoDB();
 
 if ($_id == '') {
 	// 从数据库读取小程序的appid和密匙，下面调用微信api时需要使用

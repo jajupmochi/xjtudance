@@ -9,11 +9,10 @@ Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
-include('config.php');
+include_once('config.php');
 
 // 获取用户微信openid
-$mongo = new MongoClient();
-$db = $mongo->$dance_db;
+$db = db::getMongoDB();
 $collection_global = $db->globaldata;
 $contents = $collection_global->findOne(array('name' => 'wxmini'), array('appid' => true, 'secret' => true));
 $appid = $contents["appid"];
@@ -36,7 +35,7 @@ $user_info = $collection_users->findOne(array('wechat.openid_mini' => $str['open
 if ($user_info == null || $user_info['bmy']['id'] == '') { // 未绑定账户使用jiaodadance账户发帖
 	$bmy_id = "jiaodadance";
 	$bmy_password = "lovedance123";
-	$bmy_title = "新手(".$_POST['nickname'].")报到 (小dance代发)";
+	$bmy_title = "新手(".$_POST['nickname'].")报到";
 } else {
 	$bmy_id = $user_info['bmy']['id'];
 	$bmy_password = $user_info['bmy']['password'];

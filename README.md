@@ -3,6 +3,8 @@
 ## 效果图
 ![Welcome to Dance!](/images/screenshot/welcome_to_dance.jpg "dance版微信小程序报名页")
 ## 更新日志
+### 2017.09.29
+* 安全 给mongo数据库设置访问权限，建立dance配置文件，添加安全配置说明文档 - Linlin
 ### 2017.09.14
 * 优化 首页，设计为home的形式 - Linlin
 ### 2017.09.11

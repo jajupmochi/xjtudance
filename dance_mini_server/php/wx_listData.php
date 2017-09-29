@@ -9,7 +9,7 @@ Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 	
-include('config.php');
+include_once('config.php');
 
 if ($dance_release) {
 	// 禁止直接从浏览器输入地址访问.PHP文件
@@ -48,10 +48,8 @@ if (array_key_exists('collection_name', $data)) {
 		}
 	}
 
-	$mongo = new MongoClient(); // 连接数据库
-	$db = $mongo->$dance_db; // 获取dance的数据库（xjtudance）
-
 	// 从数据库读取列表
+	$db = db::getMongoDB();
 	$collection = $db->$collection_name;
 	$doc = $collection->find($where, $which)->
 		sort(array($list_order => -1))->skip($skip)->limit($limit);

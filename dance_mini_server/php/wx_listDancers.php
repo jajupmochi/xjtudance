@@ -2,14 +2,14 @@
 /*******************************************************************************
 读取数据库中的舞友列表，发送给小程序。
 Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
 Updated: 2017-08-26
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 	
-include('config.php');
+include_once('config.php');
 
 if ($dance_release) {
 	// 禁止直接从浏览器输入地址访问.PHP文件
@@ -36,8 +36,7 @@ foreach ($values as $value) {
 	$which = array_merge($which, array($value => true));
 }
 
-$mongo = new MongoClient(); // 连接数据库
-$db = $mongo->$dance_db; // 获取dance的数据库（xjtudance）
+$db = db::getMongoDB();
 
 // 从数据库读取列表
 $collection_users = $db->users;

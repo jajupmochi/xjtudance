@@ -9,11 +9,10 @@ Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
-include('config.php');
+include_once('config.php');
 
 // 获取用户微信openid
-$mongo = new MongoClient();
-$db = $mongo->$dance_db;
+$db = db::getMongoDB();
 $collection_global = $db->globaldata;
 $contents = $collection_global->findOne(array('name' => 'wxmini'), array('appid' => true, 'secret' => true));
 $appid = $contents["appid"];

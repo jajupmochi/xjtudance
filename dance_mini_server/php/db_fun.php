@@ -1,14 +1,38 @@
 <?php
 /*******************************************************************************
 数据库函数
-Version: 0.1 ($Rev: 1 $)
-Website: https://github.com/jajupmochi/xjtudance
+Version: 0.1 ($Rev: 3 $)
+Website: https://github.com/xjtudance/xjtudance
 Author: Linlin Jia <jajupmochi@gmail.com>
-Updated: 2017-09-05
+Updated: 2017-09-28
 Licensed under The GNU General Public License 3.0
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
+/**
+* 数据库类
+*/
+class db {
+	
+	/**
+	* 获取指定的mongo数据库
+	* @param string $db_name 数据库名称
+	* @return MongoDB 数据库对象
+	*/
+	function getMongoDB($db_name = '') {
+		include_once('config_global.php');
+		if ($db_name == '') {
+			$db_name = $dance_db;
+		}
+		
+		// 读取数据库用户名和密匙
+		include_once($config_file_path);
+		$mongo = new MongoClient();
+		$db = $mongo->$db_name;
+		$db->authenticate($MongoDBUserName4Wxmini, $MongoDBUserPwd4Wxmini);
+		return $db;
+	}
+}
 
 /**
 * 将文件中保存的json格式数据读取到Mongo数据库中

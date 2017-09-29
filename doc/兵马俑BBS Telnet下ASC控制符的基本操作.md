@@ -4,7 +4,7 @@
 
 ## 二、Telnet下ASC控制符的基本操作
 
-*【重要说明】：ASC控制符（即下文所述*）为下一行的这个字符：*
+**【重要说明】：ASC控制符（即下文所述*）为下一行的这个字符：*
 ```
 
 ```
@@ -21,7 +21,7 @@ ASCII是American Standard Code for Information Interchange的缩写,也就是
 
 所有这94个字符都可以通过标准键盘直接输入。 
 
----
+***
 
 ### （2）为什么版务应该了解telnet下ASC的基本操作： 
 
